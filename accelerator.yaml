@@ -7,23 +7,48 @@ accelerator:
   options:
 
   - name: tanzunetRepoEnable
-    label: Provide TanzuNet Credentials
     inputType: checkbox
-    defaultValue: false
+    display: true
+    defaultValue:
+      - tanzunetRepo
+    choices:
+      - text: Provide TanzuNet Credentials
+        value: tanzunetRepo
+      - text: Provide Custom Platform Repo Credentials
+        value: customPlatformRepo
 
   - name: tanzunetUsername
     label: Tanzunet Username
     inputType: text
     dependsOn:
       name: tanzunetRepoEnable
-      value: true
+      value: [tanzunetRepo] 
 
   - name: tanzunetPassword
     label: Tanzunet Password / token
     inputType: text
     dependsOn:
       name: tanzunetRepoEnable
-      value: true
+      value: [tanzunetRepo]
+ 
+  - name: customPlatformRepoUrl
+    label: Custom Repo URL
+    inputType: text
+    dependsOn:
+      name: tanzunetRepoEnable
+      value: [customPlatformRepo] 
+  - name: customPlatformRepoUsername
+    label: Custom Repo Username
+    inputType: text
+    dependsOn:
+      name: tanzunetRepoEnable
+      value: [customPlatformRepo] 
+  - name: customPlatformRepoPassword
+    label: Custom Repo Password / Token
+    inputType: text
+    dependsOn:
+      name: tanzunetRepoEnable
+      value: [customPlatformRepo] 
 
   - name: imageRegistry
     label: Image Registry
