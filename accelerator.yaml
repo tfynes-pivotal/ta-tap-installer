@@ -17,7 +17,12 @@ accelerator:
     defaultValue: dockerHub
     required: true 
 
-
+  - name: githubId
+    label: GitHub User ID
+    inputType: text
+    dependsOn:
+      name: imageRegistry
+      value: dockerHub
 
 # a first option
   - name: greeting
