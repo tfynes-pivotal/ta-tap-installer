@@ -20,66 +20,65 @@ accelerator:
 
 
 # a first option
-    - name:
-        greeting
-        # name: each option must have a name.
-        # This must be
-        #   - camelCase
-        #   - unique (i.e. no two options can have the same name)
-        # This is like a variable used by the accelerator to refer to
-        # and use the value during its execution.
-        # This name is internal to your accelerator and is not shown to
-        # the user.
-      label:
-        Greeting Message
-        # A human readable version of the `name`. This is used to identify an
-        # option to the user in the UI.
-        # This should be short (so as not to look ugly in a ui with limited
-        # space available for labeling the input widgets).
-        # There are no limits on what characters can be used in the label (so spaces
-        # are allowed).
-      description:
-        Greeting message displayed by the Hello World app.
-        # An optional more detailed description / explanation that can be shown to
-        # to the user in the UI when the short label alone might not be enough to understand
-        # its purpose.
-      dataType:
-        string
-        # type of data the accelerator expects during execution (this is
-        # like the type of the 'variable'.
-        # possible dataTypes are string, boolean, number or [string] (the latter meaning a
-        # list of strings
-      inputType:
-        text
-        # Related to the dataType but somewhat independent, this identifies the type
-        # of widget shown in the ui. Available types are:
-        # - text - the default
-        # - toggle (boolean on/off control)
-        # - textarea (single text value with larger input that allows linebreaks)
-        # - checkbox - multivalue selection from choices
-        # - select - single value selection from choices
-        # - radio - alternative single value selection from choices
-        # - tag - multivalue input ui for entering single-word tags
-      required: true
-      defaultValue: Hello Accelerator
-    # second option:
-    - name: packageName
-      label: "Package Name"
-      description: Name of Java package
-      dataType: string
-      inputType: text
-      defaultValue: somepackage
-    # another option:
-    - name: buildType
-      label: Build Type
-      description: Choose whether to use Maven or Gradle to build the project.
-      dataType: string
-      inputType: select
-      choices:
-        - value: Maven
-          text: Maven (pom.xml)
-        - value: Gradle
-          text: Gradle (build.gradle)
+  - name: greeting
+      # name: each option must have a name.
+      # This must be
+      #   - camelCase
+      #   - unique (i.e. no two options can have the same name)
+      # This is like a variable used by the accelerator to refer to
+      # and use the value during its execution.
+      # This name is internal to your accelerator and is not shown to
+      # the user.
+    label:
+      Greeting Message
+      # A human readable version of the `name`. This is used to identify an
+      # option to the user in the UI.
+      # This should be short (so as not to look ugly in a ui with limited
+      # space available for labeling the input widgets).
+      # There are no limits on what characters can be used in the label (so spaces
+      # are allowed).
+    description:
+      Greeting message displayed by the Hello World app.
+      # An optional more detailed description / explanation that can be shown to
+      # to the user in the UI when the short label alone might not be enough to understand
+      # its purpose.
+    dataType:
+      string
+      # type of data the accelerator expects during execution (this is
+      # like the type of the 'variable'.
+      # possible dataTypes are string, boolean, number or [string] (the latter meaning a
+      # list of strings
+    inputType:
+      text
+      # Related to the dataType but somewhat independent, this identifies the type
+      # of widget shown in the ui. Available types are:
+      # - text - the default
+      # - toggle (boolean on/off control)
+      # - textarea (single text value with larger input that allows linebreaks)
+      # - checkbox - multivalue selection from choices
+      # - select - single value selection from choices
+      # - radio - alternative single value selection from choices
+      # - tag - multivalue input ui for entering single-word tags
+    required: true
+    defaultValue: Hello Accelerator
+  # second option:
+  - name: packageName
+    label: "Package Name"
+    description: Name of Java package
+    dataType: string
+    inputType: text
+    defaultValue: somepackage
+  # another option:
+  - name: buildType
+    label: Build Type
+    description: Choose whether to use Maven or Gradle to build the project.
+    dataType: string
+    inputType: select
+    choices:
+      - value: Maven
+        text: Maven (pom.xml)
+      - value: Gradle
+        text: Gradle (build.gradle)
 
 
 
