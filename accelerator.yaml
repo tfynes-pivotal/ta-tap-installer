@@ -12,6 +12,7 @@ accelerator:
     defaultValue: textDefaultValue
   
   - name: toggle
+    label: toggle label
     display: true
     dataType: boolean
     defaultValue: false
