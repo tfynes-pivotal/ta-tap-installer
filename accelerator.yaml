@@ -20,54 +20,65 @@ accelerator:
 
 
  # Ask if user wants to provide Pivnet or imgpkg target platform repo details 
-  - name: providePlatformRegistryCredentials
-    label: Provide Platform Registry Location / Credentials
-    display: true
-    dataType: boolean
-    defaultValue: false
+  # - name: providePlatformRegistryCredentials
+  #   label: Provide Platform Registry Location / Credentials
+  #   display: true
+  #   dataType: boolean
+  #   defaultValue: false
 
-  - name: tanzunetRegistryEnable
-    inputType: select
+  - name: platformRegistryLocation
+    label: Platform binaries location 
+    inputType: radio
+    display: true
+    defaultValue: tanzuNet
     choices:
-    - text: Provide TanzuNet Credentials
-      value: tanzunetRegistry
-    - text: Provide Custom Platform Registry Credentials
-      value: customPlatformRegistry
-    defaultValue: tanzunetRegistry
-    dependsOn:
-      name: providePlatformRegistryCredentials
+      - text: TanzuNet Direct
+        value: tanzunetRegistrySelection
+      - text: Custom Platform Image Registry
+        value: customPlatformRegistrySelection
+
+  # - name: tanzunetRegistryEnable
+  #   inputType: select
+  #   choices:
+  #   - text: Provide TanzuNet Credentials
+  #     value: tanzunetRegistry
+  #   - text: Provide Custom Platform Registry Credentials
+  #     value: customPlatformRegistry
+  #   defaultValue: tanzunetRegistry
+  #   dependsOn:
+  #     name: providePlatformRegistryCredentials
 
   - name: tanzunetUsername
     label: Tanzunet Username
     inputType: text
     dependsOn:
-      name: tanzunetRegistryEnable
-      value: tanzunetRegistry
+      name: platformRegistryLocation
+      value: tanzunetRegistrySelection
   - name: tanzunetPassword
     label: Tanzunet Password / token / env-variable name
     inputType: text
     dependsOn:
-      name: tanzunetRegistryEnable
-      value: tanzunetRegistry
+      name: platformRegistryLocation
+      value: tanzunetRegistrySelection
  
   - name: customPlatformRegistryUrl
     label: Custom Platform Registry URL
     inputType: text
     dependsOn:
-      name: tanzunetRegistryEnable
-      value: customPlatformRegistry
+      name: platformRegistryLocation
+      value: customPlatformRegistrySelection
   - name: customPlatformRegistryUsername
     label: Custom Registry Username
     inputType: text
     dependsOn:
-      name: tanzunetRegistryEnable
-      value: customPlatformRegistry
+      name: platformRegistryLocation
+      value: customPlatformRegistrySelection
   - name: customPlatformRegistryPassword
     label: Custom Platform Registry Password / Token env-variable name
     inputType: text
     dependsOn:
-      name: tanzunetRegistryEnable
-      value: customPlatformRegistry
+      name: platformRegistryLocation
+      value: customPlatformRegistrySelection
 
 # ask user to provide image registry details
   - name: provideImageRegistryCredentials
