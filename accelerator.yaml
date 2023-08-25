@@ -30,7 +30,7 @@ accelerator:
     label: Platform binaries location 
     inputType: radio
     display: true
-    defaultValue: tanzuNet
+    defaultValue: tanzunetRegistrySelection
     choices:
       - text: TanzuNet Direct
         value: tanzunetRegistrySelection
