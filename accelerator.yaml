@@ -7,58 +7,58 @@ accelerator:
   options:
 
  # Ask if user wants to provide Pivnet or imgpkg target platform repo details 
-  - name: providePlatformRepoCredentials
-    label: Provide Platform Repository Location / Credentials
+  - name: providePlatformRegistryCredentials
+    label: Provide Platform Registry Location / Credentials
     display: true
     dataType: boolean
     defaultValue: false
 
-  - name: tanzunetRepoEnable
+  - name: tanzunetRegistryEnable
     inputType: select
     choices:
     - text: Provide TanzuNet Credentials
-      value: tanzunetRepo
-    - text: Provide Custom Platform Repo Credentials
-      value: customPlatformRepo
-    defaultValue: tanzunetRepo
+      value: tanzunetRegistry
+    - text: Provide Custom Platform Registry Credentials
+      value: customPlatformRegistry
+    defaultValue: tanzunetRegistry
     dependsOn:
-      name: providePlatformRepoCredentials
+      name: providePlatformRegistryCredentials
 
   - name: tanzunetUsername
     label: Tanzunet Username
     inputType: text
     dependsOn:
-      name: tanzunetRepoEnable
-      value: tanzunetRepo 
+      name: tanzunetRegistryEnable
+      value: tanzunetRegistry
   - name: tanzunetPassword
     label: Tanzunet Password / token
     inputType: text
     dependsOn:
-      name: tanzunetRepoEnable
-      value: tanzunetRepo
+      name: tanzunetRegistryEnable
+      value: tanzunetRegistry
  
-  - name: customPlatformRepoUrl
-    label: Custom Repo URL
+  - name: customPlatformRegistryUrl
+    label: Custom Platform Registry URL
     inputType: text
     dependsOn:
-      name: tanzunetRepoEnable
-      value: customPlatformRepo 
-  - name: customPlatformRepoUsername
-    label: Custom Repo Username
+      name: tanzunetRegistryEnable
+      value: customPlatformRegistry
+  - name: customPlatformRegistryUsername
+    label: Custom Registry Username
     inputType: text
     dependsOn:
-      name: tanzunetRepoEnable
-      value: customPlatformRepo 
-  - name: customPlatformRepoPassword
-    label: Custom Repo Password / Token
+      name: tanzunetRegistryEnable
+      value: customPlatformRegistry
+  - name: customPlatformRegistryPassword
+    label: Custom Platform Registry Password / Token
     inputType: text
     dependsOn:
-      name: tanzunetRepoEnable
-      value: customPlatformRepo 
+      name: tanzunetRegistryEnable
+      value: customPlatformRegistry
 
 # ask user to provide image registry details
-  - name: provideImageRepoCredentials
-    label: Provide Image Repository Credentials
+  - name: provideImageRegistryCredentials
+    label: Provide Image Registry Credentials
     display: true
     dataType: boolean
     defaultValue: false
@@ -74,7 +74,7 @@ accelerator:
     defaultValue: dockerHub
     required: true
     dependsOn:
-      name: provideImageRepoCredentials
+      name: provideImageRegistryCredentials
 
   - name: dockerhubUsername
     label: DockerHub User ID
@@ -91,8 +91,8 @@ accelerator:
       name: imageRegistry
       value: dockerHub
 
-  - name: dockerhubDefaultRepository
-    label: DockerHub Default Repository
+  - name: dockerhubDefaultRegistry
+    label: DockerHub Default Registry
     inputType: text
     defaultValue: fynesy/buildservice
     dependsOn:
@@ -126,6 +126,40 @@ accelerator:
     inputType: text
     defaultValue: akslab.tap.fynesy.com
 
+  - name: tapIngressIssuer
+    label: TAP Ingress Issuer
+    inputType: text
+    defaultValue: letsencrypt-production
+
+  - name: sourceRepository
+    label: TAP Developer Source Registry
+    inputType: select
+    choices:
+    - value: gitHub
+      text: GitHub
+
+  - name: gitHubRepositoryUsername
+    label: GitHub Repository Username
+    inputType: text
+    defaultValue: fynesy 
+    dependsOn:
+      name: sourceRepository
+      value: gitHub
+
+
+
+# - name: imageRegistry
+#     label: Image Registry
+#     inputType: select
+#     choices:
+#     - value: dockerHub
+#       text: Docker Hub
+#     - value: harbor
+#       text: Harbor
+#     defaultValue: dockerHub
+#     required: true
+#     dependsOn:
+#       name: provideImageRepoCredentials
 
 
   # - name: tanzunetRepoEnable
