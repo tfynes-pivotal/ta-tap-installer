@@ -1,4 +1,5 @@
 accelerator:
   displayName: TAP Installer
   description: TAP Installer
-  iconUrl:
+  iconUrl: https://github.com/tfynes-pivotal/ta-tap-installer/blob/main/tanzu-icon.png?raw=true
+
