@@ -45,13 +45,6 @@ accelerator:
       name: imageRegistry
       value: harbor
 
-  - name: harborUsername
-    label: Harbor Registry Username
-    inputType: text
-    dependsOn:
-      name: imageRegistry
-      value: harbor
-
   - name: harborPassword
     label: Harbor Registry Password
     inputType: text
