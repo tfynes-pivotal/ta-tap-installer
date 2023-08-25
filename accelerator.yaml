@@ -79,6 +79,7 @@ accelerator:
   - name: dockerhubUsername
     label: DockerHub User ID
     inputType: text
+    defaultValue: fynesy
     dependsOn:
       name: imageRegistry
       value: dockerHub
@@ -89,6 +90,15 @@ accelerator:
     dependsOn:
       name: imageRegistry
       value: dockerHub
+
+  - name: dockerhubDefaultRepository
+    label: DockerHub Default Repository
+    inputType: text
+    defaultValue: fynesy/buildservice
+    dependsOn:
+      name: imageRegistry
+      value: dockerHub
+
 
   - name: harborUrl
     label: Harbor Registry Location
@@ -111,6 +121,10 @@ accelerator:
       name: imageRegistry
       value: harbor
 
+  - name: tapIngressDomain
+    label: TAP Ingress Domain
+    inputType: text
+    defaultValue: akslab.tap.fynesy.com
 
 
 
