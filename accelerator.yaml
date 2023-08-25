@@ -6,22 +6,12 @@ accelerator:
 
   options:
 
-
-  - name: text
-    display: false
-    defaultValue: textDefaultValue
-  
-  - name: provideRepoCredentials
+ # Ask if user wants to provide Pivnet or imgpkg target platform repo details 
+  - name: providePlatformRepoCredentials
     label: Provide Platform Repository Location / Credentials
     display: true
     dataType: boolean
     defaultValue: false
-
-  # - name: dependsOnToggle
-  #   label: depends on toggle
-  #   dependsOn: 
-  #     name: toggle
-  #   defaultValue: depends on toggle default value
 
   - name: tanzunetRepoEnable
     inputType: select
@@ -32,7 +22,7 @@ accelerator:
       value: customPlatformRepo
     defaultValue: tanzunetRepo
     dependsOn:
-      name: provideRepoCredentials
+      name: providePlatformRepoCredentials
 
   - name: tanzunetUsername
     label: Tanzunet Username
@@ -40,7 +30,6 @@ accelerator:
     dependsOn:
       name: tanzunetRepoEnable
       value: tanzunetRepo 
-
   - name: tanzunetPassword
     label: Tanzunet Password / token
     inputType: text
@@ -67,6 +56,13 @@ accelerator:
       name: tanzunetRepoEnable
       value: customPlatformRepo 
 
+# ask user to provide image registry details
+  - name: provideImageRepoCredentials
+    label: Provide Image Repository Credentials
+    display: true
+    dataType: boolean
+    defaultValue: false
+
   - name: imageRegistry
     label: Image Registry
     inputType: select
@@ -76,7 +72,9 @@ accelerator:
     - value: harbor
       text: Harbor
     defaultValue: dockerHub
-    required: true 
+    required: true
+    dependsOn:
+      name: provideImageRepoCredentials
 
   - name: dockerhubUsername
     label: DockerHub User ID
