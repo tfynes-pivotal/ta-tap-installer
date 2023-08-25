@@ -12,7 +12,7 @@ accelerator:
     display: true
     defaultValue: inlineSecrets
     choices:
-      - text: Entered Directly
+      - text: Entered Directly (Caution! do not commit acclerator output to repo)
         value: inlineSecrets
       - text: via Environment Variables
         value: environmentSecrets
