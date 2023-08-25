@@ -9,8 +9,21 @@ accelerator:
   - name: tanzunetRepoEnable
     label: Provide TanzuNet Credentials
     inputType: checkbox
-    defaultValue: true 
+    defaultValue: false
 
+  - name: tanzunetUsername
+    label: Tanzunet Username
+    inputType: text
+    dependsOn:
+      name: tanzunetRepoEnable
+      value: true
+
+  - name: tanzunetPassword
+    label: Tanzunet Password / token
+    inputType: text
+    dependsOn:
+      name: tanzunetRepoEnable
+      value: true
 
   - name: imageRegistry
     label: Image Registry
