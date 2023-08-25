@@ -9,8 +9,8 @@ accelerator:
 
 
   options:
-    - name: intro
-    label: This wizard is designed to simplify TAP installation configuration generation
+  - name: intro
+  label: This wizard is designed to simplify TAP installation configuration generation
 
 
 
