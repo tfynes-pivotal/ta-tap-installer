@@ -11,17 +11,17 @@ accelerator:
     display: false
     defaultValue: textDefaultValue
   
-  - name: toggle
-    label: toggle label
+  - name: provideRepoCredentials
+    label: Provide Platform Repository Location / Credentials
     display: true
     dataType: boolean
     defaultValue: false
 
-  - name: dependsOnToggle
-    label: depends on toggle
-    dependsOn: 
-      name: toggle
-    defaultValue: depends on toggle default value
+  # - name: dependsOnToggle
+  #   label: depends on toggle
+  #   dependsOn: 
+  #     name: toggle
+  #   defaultValue: depends on toggle default value
 
   - name: tanzunetRepoEnable
     inputType: select
@@ -31,6 +31,8 @@ accelerator:
     - text: Provide Custom Platform Repo Credentials
       value: customPlatformRepo
     defaultValue: tanzunetRepo
+    dependsOn:
+      name: provideRepoCredentials
 
   - name: tanzunetUsername
     label: Tanzunet Username
