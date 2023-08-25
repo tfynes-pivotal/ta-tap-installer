@@ -139,6 +139,20 @@ accelerator:
     inputType: text
     defaultValue: akslab.tap.fynesy.com
 
+  - name: tlsMode
+    label: TLS Mode
+    inputType: radio
+    display: true
+    defaultValue: tlsHttpSolver
+    choices:
+      - text: letEncrypt / CertManager - Local HTTP Challenge
+        value: tlsHttpSolver
+      - text: letsEncrypt / CertManager - DNS Challenge
+        value: tlsDnsSolver
+      - text: manually provided wildcard certificate/key 
+        value: tlsManual
+
+
   - name: tapIngressIssuer
     label: TAP Ingress Issuer
     inputType: text
