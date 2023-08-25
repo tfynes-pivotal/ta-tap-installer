@@ -1,24 +1,21 @@
 accelerator:
   displayName: TAP Installer
-  description: TAP Installer
-
-
+  description: TAP Installer Setup Wizard
   tags:
   - beta
 
-
   options:
-    - name: deploymentType
-      inputType: select
-      choices:
-      - value: none
-        text: Skip Kubernetes deployment
-      - value: k8s-simple
-        text: Kubernetes deployment and service
-      - value: knative
-        text: Knative service
-      defaultValue: k8s-simple
-      required: true
+
+  - name: imageRegistry
+    label: Image Registry
+    inputType: select
+    choices:
+    - value: dockerHub
+      text: Docker Hub
+    - value: harbor
+      text: Harbor
+    defaultValue: dockerHub
+    required: true 
 
 
 
