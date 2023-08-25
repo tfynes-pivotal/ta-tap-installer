@@ -30,8 +30,16 @@ accelerator:
     dependsOn:
       name: tanzunetRegistryEnable
       value: tanzunetRegistry
+  - name: tanzunetPasswordInline
+    label: Inline password or workstation environment variable
+    display: true
+    dataType: boolean
+    defaultValue: true
+    dependsOn:
+      name: tanzunetRegistryEnable
+      value: tanzunetRegistry 
   - name: tanzunetPassword
-    label: Tanzunet Password / token
+    label: Tanzunet Password / token / env-variable
     inputType: text
     dependsOn:
       name: tanzunetRegistryEnable
