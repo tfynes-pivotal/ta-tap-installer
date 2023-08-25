@@ -14,7 +14,7 @@ accelerator:
     choices:
       - text: Entered Directly
         value: inlineSecrets
-      - text: Environment Variables
+      - text: via Environment Variables
         value: environmentSecrets
 
 
@@ -44,7 +44,7 @@ accelerator:
       name: tanzunetRegistryEnable
       value: tanzunetRegistry
   - name: tanzunetPassword
-    label: Tanzunet Password / token / env-variable
+    label: Tanzunet Password / token / env-variable name
     inputType: text
     dependsOn:
       name: tanzunetRegistryEnable
@@ -63,7 +63,7 @@ accelerator:
       name: tanzunetRegistryEnable
       value: customPlatformRegistry
   - name: customPlatformRegistryPassword
-    label: Custom Platform Registry Password / Token
+    label: Custom Platform Registry Password / Token env-variable name
     inputType: text
     dependsOn:
       name: tanzunetRegistryEnable
@@ -98,7 +98,7 @@ accelerator:
       value: dockerHub
 
   - name: dockerhubPassword
-    label: DockerHub Password or Access Token
+    label: DockerHub Password / Access Token or env-variable name
     inputType: text
     dependsOn:
       name: imageRegistry
@@ -128,7 +128,7 @@ accelerator:
       value: harbor
 
   - name: harborPassword
-    label: Harbor Registry Password
+    label: Harbor Registry Password or env-variable name
     inputType: text
     dependsOn:
       name: imageRegistry
@@ -160,7 +160,7 @@ accelerator:
       value: gitHub
 
   - name: gitHubRepositoryPassword
-    label: GitHub Repository Password / Token
+    label: GitHub Repository Password / Token or env-variable name
     inputType: text
     dependsOn:
       name: sourceRepository
