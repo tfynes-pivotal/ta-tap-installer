@@ -9,6 +9,7 @@ accelerator:
   - name: tanzunetRepoEnable
     inputType: checkbox
     display: true
+    dataType: [string]
     defaultValue:
       - tanzunetRepo
     choices:
