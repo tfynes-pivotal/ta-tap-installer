@@ -6,18 +6,6 @@ accelerator:
 
   options:
 
-
-  - name: imageRegistry
-    label: Image Registry
-    inputType: select
-    choices:
-    - value: dockerHub
-      text: Docker Hub
-    - value: harbor
-      text: Harbor
-    defaultValue: dockerHub
-    required: true 
-
   - name: tanzunetRepoEnable
     inputType: select
     choices:
