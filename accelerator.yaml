@@ -146,6 +146,12 @@ accelerator:
       name: sourceRepository
       value: gitHub
 
+  - name: gitHubRepositoryPassword
+    label: GitHub Repository Password / Token
+    inputType: text
+    dependsOn:
+      name: sourceRepository
+      
 
 
 # - name: imageRegistry
