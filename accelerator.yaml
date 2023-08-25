@@ -17,12 +17,47 @@ accelerator:
     defaultValue: dockerHub
     required: true 
 
-  - name: githubId
-    label: GitHub User ID
+  - name: dockerhubUsername
+    label: DockerHub User ID
     inputType: text
     dependsOn:
       name: imageRegistry
       value: dockerHub
+
+  - name: dockerhubPassword
+    label: DockerHub Password / Access Token
+    inputType: text
+    dependsOn:
+      name: imageRegistry
+      value: dockerHub
+
+  - name: harborUrl
+    label: Harbor Registry Location
+    inputType: text
+    dependsOn:
+      name: imageRegistry
+      value: harbor
+
+  - name: harborUsername
+    label: Harbor Registry Username
+    inputType: text
+    dependsOn:
+      name: imageRegistry
+      value: harbor
+
+  - name: harborUsername
+    label: Harbor Registry Username
+    inputType: text
+    dependsOn:
+      name: imageRegistry
+      value: harbor
+
+  - name: harborPassword
+    label: Harbor Registry Password
+    inputType: text
+    dependsOn:
+      name: imageRegistry
+      value: harbor
 
 # a first option
   - name: greeting
