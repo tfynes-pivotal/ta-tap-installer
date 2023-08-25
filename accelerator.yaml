@@ -31,7 +31,7 @@ accelerator:
       name: tanzunetRegistryEnable
       value: tanzunetRegistry
   - name: tanzunetPasswordInline
-    label: Inline password or workstation environment variable
+    label: Inline password here or provide local env-var name containing secret
     display: true
     dataType: boolean
     defaultValue: true
@@ -57,6 +57,14 @@ accelerator:
     dependsOn:
       name: tanzunetRegistryEnable
       value: customPlatformRegistry
+  - name: customPlatformRegistryPasswordInline
+    label: Inline password here or provide local env-var name containing secret
+    display: true
+    dataType: boolean
+    defaultValue: true
+    dependsOn:
+      name: tanzunetRegistryEnable
+      value: customPlatformRegistry 
   - name: customPlatformRegistryPassword
     label: Custom Platform Registry Password / Token
     inputType: text
