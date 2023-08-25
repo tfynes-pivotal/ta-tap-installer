@@ -81,11 +81,22 @@ accelerator:
       value: customPlatformRegistrySelection
 
 # ask user to provide image registry details
-  - name: provideImageRegistryCredentials
-    label: Provide Image Registry Credentials
+  # - name: provideImageRegistryCredentials
+  #   label: Provide Image Registry Credentials
+  #   display: true
+  #   dataType: boolean
+  #   defaultValue: false
+
+  - name: imageRegistryLocation
+    label: Container Images Registry
+    inputType: radio
     display: true
-    dataType: boolean
-    defaultValue: false
+    defaultValue: dockerHub
+    choices:
+      - text: Docker Hub
+        value: dockerHub
+      - text: Harbor
+        value: harbor
 
   - name: imageRegistry
     label: Image Registry
@@ -98,21 +109,22 @@ accelerator:
     defaultValue: dockerHub
     required: true
     dependsOn:
-      name: provideImageRegistryCredentials
+      name: imageRegistryLocation
+      value: dockerHub
 
   - name: dockerhubUsername
     label: DockerHub User ID
     inputType: text
     defaultValue: fynesy
     dependsOn:
-      name: imageRegistry
+      name: imageRegistryLocation
       value: dockerHub
 
   - name: dockerhubPassword
     label: DockerHub Password / Access Token or env-variable name
     inputType: text
     dependsOn:
-      name: imageRegistry
+      name: imageRegistryLocation
       value: dockerHub
 
   - name: dockerhubDefaultRegistry
@@ -120,7 +132,7 @@ accelerator:
     inputType: text
     defaultValue: fynesy/buildservice
     dependsOn:
-      name: imageRegistry
+      name: imageRegistryLocation
       value: dockerHub
 
 
@@ -128,21 +140,21 @@ accelerator:
     label: Harbor Registry Location
     inputType: text
     dependsOn:
-      name: imageRegistry
+      name: imageRegistryLocation
       value: harbor
 
   - name: harborUsername
     label: Harbor Registry Username
     inputType: text
     dependsOn:
-      name: imageRegistry
+      name: imageRegistryLocation
       value: harbor
 
   - name: harborPassword
     label: Harbor Registry Password or env-variable name
     inputType: text
     dependsOn:
-      name: imageRegistry
+      name: imageRegistryLocation
       value: harbor
 
   - name: tapIngressDomain
