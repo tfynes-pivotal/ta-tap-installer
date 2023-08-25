@@ -25,7 +25,7 @@ accelerator:
       value: dockerHub
 
   - name: dockerhubPassword
-    label: DockerHub Password / Access Token
+    label: DockerHub Password or Access Token
     inputType: text
     dependsOn:
       name: imageRegistry
