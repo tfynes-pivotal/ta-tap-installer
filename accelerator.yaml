@@ -13,7 +13,7 @@ accelerator:
   
   - name: toggle
     display: true
-    datatype: boolean
+    dataType: boolean
     defaultValue: false
 
   - name: dependsOnToggle
