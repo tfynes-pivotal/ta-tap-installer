@@ -7,7 +7,7 @@ accelerator:
   options:
 
   - name: secrets
-    label: Secrets Management
+    label: Secrets 
     inputType: radio
     display: true
     defaultValue: inlineSecrets
