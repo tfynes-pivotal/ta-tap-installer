@@ -8,7 +8,7 @@ accelerator:
 
 
   - name: text
-    display: true
+    display: false
     defaultValue: textDefaultValue
   
   - name: toggle
