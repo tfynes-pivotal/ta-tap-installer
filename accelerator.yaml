@@ -6,50 +6,59 @@ accelerator:
 
   options:
 
-  - name: tanzunetRepoEnable
-    inputType: checkbox
-    display: true
-    dataType: [string]
-    defaultValue:
-      - tanzunetRepo
+
+  - name: imageRegistry
+    label: Image Registry
+    inputType: select
     choices:
-      - text: Provide TanzuNet Credentials
-        value: tanzunetRepo
-      - text: Provide Custom Platform Repo Credentials
-        value: customPlatformRepo
+    - value: dockerHub
+      text: Docker Hub
+    - value: harbor
+      text: Harbor
+    defaultValue: dockerHub
+    required: true 
+
+  - name: tanzunetRepoEnable
+    inputType: select
+    choices:
+    - text: Provide TanzuNet Credentials
+      value: tanzunetRepo
+    - text: Provide Custom Platform Repo Credentials
+      value: customPlatformRepo
+    defaultValue: tanzunetRepo
 
   - name: tanzunetUsername
     label: Tanzunet Username
     inputType: text
     dependsOn:
       name: tanzunetRepoEnable
-      value: [tanzunetRepo] 
+      value: tanzunetRepo 
 
   - name: tanzunetPassword
     label: Tanzunet Password / token
     inputType: text
     dependsOn:
       name: tanzunetRepoEnable
-      value: [tanzunetRepo]
+      value: tanzunetRepo
  
   - name: customPlatformRepoUrl
     label: Custom Repo URL
     inputType: text
     dependsOn:
       name: tanzunetRepoEnable
-      value: [customPlatformRepo] 
+      value: customPlatformRepo 
   - name: customPlatformRepoUsername
     label: Custom Repo Username
     inputType: text
     dependsOn:
       name: tanzunetRepoEnable
-      value: [customPlatformRepo] 
+      value: customPlatformRepo 
   - name: customPlatformRepoPassword
     label: Custom Repo Password / Token
     inputType: text
     dependsOn:
       name: tanzunetRepoEnable
-      value: [customPlatformRepo] 
+      value: customPlatformRepo 
 
   - name: imageRegistry
     label: Image Registry
@@ -96,6 +105,22 @@ accelerator:
     dependsOn:
       name: imageRegistry
       value: harbor
+
+
+
+
+  # - name: tanzunetRepoEnable
+  #   inputType: checkbox
+  #   display: true
+  #   dataType: [string]
+  #   defaultValue:
+  #     - tanzunetRepo
+  #   choices:
+  #     - text: Provide TanzuNet Credentials
+  #       value: tanzunetRepo
+  #     - text: Provide Custom Platform Repo Credentials
+  #       value: customPlatformRepo
+
 
 # a first option
   - name: greeting
