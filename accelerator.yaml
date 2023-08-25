@@ -6,6 +6,12 @@ accelerator:
 
   options:
 
+  - name: tanzunetRepoEnable
+    label: Provide TanzuNet Credentials
+    inputType: checkbox
+    defaultValue: true 
+
+
   - name: imageRegistry
     label: Image Registry
     inputType: select
