@@ -295,11 +295,13 @@ accelerator:
 
 
 engine: 
-  type: Chain
-  transformations:
-  - type: Include
-    patterns: ['**/*.*']
-  - type: ReplaceText
-    substitutions:
-    - text: akslab.tap.fynesy.com
-      with: "#tapIngressDomain" 
+  type: Merge
+  sources:
+  - type: Chain
+    transformations:
+    - type: Include
+      patterns: ['**/*.*']
+    - type: ReplaceText
+      substitutions:
+      - text: akslab.tap.fynesy.com
+        with: "#tapIngressDomain" 
