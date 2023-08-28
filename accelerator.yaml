@@ -236,7 +236,6 @@ accelerator:
   # Question 9. OKTA OIDC for SpringAPIPortal Enable
   - name: springApiPortalOktaIntegrationEnabled
     label: Enable Spring API-Portal Okta integration 
-    name: springApiPortalOktaIntegrationEnabled
     type: toggle
     defaultValue: false
 
