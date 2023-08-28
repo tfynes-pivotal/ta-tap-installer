@@ -287,7 +287,6 @@ accelerator:
 engine: 
   include:
     ["**/*.*"]
-  merge:
 
 
 
