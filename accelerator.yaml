@@ -171,6 +171,7 @@ accelerator:
     defaultValue: REGISTRY_PASSWORD
     dependsOn:
       name: sourceRepository
+      value: gitHub
       
   # Question 6. TLS Mode
   - name: tlsMode
