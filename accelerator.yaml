@@ -307,4 +307,4 @@ engine:
         with: "#tapIngressDomain" 
   - type: Exclude
     patterns: ["setup-repo\.sh"]
-    condition: "#imageRegistryLocation == dockerHub"
+    condition: "#imageRegistryLocation == 'dockerHub'"
