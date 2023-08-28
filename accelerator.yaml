@@ -99,7 +99,7 @@ accelerator:
     dependsOn:
       name: imageRegistryLocation
       value: dockerHub
-
+  # Question 3a-3. Dockerhub registry
   - name: dockerhubDefaultRegistry
     label: DockerHub Default Registry
     inputType: text
@@ -107,8 +107,8 @@ accelerator:
     dependsOn:
       name: imageRegistryLocation
       value: dockerHub
-
-
+   
+  # Question 3b-1. Harbor registry address
   - name: harborUrl
     label: Harbor Registry Location
     inputType: text
@@ -116,6 +116,7 @@ accelerator:
       name: imageRegistryLocation
       value: harbor
 
+  # Question 3b-2. Harbor registry username
   - name: harborUsername
     label: Harbor Registry Username
     inputType: text
@@ -123,6 +124,7 @@ accelerator:
       name: imageRegistryLocation
       value: harbor
 
+  # Question 3b-3. Harbor registry password
   - name: harborPassword
     label: Harbor Registry Password or env-variable name
     inputType: text
@@ -130,11 +132,21 @@ accelerator:
       name: imageRegistryLocation
       value: harbor
 
+  # Question 3b-4. Harbor default registry
+  - name: harborDefaultRegistry
+    label: Harbor Default Registry
+    inputType: text
+    dependsOn:
+      name: imageRegistryLocation
+      value: harbor
+
+  # Question 4. Ingress Domain
   - name: tapIngressDomain
     label: TAP Ingress Domain
     inputType: text
     defaultValue: akslab.tap.fynesy.com
 
+  # Question 5. TLS Mode
   - name: tlsMode
     label: TLS Mode
     inputType: radio
@@ -143,65 +155,37 @@ accelerator:
     choices:
       - text: letEncrypt / CertManager - Local HTTP Challenge (internet facing only)
         value: tlsHttpSolver
-      - text: letsEncrypt / CertManager - DNS Challenge
-        value: tlsDnsSolver
       - text: manually provided wildcard certificate/key 
         value: tlsManual
+      - text: letsEncrypt / CertManager - DNS Challenge
+        value: tlsDnsSolver
 
-
-  - name: tapIngressIssuer
-    label: TAP Ingress Issuer
-    inputType: text
-    defaultValue: letsencrypt-production
-
+  # Question 6. Developer Source Repository
   - name: sourceRepository
-    label: TAP Developer Source Registry
+    label: TAP Developer Source Repository
     inputType: select
     choices:
     - value: gitHub
       text: GitHub
 
+  # Question 6a-1. Github username
   - name: gitHubRepositoryUsername
     label: GitHub Repository Username
     inputType: text
-    defaultValue: fynesy 
+    defaultValue: tfynes-pivotal
     dependsOn:
       name: sourceRepository
       value: gitHub
 
+  # Question 6a-2. Github password
   - name: gitHubRepositoryPassword
     label: GitHub Repository Password / Token or env-variable name
     inputType: text
+    defaultValue: REGISTRY_PASSWORD
     dependsOn:
       name: sourceRepository
       
 
-
-# - name: imageRegistry
-#     label: Image Registry
-#     inputType: select
-#     choices:
-#     - value: dockerHub
-#       text: Docker Hub
-#     - value: harbor
-#       text: Harbor
-#     defaultValue: dockerHub
-#     required: true
-#     dependsOn:
-#       name: provideImageRepoCredentials
-
-
-  # - name: tanzunetRepoEnable
-  #   inputType: checkbox
-  #   display: true
-  #   dataType: [string]
-  #   defaultValue:
-  #     - tanzunetRepo
-  #   choices:
-  #     - text: Provide TanzuNet Credentials
-  #       value: tanzunetRepo
-  #     - text: Provide Custom Platform Repo Credentials
-  #       value: customPlatformRepo
 
 
 # a first option
