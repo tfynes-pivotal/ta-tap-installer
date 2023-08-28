@@ -6,25 +6,20 @@ accelerator:
 
   options:
 
+
+  # Question 1. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
   - name: secrets
     label: Secrets 
     inputType: radio
     display: true
-    defaultValue: inlineSecrets
+    defaultValue: environmentSecrets
     choices:
-      - text: Entered Directly (Caution! do not commit acclerator output to repo)
-        value: inlineSecrets
       - text: via Environment Variables
         value: environmentSecrets
+      - text: Entered Directly (Caution! do not commit acclerator output to repo)
+        value: inlineSecrets
 
-
-
- # Ask if user wants to provide Pivnet or imgpkg target platform repo details 
-  # - name: providePlatformRegistryCredentials
-  #   label: Provide Platform Registry Location / Credentials
-  #   display: true
-  #   dataType: boolean
-  #   defaultValue: false
+  # Question 2. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
 
   - name: platformRegistryLocation
     label: Platform binaries location 
@@ -37,42 +32,37 @@ accelerator:
       - text: Custom Platform Image Registry
         value: customPlatformRegistrySelection
 
-  # - name: tanzunetRegistryEnable
-  #   inputType: select
-  #   choices:
-  #   - text: Provide TanzuNet Credentials
-  #     value: tanzunetRegistry
-  #   - text: Provide Custom Platform Registry Credentials
-  #     value: customPlatformRegistry
-  #   defaultValue: tanzunetRegistry
-  #   dependsOn:
-  #     name: providePlatformRegistryCredentials
-
+  # Question 2a-1. TanzuNet - username
   - name: tanzunetUsername
     label: Tanzunet Username
     inputType: text
     dependsOn:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
+  # Question 2a-2. TanzuNet - password
   - name: tanzunetPassword
     label: Tanzunet Password / token / env-variable name
     inputType: text
+    defaultValue: INSTALL_REGISTRY_PASSWORD
     dependsOn:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
- 
+
+  # Question 2b-1. Custom Platform Registry URL
   - name: customPlatformRegistryUrl
     label: Custom Platform Registry URL
     inputType: text
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
+  # Question 2b-2. Custom Platform Registry Username
   - name: customPlatformRegistryUsername
     label: Custom Registry Username
     inputType: text
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
+  # Question 2b-3. Custom Platform Registry Password
   - name: customPlatformRegistryPassword
     label: Custom Platform Registry Password / Token env-variable name
     inputType: text
@@ -80,13 +70,7 @@ accelerator:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
 
-# ask user to provide image registry details
-  # - name: provideImageRegistryCredentials
-  #   label: Provide Image Registry Credentials
-  #   display: true
-  #   dataType: boolean
-  #   defaultValue: false
-
+  # Question 3. Image Registry
   - name: imageRegistryLocation
     label: Container Images Registry
     inputType: radio
@@ -98,20 +82,21 @@ accelerator:
       - text: Harbor
         value: harbor
 
-  - name: imageRegistry
-    label: Image Registry
-    inputType: select
-    choices:
-    - value: dockerHub
-      text: Docker Hub
-    - value: harbor
-      text: Harbor
-    defaultValue: dockerHub
-    required: true
-    dependsOn:
-      name: imageRegistryLocation
-      value: dockerHub
+  # - name: imageRegistry
+    # label: Image Registry
+    # inputType: select
+    # choices:
+    # - value: dockerHub
+      # text: Docker Hub
+    # - value: harbor
+      # text: Harbor
+    # defaultValue: dockerHub
+    # required: true
+    # dependsOn:
+      # name: imageRegistryLocation
+      # value: dockerHub
 
+  # Question 3a-1. Dockerhub username
   - name: dockerhubUsername
     label: DockerHub User ID
     inputType: text
@@ -119,7 +104,7 @@ accelerator:
     dependsOn:
       name: imageRegistryLocation
       value: dockerHub
-
+  # Question 3a-2. Dockerhub password
   - name: dockerhubPassword
     label: DockerHub Password / Access Token or env-variable name
     inputType: text
