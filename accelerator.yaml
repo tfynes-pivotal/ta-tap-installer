@@ -16,7 +16,7 @@ accelerator:
     choices:
       - text: via Environment Variables
         value: environmentSecrets
-      - text: Entered Directly (Caution! do not commit acclerator output to repo)
+      - text: Entered Directly (Caution!! do not commit acclerator output to repo)
         value: inlineSecrets
 
   # Question 2. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
@@ -36,6 +36,7 @@ accelerator:
   - name: tanzunetUsername
     label: Tanzunet Username
     inputType: text
+    defaultValue: mfynes@pivotal.io
     dependsOn:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
