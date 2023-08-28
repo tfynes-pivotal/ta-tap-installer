@@ -241,7 +241,7 @@ accelerator:
     dataType: boolean
     defaultValue: false
 
-  # Question 9a Okta ClientID
+  # Question 9a-1 Okta ClientID
   - name: oktaClientId
     label: Okta Client ID
     inputType: text
@@ -249,7 +249,7 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
-  # Question 9b Okta ClientSecret
+  # Question 9a-2 Okta ClientSecret
   - name: oktaClientSecret
     label: Okta Client Secret (direct or via env var)
     inputType: text
@@ -257,7 +257,7 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
-  # Question 9c Okta Issuer URI
+  # Question 9a-3 Okta Issuer URI
   - name: oktaIssuerUri
     label: Okta Issuer Uri
     inputType: text
@@ -265,7 +265,7 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
-  # Question 9d Okta Scopes
+  # Question 9a-4 Okta Scopes
   - name: oktaScopes
     label: Okta Scopes
     inputType: text
@@ -273,7 +273,7 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
-  # Question 9e Okta Scopes
+  # Question 9a-5 Okta Scopes
   - name: oktaUsernameAttribute
     label: Okta Username Attribute
     inputType: text
@@ -282,6 +282,10 @@ accelerator:
       name: springApiPortalOktaIntegrationEnabled
 
 ####################################################################
+
+engine: 
+  include:
+    ["**/*.*"]
 
 
 
