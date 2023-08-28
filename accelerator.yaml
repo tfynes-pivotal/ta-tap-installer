@@ -150,6 +150,7 @@ accelerator:
   - name: sourceRepository
     label: TAP Developer Source Repository
     inputType: select
+    defaultValue: gitHub
     choices:
     - value: gitHub
       text: GitHub
