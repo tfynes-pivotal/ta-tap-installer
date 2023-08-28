@@ -195,11 +195,12 @@ accelerator:
       name: tlsMode
       value: tlsManual
 
-  # Question 6b-2. TAP Ingress Wildcard Certificate
+  # Question 6b-2. TAP Ingress Wildcard Private Key
   - name: tlsManualPrivateKey
     label: TAP Wildcard TLS Private key or Env-var containing base64 encoded value
     inputType: textarea
     display: true
+    defaultValue: TAP_TLS_PRIVATE_KEY_ENCODED
     dependsOn:
       name: tlsMode
       value: tlsManual
