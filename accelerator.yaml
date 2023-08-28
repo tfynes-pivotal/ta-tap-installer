@@ -240,6 +240,12 @@ accelerator:
     dataType: boolean
     defaultValue: false
 
+  # Question 9a Okta ClientID
+  - name: oktaClientId
+    label: Okta Client ID
+    inputType: text
+    dependsOn:
+      name: springApiPortalOktaIntegrationEnabled
 
 # a first option
   # - name: greeting
