@@ -233,7 +233,7 @@ accelerator:
     display: true
     defaultValue: GITHUB_TOKEN
 
-  # Question 9. OKTA OIDC for SpringAPIPortal Enable
+  # Question 9. OKTA OIDC for SpringAPIPortal SSO Enable
   - name: springApiPortalOktaIntegrationEnabled
     label: Enable Spring API-Portal Okta integration
     display: true
@@ -243,6 +243,34 @@ accelerator:
   # Question 9a Okta ClientID
   - name: oktaClientId
     label: Okta Client ID
+    inputType: text
+    dependsOn:
+      name: springApiPortalOktaIntegrationEnabled
+
+  # Question 9b Okta ClientSecret
+  - name: oktaClientSecret
+    label: Okta Client Secret (direct or via env var)
+    inputType: text
+    dependsOn:
+      name: springApiPortalOktaIntegrationEnabled
+
+  # Question 9c Okta Issuer URI
+  - name: oktaIssuerUri
+    label: Okta Issuer Uri
+    inputType: text
+    dependsOn:
+      name: springApiPortalOktaIntegrationEnabled
+
+  # Question 9d Okta Scopes
+  - name: oktaScopes
+    label: Okta Scopes
+    inputType: text
+    dependsOn:
+      name: springApiPortalOktaIntegrationEnabled
+
+  # Question 9e Okta Scopes
+  - name: oktaUsernameAttribute
+    label: Okta Username Attribute
     inputType: text
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
