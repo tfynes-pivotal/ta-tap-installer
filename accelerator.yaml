@@ -244,6 +244,7 @@ accelerator:
   - name: oktaClientId
     label: Okta Client ID
     inputType: text
+    defaultValue: 0oa9p10659QLkw1on5d7
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
@@ -251,6 +252,7 @@ accelerator:
   - name: oktaClientSecret
     label: Okta Client Secret (direct or via env var)
     inputType: text
+    defaultValue: OKTA_CLIENT_SECRET_ENCODED
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
@@ -258,6 +260,7 @@ accelerator:
   - name: oktaIssuerUri
     label: Okta Issuer Uri
     inputType: text
+    defaultValue: https://dev-75470464.okta.com/oauth2/aus9p0j4if0u58tNJ5d7
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
@@ -265,6 +268,7 @@ accelerator:
   - name: oktaScopes
     label: Okta Scopes
     inputType: text
+    defaultValue: openid,profile,email,tanzu.read
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
@@ -272,6 +276,7 @@ accelerator:
   - name: oktaUsernameAttribute
     label: Okta Username Attribute
     inputType: text
+    defaultValue: user_name
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
