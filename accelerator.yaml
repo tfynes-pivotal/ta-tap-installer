@@ -14,7 +14,7 @@ accelerator:
     display: true
     defaultValue: environmentSecrets
     choices:
-      - text: via Environment Variables
+      - text: via Local Environment Variables
         value: environmentSecrets
       - text: Entered Directly (Caution!! do not commit acclerator output to repo)
         value: inlineSecrets
@@ -295,12 +295,11 @@ accelerator:
 
 
 engine: 
-  include:
-    ["**/*.*"]
-
   type: Chain
   transformations:
+  - type: Include
+    patterns: ['**/*.*']
   - type: ReplaceText
     substitutions:
     - text: akslab.tap.fynesy.com
-      with: #tapIngressDomain 
+      with: "#tapIngressDomain" 
