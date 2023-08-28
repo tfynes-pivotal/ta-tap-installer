@@ -82,20 +82,6 @@ accelerator:
       - text: Harbor
         value: harbor
 
-  # - name: imageRegistry
-    # label: Image Registry
-    # inputType: select
-    # choices:
-    # - value: dockerHub
-      # text: Docker Hub
-    # - value: harbor
-      # text: Harbor
-    # defaultValue: dockerHub
-    # required: true
-    # dependsOn:
-      # name: imageRegistryLocation
-      # value: dockerHub
-
   # Question 3a-1. Dockerhub username
   - name: dockerhubUsername
     label: DockerHub User ID
@@ -108,6 +94,7 @@ accelerator:
   - name: dockerhubPassword
     label: DockerHub Password / Access Token or env-variable name
     inputType: text
+    defaultValue: REGISTRY_PASSWORD
     dependsOn:
       name: imageRegistryLocation
       value: dockerHub
