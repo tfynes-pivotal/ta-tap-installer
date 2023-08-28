@@ -306,5 +306,5 @@ engine:
       - text: akslab.tap.fynesy.com
         with: "#tapIngressDomain" 
   - type: Exclude
-    patterns: ["setup-repo\.sh"]
+    patterns: ['**/setup-repo.sh']
     condition: "#imageRegistryLocation == 'dockerHub'"
