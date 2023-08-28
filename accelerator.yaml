@@ -146,7 +146,32 @@ accelerator:
     inputType: text
     defaultValue: akslab.tap.fynesy.com
 
-  # Question 5. TLS Mode
+  # Question 5. Developer Source Repository
+  - name: sourceRepository
+    label: TAP Developer Source Repository
+    inputType: select
+    choices:
+    - value: gitHub
+      text: GitHub
+
+  # Question 5a-1. Github username
+  - name: gitHubRepositoryUsername
+    label: GitHub Repository Username
+    inputType: text
+    defaultValue: tfynes-pivotal
+    dependsOn:
+      name: sourceRepository
+      value: gitHub
+
+  # Question 5a-2. Github password
+  - name: gitHubRepositoryPassword
+    label: GitHub Repository Password / Token or env-variable name
+    inputType: text
+    defaultValue: REGISTRY_PASSWORD
+    dependsOn:
+      name: sourceRepository
+      
+  # Question 6. TLS Mode
   - name: tlsMode
     label: TLS Mode
     inputType: radio
@@ -160,32 +185,14 @@ accelerator:
       - text: letsEncrypt / CertManager - DNS Challenge
         value: tlsDnsSolver
 
-  # Question 6. Developer Source Repository
-  - name: sourceRepository
-    label: TAP Developer Source Repository
-    inputType: select
-    choices:
-    - value: gitHub
-      text: GitHub
-
-  # Question 6a-1. Github username
-  - name: gitHubRepositoryUsername
-    label: GitHub Repository Username
-    inputType: text
-    defaultValue: tfynes-pivotal
+  # Question 6b-1. TAP Ingress Wildcard Certificate
+  - name: tlsManualCertificate
+    label: TAP Wildcard TLS Certificate
+    inputType: textarea
+    display: true
     dependsOn:
-      name: sourceRepository
-      value: gitHub
-
-  # Question 6a-2. Github password
-  - name: gitHubRepositoryPassword
-    label: GitHub Repository Password / Token or env-variable name
-    inputType: text
-    defaultValue: REGISTRY_PASSWORD
-    dependsOn:
-      name: sourceRepository
-      
-
+      name: tlsMode
+      value: tlsManual
 
 
 # a first option
