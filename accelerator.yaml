@@ -237,7 +237,7 @@ accelerator:
   - name: springApiPortalOktaIntegrationEnabled
     label: Enable Spring API-Portal Okta integration
     display: true
-    inputType: toggle
+    dataType: boolean
     defaultValue: false
 
 
