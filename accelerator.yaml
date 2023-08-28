@@ -141,7 +141,7 @@ accelerator:
     display: true
     defaultValue: tlsHttpSolver
     choices:
-      - text: letEncrypt / CertManager - Local HTTP Challenge
+      - text: letEncrypt / CertManager - Local HTTP Challenge (internet facing only)
         value: tlsHttpSolver
       - text: letsEncrypt / CertManager - DNS Challenge
         value: tlsDnsSolver
