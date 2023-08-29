@@ -343,7 +343,7 @@ engine:
   - type: Include
     patterns: ['**/demo-secret.yaml']
   - type: YTT
-    extraArgs: ["'INSTALL_REGISTRY_HOSTNAME=host'","'INSTALL_REGISTRY_USERNAME=user'","'INSTALL_REGISTRY_PASSWORD=pass'"]
+    extraArgs: ["'-v INSTALL_REGISTRY_HOSTNAME=host'","'-v INSTALL_REGISTRY_USERNAME=user'","'-v INSTALL_REGISTRY_PASSWORD=pass'"]
   #   patterns: ['**/clusters/taplab/cluster-config/values/tap-non-sensitive-values-12.yaml']
   # - type: ReplaceText
   #   substitutions:
