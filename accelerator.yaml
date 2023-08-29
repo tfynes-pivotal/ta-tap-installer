@@ -281,6 +281,14 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
+  # Question 10 Deploy test applications
+  - name: deployDemoApplications
+    label: Deploy Demo Applications
+    dataType: boolean
+    inputType: toggle
+    required: true
+    defaultValue: false
+
   #iconUrl: ./tanzu-icon.png
 ####################################################################
 
