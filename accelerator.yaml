@@ -76,6 +76,7 @@ accelerator:
   # Question 3. Image Registry
   - name: imageRegistryLocation
     label: Container Images Registry
+    description: Registry to be used by TAP cluster for both Platform and Application container images
     inputType: radio
     display: true
     defaultValue: dockerHub
@@ -145,12 +146,14 @@ accelerator:
   # Question 4. Ingress Domain
   - name: tapIngressDomain
     label: TAP Ingress Domain
+    description: Wildcard DNS domain on which TAP-GUI and deployed workloads will reside
     inputType: text
     defaultValue: akslab.tap.fynesy.com
 
   # Question 5. Developer Source Repository
   - name: sourceRepository
     label: TAP Developer Source Repository
+    description: TAP Source Repository for Platform GitOps, Application GitOps and workload sources
     inputType: select
     defaultValue: gitHub
     choices:
@@ -178,6 +181,7 @@ accelerator:
   # Question 6. TLS Mode
   - name: tlsMode
     label: TLS Mode
+    description: TAP Supports different mechanisms to provide TLS termination for platform portal and deployed workloads. Using the http-solver with letsEncrypt negates the need to manage certificate/key pairs but does have a rate limit and a requirement that deployment is internet-facing. Manual mode supports provision of a wildcard certificate/key pair directly into the TAP configuration.
     inputType: radio
     display: true
     defaultValue: tlsHttpSolver
