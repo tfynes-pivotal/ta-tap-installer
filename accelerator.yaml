@@ -336,6 +336,9 @@ engine:
   - name: dockerhubUrl
     expression: "'https://index.docker.io/v1/'"
 
+  - name: tanzunetUrl
+    expression: "'registry.tanzu.vmware.com'"
+
   chain:
   - merge:
     - include: ['**']
