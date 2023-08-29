@@ -5,7 +5,10 @@ accelerator:
   - beta
 
   options:
-
+  # Question 0. Project name
+  - name: projectName
+    defaultValue: MyTapInstallionRepo
+    description: Default name for git project that will contain your customized TAP GitOps repo.
 
   # Question 1. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
   - name: secrets
