@@ -16,7 +16,7 @@ accelerator:
     description: TAP GitOps installation will continuously reconcile cluster configuration against this repository
     inputType: text
     display: true
-    defaultValue: https://github.com/tfynes-pivotal/tap16-gitops-test
+    defaultValue: https://github.com/tfynes-pivotal/tap16-gitops-demo
 
   # Question 2b. TAP GitOps Installation Repository Branch
   - name: tapGitopsInstallationRepositoryBranch
