@@ -10,6 +10,22 @@ accelerator:
     defaultValue: tap-gitops-demo
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
+  # Question 7a. TAP GitOps Installation Repository
+  - name: tapGitopsInstallationRepositoryUrl
+    label: GitOps TAP Repository URL for your TAP Cluster
+    description: TAP GitOps installation will continuously reconcile cluster configuration against this repository
+    inputType: text
+    display: true
+    defaultValue: https://github.com/tfynes-pivotal/tap16-gitops-test
+
+  # Question 7b. TAP GitOps Installation Repository Branch
+  - name: tapGitopsInstallationRepositoryBranch
+    label: GitOps TAP Repository Branch for your TAP Cluster
+    inputType: text
+    display: true
+    defaultValue: main
+
+
   # Question 1. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
   - name: secrets
     label: Secrets 
@@ -95,9 +111,9 @@ accelerator:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
 
-  # Question 3. Image Registry
-  - name: imageRegistryLocation
-    label: Container Images Registry
+  # Question 3. Target Image Registry
+  - name: targetImageRegistryLocation
+    label: Container Images Target Registry
     description: Registry to be used by TAP cluster for both Platform and Application container images
     inputType: radio
     display: true
@@ -114,7 +130,7 @@ accelerator:
     inputType: text
     defaultValue: fynesy
     dependsOn:
-      name: imageRegistryLocation
+      name: targetImageRegistryLocation
       value: dockerHub
   # Question 3a-2. Dockerhub password
   - name: dockerhubPassword
@@ -122,7 +138,7 @@ accelerator:
     inputType: text
     defaultValue: REGISTRY_PASSWORD
     dependsOn:
-      name: imageRegistryLocation
+      name: targetImageRegistryLocation
       value: dockerHub
   # Question 3a-3. Dockerhub registry
   - name: dockerhubDefaultRegistry
@@ -130,7 +146,7 @@ accelerator:
     inputType: text
     defaultValue: fynesy/buildservice
     dependsOn:
-      name: imageRegistryLocation
+      name: targetImageRegistryLocation
       value: dockerHub
    
   # Question 3b-1. Harbor registry address
@@ -138,7 +154,7 @@ accelerator:
     label: Harbor Registry Location
     inputType: text
     dependsOn:
-      name: imageRegistryLocation
+      name: targetImageRegistryLocation
       value: harbor
 
   # Question 3b-2. Harbor registry username
@@ -146,7 +162,7 @@ accelerator:
     label: Harbor Registry Username
     inputType: text
     dependsOn:
-      name: imageRegistryLocation
+      name: targetImageRegistryLocation
       value: harbor
 
   # Question 3b-3. Harbor registry password
@@ -154,7 +170,7 @@ accelerator:
     label: Harbor Registry Password or env-variable name
     inputType: text
     dependsOn:
-      name: imageRegistryLocation
+      name: targetImageRegistryLocation
       value: harbor
 
   # Question 3b-4. Harbor default registry
@@ -162,7 +178,7 @@ accelerator:
     label: Harbor Default Registry
     inputType: text
     dependsOn:
-      name: imageRegistryLocation
+      name: targetImageRegistryLocation
       value: harbor
 
   # Question 4. Ingress Domain
@@ -183,7 +199,7 @@ accelerator:
       text: GitHub
 
   # Question 5a-1. Github username
-  - name: gitHubRepositoryUsername
+  - name: githubRepositoryUsername
     label: GitHub Repository Username
     inputType: text
     defaultValue: tfynes-pivotal
@@ -192,7 +208,7 @@ accelerator:
       value: gitHub
 
   # Question 5a-2. Github password
-  - name: gitHubRepositoryPassword
+  - name: githubRepositoryPassword
     label: GitHub Repository Password / Token or env-variable name
     inputType: text
     defaultValue: REGISTRY_PASSWORD
@@ -212,8 +228,8 @@ accelerator:
         value: tlsHttpSolver
       - text: manually provided wildcard certificate/key 
         value: tlsManual
-      - text: letsEncrypt / CertManager - DNS Challenge
-        value: tlsDnsSolver
+      #- text: letsEncrypt / CertManager - DNS Challenge
+      #  value: tlsDnsSolver
 
   # Question 6b-1. TAP Ingress Wildcard Certificate
   - name: tlsManualCertificate
@@ -225,7 +241,7 @@ accelerator:
       value: tlsManual
 
   # Question 6b-2. TAP Ingress Wildcard Private Key
-  - name: tlsManualPrivateKey
+  - name: tlsManualPrivateKeyEncoded
     label: TAP Wildcard TLS Private key or Env-var containing base64 encoded value
     inputType: textarea
     display: true
@@ -234,20 +250,6 @@ accelerator:
       name: tlsMode
       value: tlsManual
 
-  # Question 7a. TAP GitOps Installation Repository
-  - name: tapGitopsInstallationRepositoryUrl
-    label: GitOps TAP Repository URL for your TAP Cluster
-    description: TAP GitOps installation will continuously reconcile cluster configuration against this repository
-    inputType: text
-    display: true
-    defaultValue: https://github.com/tfynes-pivotal/tap16-gitops-test
-
-  # Question 7b. TAP GitOps Installation Repository Branch
-  - name: tapGitopsInstallationRepositoryBranch
-    label: GitOps TAP Repository Branch for your TAP Cluster
-    inputType: text
-    display: true
-    defaultValue: main
 
   # Question 8a. Workload git authentication Username
   - name: tapWorkloadGitAuthUsername
