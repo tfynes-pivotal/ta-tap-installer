@@ -320,7 +320,7 @@ engine:
   - type: ReplaceText
     substitutions:
     - text: akslab.tap.fynesy.com
-      with: "#tapingressdomain" 
+      with: "#tapIngressDomain" 
   - type: Include
     patterns: ['**/clusters/taplab/cluster-config/values/tap-non-sensitive-values-12.yaml']
   - type: ReplaceText
