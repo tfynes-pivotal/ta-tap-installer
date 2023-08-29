@@ -344,8 +344,8 @@ engine:
       chain:
       - type: YTT
         extraArgs: ["'-v INSTALL_REGISTRY_HOSTNAME=host'","'-v INSTALL_REGISTRY_USERNAME=user'","'-v INSTALL_REGISTRY_PASSWORD=pass'"]
-      - rewritepath:
-        rewriteto: "/config/foo.yaml"
+      - type: RewritePath
+        rewriteTo: "/config/foo.yaml"
     
     #   patterns: ['**/clusters/taplab/cluster-config/values/tap-non-sensitive-values-12.yaml']
     # - type: ReplaceText
