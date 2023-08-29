@@ -347,12 +347,12 @@ engine:
       - text: akslab.tap.fynesy.com
         with: "#tapIngressDomain" 
 
-    - include: ['secrets-to-seal/tanzu-registry-secret.yaml']
+    - include: ['secrets-to-seal/config/tanzu-registry-secret.yaml']
       chain:
       - type: YTT
       
 
-    - include: ['demo-secret.yaml']
+    - include: ['secrets-to-seal/demo-secret.yaml']
       chain:
       - type: YTT
         #extraArgs: ["'-v INSTALL_REGISTRY_HOSTNAME=host'","'-v INSTALL_REGISTRY_USERNAME=user'","'-v INSTALL_REGISTRY_PASSWORD=pass'"]
