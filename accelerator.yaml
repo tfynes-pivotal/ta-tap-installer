@@ -10,7 +10,7 @@ accelerator:
   # Question 1. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
   - name: secrets
     label: Secrets 
-    description: For sensitive values, accelerator with create encryption scripts to run as part of the generated output. Do not commit the entire accelerator output to a repository if inlining sensitive values. Alternatively provide local workstation environment variable names for each sensitive TAP configuration value. Acclerator generates a script for both cases to SOPS encrypt all sensitive values.
+    description: For sensitive values, accelerator will create encryption scripts to run as part of the generated output. Do not commit the entire accelerator output to a repository if inlining sensitive values. Alternatively provide local workstation environment variable names for each sensitive TAP configuration value. Acclerator generates a script for both cases to SOPS encrypt all sensitive values before pushing to a Platform GitOps Repo.
     inputType: radio
     display: true
     defaultValue: environmentSecrets
@@ -181,7 +181,7 @@ accelerator:
   # Question 6. TLS Mode
   - name: tlsMode
     label: TLS Mode
-    description: TAP Supports different mechanisms to provide TLS termination for platform portal and deployed workloads. Using the http-solver with letsEncrypt negates the need to manage certificate/key pairs but does have a rate limit and a requirement that deployment is internet-facing. Manual mode supports provision of a wildcard certificate/key pair directly into the TAP configuration.
+    description: TAP Supports different mechanisms to provide TLS termination for platform portal and deployed workloads. Using the http-solver with letsEncrypt negates the need to manage certificate/key pairs but does have a rate limit and a requirement that deployment is internet-facing. Manual mode supports provision of a wildcard certificate/key pair directly into the TAP configuration. (e.g. created with 'certtbot' cli and letsEncrypt)
     inputType: radio
     display: true
     defaultValue: tlsHttpSolver
@@ -215,6 +215,7 @@ accelerator:
   # Question 7a. TAP GitOps Installation Repository
   - name: tapGitopsInstallationRepositoryUrl
     label: GitOps TAP Repository URL for your TAP Cluster
+    description: TAP GitOps installation will continuously reconcile cluster configuration against this repository
     inputType: text
     display: true
     defaultValue: https://github.com/tfynes-pivotal/tap16-gitops-test
@@ -229,6 +230,7 @@ accelerator:
   # Question 8a. Workload git authentication Username
   - name: tapWorkloadGitAuthUsername
     label: TAP Workload Git Server auth username (TAP Repo Reading account)
+    description: TAP credential needed for supply-chains to pull workload sources from git repository
     inputType: text
     display: true
     defaultValue: tfynes-pivotal
@@ -243,6 +245,7 @@ accelerator:
   # Question 9. OKTA OIDC for SpringAPIPortal SSO Enable
   - name: springApiPortalOktaIntegrationEnabled
     label: Enable Spring API-Portal Okta integration
+    description: Spring API-Portal can be used to self-manage API-KEY based TAP workload microservice protections, enforced natively in TAP Cluster with SpringCloudGateway. In order to use Spring-API-Portal for key management, it must itself be protected with an OIDC auth-provider such as OKTA.
     display: true
     dataType: boolean
     defaultValue: false
