@@ -10,6 +10,7 @@ accelerator:
   # Question 1. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
   - name: secrets
     label: Secrets 
+    description: The Acclerator wizard permits direct input of sensitive values for which it will create sops encryption scripts but it's imperative that the entire output of this accelerator is put into a repository if sensitive values contained therein without being encrypted first.
     inputType: radio
     display: true
     defaultValue: environmentSecrets
