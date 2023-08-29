@@ -23,6 +23,25 @@ accelerator:
       - text: Entered Directly (Caution!! do not commit acclerator output to repo)
         value: inlineSecrets
 
+  # Question: Generate new 'age' encryption key for sealing platform secrets
+  - name: generateAgeKey
+    label: Generate GitOps (age) Encryption key
+    description: Accelerator generates scripts which will use age cli to create new age encryption key for TAP senstive configuration value protecting, storing them in platform GitOps repo as encrypted values 
+    inputType: checkbox
+    dataType: boolean
+    defaultValue: true
+
+  # Question: if age key already exists, where is the file located on local workstation
+  - name: existingAgeKey
+    label: Age key file location on local workstation 
+    inputType: text
+    dataType: string
+    defaultValue: 'key.txt'
+    dependsOn:
+      name: generateAgeKey
+      value: false
+    
+
   # Question 2. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
 
   - name: platformRegistryLocation
