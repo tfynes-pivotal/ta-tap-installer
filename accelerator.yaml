@@ -303,16 +303,14 @@ accelerator:
 
 
 engine: 
-  type: Merge
-  sources:
-  - type: Chain
-    transformations:
-    - type: Include
-      patterns: ['**/*.*']
-    - type: ReplaceText
-      substitutions:
-      - text: akslab.tap.fynesy.com
-        with: "#tapIngressDomain" 
-  # - type: Exclude
-  #   patterns: ['**/setup-repo.sh']
-  #   condition: "#imageRegistryLocation == 'dockerHub'"
+  type: Chain
+  transformations:
+  - type: Include
+    patterns: ['**/*.*']
+  - type: ReplaceText
+    substitutions:
+    - text: akslab.tap.fynesy.com
+      with: "#tapIngressDomain" 
+  - type: Exclude
+    patterns: ['**/clusters/taplab/cluster-config/app-resources/**']
+    condition: "#deployDemoApplications == false"
