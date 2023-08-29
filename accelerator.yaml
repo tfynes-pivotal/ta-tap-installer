@@ -355,6 +355,10 @@ engine:
       chain:
       - type: YTT
 
+    - include: ['secrets-to-seal/config/workload-git-auth.yaml']
+      chain:
+      - type: YTT
+
     - include: ['secrets-to-seal/demo-secret.yaml']
       chain:
       - type: YTT
