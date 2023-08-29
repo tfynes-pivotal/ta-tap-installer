@@ -285,7 +285,6 @@ accelerator:
   - name: deployDemoApplications
     label: Deploy Demo Applications
     dataType: boolean
-    inputType: toggle
     required: true
     defaultValue: false
 
