@@ -351,6 +351,9 @@ engine:
       chain:
       - type: YTT
       
+    - include: ['secrets-to-seal/config/user-registry-dockerconfig.yaml']
+      chain:
+      - type: YTT
 
     - include: ['secrets-to-seal/demo-secret.yaml']
       chain:
