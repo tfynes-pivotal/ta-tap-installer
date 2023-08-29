@@ -323,10 +323,9 @@ engine:
       with: "#tapingressdomain" 
   - type: Include
     patterns: ['**/clusters/taplab/cluster-config/values/tap-non-sensitive-values-12.yaml']
-    chain:
-    - type: YTT
-      extraArgs: ["foo=#projectName"]
-   
+    substitutions:
+    - text: dummysource
+      with: dummytarget
   - type: Exclude
     patterns: ['**/clusters/taplab/cluster-config/app-resources/**']
     condition: "#deploydemoapplications == false"
