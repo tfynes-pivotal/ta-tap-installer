@@ -29,7 +29,7 @@ accelerator:
     description: Accelerator generates scripts which will use age cli to create new age encryption key for TAP senstive configuration value protecting, storing them in platform GitOps repo as encrypted values 
     inputType: checkbox
     dataType: boolean
-    defaultValue: true
+    defaultValue: false
 
   # Question: if age key already exists, where is the file located on local workstation
   - name: existingAgeKey
@@ -344,8 +344,8 @@ engine:
     patterns: ['**/clusters/taplab/cluster-config/values/tap-non-sensitive-values-12.yaml']
   - type: ReplaceText
     substitutions:
-    - text: dummysource
-      with: "'dummytarget'"
+    - text: letsencrypt-production
+      with: "'dummy-issuer'"
   - type: Exclude
     patterns: ['**/clusters/taplab/cluster-config/app-resources/**']
     condition: "#deploydemoapplications == false"
