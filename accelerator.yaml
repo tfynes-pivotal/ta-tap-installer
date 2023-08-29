@@ -341,11 +341,14 @@ engine:
     - text: akslab.tap.fynesy.com
       with: "#tapIngressDomain" 
   - type: Include
-    patterns: ['**/clusters/taplab/cluster-config/values/tap-non-sensitive-values-12.yaml']
-  - type: ReplaceText
-    substitutions:
-    - text: letsencrypt-production
-      with: "'dummy-issuer'"
+    patterns: ['**/demo-secret.yaml']
+  - type: YTT
+    extraArgs: ["'INSTALL_REGISTRY_HOSTNAME=host'","'INSTALL_REGISTRY_USERNAME=user'","'INSTALL_REGISTRY_PASSWORD=pass'"]
+  #   patterns: ['**/clusters/taplab/cluster-config/values/tap-non-sensitive-values-12.yaml']
+  # - type: ReplaceText
+  #   substitutions:
+  #   - text: letsencrypt-production
+  #     with: "'dummy-issuer'"
   - type: Exclude
     patterns: ['**/clusters/taplab/cluster-config/app-resources/**']
     condition: "#deploydemoapplications == false"
