@@ -10,7 +10,7 @@ accelerator:
   # Question 1. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
   - name: secrets
     label: Secrets 
-    description: The Acclerator wizard permits direct input of sensitive values for which it will create sops encryption scripts but it's imperative that the entire output of this accelerator is put into a repository if sensitive values contained therein without being encrypted first.
+    description: For sensitive values, accelerator with create encryption scripts to run as part of the generated output. Do not commit the entire accelerator output to a repository if inlining sensitive values. Alternatively provide local workstation environment variable names for each sensitive TAP configuration value. Acclerator generates a script for both cases to SOPS encrypt all sensitive values.
     inputType: radio
     display: true
     defaultValue: environmentSecrets
@@ -24,6 +24,7 @@ accelerator:
 
   - name: platformRegistryLocation
     label: Platform binaries location 
+    description: Deploy TAP directly from TanzuNet or from a Registry to which all assets have previously been copied (using imgpkg)
     inputType: radio
     display: true
     defaultValue: tanzunetRegistrySelection
