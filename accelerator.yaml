@@ -325,8 +325,8 @@ engine:
     patterns: ['**/clusters/taplab/cluster-config/values/tap-non-sensitive-values-12.yaml']
   - type: ReplaceText
     substitutions:
-    - text: "dummysource"
-      with: "dummytarget"
+    - text: dummysource
+      with: 'dummytarget'
   - type: Exclude
     patterns: ['**/clusters/taplab/cluster-config/app-resources/**']
     condition: "#deploydemoapplications == false"
