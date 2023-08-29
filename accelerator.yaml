@@ -326,7 +326,7 @@ engine:
   - type: ReplaceText
     substitutions:
     - text: dummysource
-      with: 'dummytarget'
+      with: "'dummytarget'"
   - type: Exclude
     patterns: ['**/clusters/taplab/cluster-config/app-resources/**']
     condition: "#deploydemoapplications == false"
