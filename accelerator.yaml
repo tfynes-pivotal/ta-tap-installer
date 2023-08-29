@@ -5,12 +5,12 @@ accelerator:
   - beta
 
   options:
-  # Question 0. Project name
+  # Question 1. Project name
   - name: projectName
     defaultValue: tap-gitops-demo
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
-  # Question 7a. TAP GitOps Installation Repository
+  # Question 2a. TAP GitOps Installation Repository
   - name: tapGitopsInstallationRepositoryUrl
     label: GitOps TAP Repository URL for your TAP Cluster
     description: TAP GitOps installation will continuously reconcile cluster configuration against this repository
@@ -18,15 +18,21 @@ accelerator:
     display: true
     defaultValue: https://github.com/tfynes-pivotal/tap16-gitops-test
 
-  # Question 7b. TAP GitOps Installation Repository Branch
+  # Question 2b. TAP GitOps Installation Repository Branch
   - name: tapGitopsInstallationRepositoryBranch
     label: GitOps TAP Repository Branch for your TAP Cluster
     inputType: text
     display: true
     defaultValue: main
 
+  # Question 3. Ingress Domain
+  - name: tapIngressDomain
+    label: TAP Ingress Domain
+    description: Wildcard DNS domain on which TAP-GUI and deployed workloads will reside
+    inputType: text
+    defaultValue: akslab.tap.fynesy.com
 
-  # Question 1. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
+  # Question 4. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
   - name: secrets
     label: Secrets 
     description: For sensitive values, accelerator will create encryption scripts to run as part of the generated output. Do not commit the entire accelerator output to a repository if inlining sensitive values. Alternatively provide local workstation environment variable names for each sensitive TAP configuration value. Acclerator generates a script for both cases to SOPS encrypt all sensitive values before pushing to a Platform GitOps Repo.
@@ -39,7 +45,7 @@ accelerator:
       - text: Entered Directly (Caution!! do not commit acclerator output to repo)
         value: inlineSecrets
 
-  # Question: Generate new 'age' encryption key for sealing platform secrets
+  # Question 5a: Generate new 'age' encryption key for sealing platform secrets
   - name: generateAgeKey
     label: Generate GitOps (age) Encryption key
     description: Accelerator generates scripts which will use age cli to create new age encryption key for TAP senstive configuration value protecting, storing them in platform GitOps repo as encrypted values 
@@ -47,7 +53,7 @@ accelerator:
     dataType: boolean
     defaultValue: false
 
-  # Question: if age key already exists, where is the file located on local workstation
+  # Question 5b: if age key already exists, where is the file located on local workstation
   - name: existingAgeKey
     label: Age key file location on local workstation 
     inputType: text
@@ -58,7 +64,7 @@ accelerator:
       value: false
     
 
-  # Question 2. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
+  # Question 6. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
 
   - name: platformRegistryLocation
     label: Platform binaries location 
@@ -72,7 +78,7 @@ accelerator:
       - text: Custom Platform Image Registry
         value: customPlatformRegistrySelection
 
-  # Question 2a-1. TanzuNet - username
+  # Question 6a-1. TanzuNet - username
   - name: tanzunetUsername
     label: Tanzunet Username
     inputType: text
@@ -80,7 +86,7 @@ accelerator:
     dependsOn:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
-  # Question 2a-2. TanzuNet - password
+  # Question 6a-2. TanzuNet - password
   - name: tanzunetPassword
     label: Tanzunet Password / token / env-variable name
     inputType: text
@@ -89,21 +95,21 @@ accelerator:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
 
-  # Question 2b-1. Custom Platform Registry URL
+  # Question 6b-1. Custom Platform Registry URL
   - name: customPlatformRegistryUrl
     label: Custom Platform Registry URL
     inputType: text
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
-  # Question 2b-2. Custom Platform Registry Username
+  # Question 6b-2. Custom Platform Registry Username
   - name: customPlatformRegistryUsername
     label: Custom Registry Username
     inputType: text
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
-  # Question 2b-3. Custom Platform Registry Password
+  # Question 6b-3. Custom Platform Registry Password
   - name: customPlatformRegistryPassword
     label: Custom Platform Registry Password / Token env-variable name
     inputType: text
@@ -111,7 +117,7 @@ accelerator:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
 
-  # Question 3. Target Image Registry
+  # Question 7. Target Image Registry
   - name: targetImageRegistryLocation
     label: Container Images Target Registry
     description: Registry to be used by TAP cluster for both Platform and Application container images
@@ -124,7 +130,7 @@ accelerator:
       - text: Harbor
         value: harbor
 
-  # Question 3a-1. Dockerhub username
+  # Question 7a-1. Dockerhub username
   - name: dockerhubUsername
     label: DockerHub User ID
     inputType: text
@@ -132,7 +138,7 @@ accelerator:
     dependsOn:
       name: targetImageRegistryLocation
       value: dockerHub
-  # Question 3a-2. Dockerhub password
+  # Question 7a-2. Dockerhub password
   - name: dockerhubPassword
     label: DockerHub Password / Access Token or env-variable name
     inputType: text
@@ -140,7 +146,7 @@ accelerator:
     dependsOn:
       name: targetImageRegistryLocation
       value: dockerHub
-  # Question 3a-3. Dockerhub registry
+  # Question 7a-3. Dockerhub registry
   - name: dockerhubDefaultRegistry
     label: DockerHub Default Registry
     inputType: text
@@ -149,7 +155,7 @@ accelerator:
       name: targetImageRegistryLocation
       value: dockerHub
    
-  # Question 3b-1. Harbor registry address
+  # Question 7b-1. Harbor registry address
   - name: harborUrl
     label: Harbor Registry Location
     inputType: text
@@ -157,7 +163,7 @@ accelerator:
       name: targetImageRegistryLocation
       value: harbor
 
-  # Question 3b-2. Harbor registry username
+  # Question 7b-2. Harbor registry username
   - name: harborUsername
     label: Harbor Registry Username
     inputType: text
@@ -165,7 +171,7 @@ accelerator:
       name: targetImageRegistryLocation
       value: harbor
 
-  # Question 3b-3. Harbor registry password
+  # Question 7b-3. Harbor registry password
   - name: harborPassword
     label: Harbor Registry Password or env-variable name
     inputType: text
@@ -173,7 +179,7 @@ accelerator:
       name: targetImageRegistryLocation
       value: harbor
 
-  # Question 3b-4. Harbor default registry
+  # Question 7b-4. Harbor default registry
   - name: harborDefaultRegistry
     label: Harbor Default Registry
     inputType: text
@@ -181,14 +187,8 @@ accelerator:
       name: targetImageRegistryLocation
       value: harbor
 
-  # Question 4. Ingress Domain
-  - name: tapIngressDomain
-    label: TAP Ingress Domain
-    description: Wildcard DNS domain on which TAP-GUI and deployed workloads will reside
-    inputType: text
-    defaultValue: akslab.tap.fynesy.com
 
-  # Question 5. Developer Source Repository
+  # Question 8. Developer Source Repository
   - name: sourceRepository
     label: TAP Developer Source Repository
     description: TAP Source Repository for Platform GitOps, Application GitOps and workload sources
@@ -198,7 +198,7 @@ accelerator:
     - value: gitHub
       text: GitHub
 
-  # Question 5a-1. Github username
+  # Question 8a-1. Github username
   - name: githubRepositoryUsername
     label: GitHub Repository Username
     inputType: text
@@ -207,7 +207,7 @@ accelerator:
       name: sourceRepository
       value: gitHub
 
-  # Question 5a-2. Github password
+  # Question 8a-2. Github password
   - name: githubRepositoryPassword
     label: GitHub Repository Password / Token or env-variable name
     inputType: text
@@ -216,7 +216,7 @@ accelerator:
       name: sourceRepository
       value: gitHub
       
-  # Question 6. TLS Mode
+  # Question 9. TLS Mode
   - name: tlsMode
     label: TLS Mode
     description: TAP Supports different mechanisms to provide TLS termination for platform portal and deployed workloads. Using the http-solver with letsEncrypt negates the need to manage certificate/key pairs but does have a rate limit and a requirement that deployment is internet-facing. Manual mode supports provision of a wildcard certificate/key pair directly into the TAP configuration. (e.g. created with 'certtbot' cli and letsEncrypt)
@@ -231,7 +231,7 @@ accelerator:
       #- text: letsEncrypt / CertManager - DNS Challenge
       #  value: tlsDnsSolver
 
-  # Question 6b-1. TAP Ingress Wildcard Certificate
+  # Question 9b-1. TAP Ingress Wildcard Certificate
   - name: tlsManualCertificate
     label: TAP Wildcard TLS Certificate
     inputType: textarea
@@ -240,7 +240,7 @@ accelerator:
       name: tlsMode
       value: tlsManual
 
-  # Question 6b-2. TAP Ingress Wildcard Private Key
+  # Question 9b-2. TAP Ingress Wildcard Private Key
   - name: tlsManualPrivateKeyEncoded
     label: TAP Wildcard TLS Private key or Env-var containing base64 encoded value
     inputType: textarea
@@ -251,7 +251,7 @@ accelerator:
       value: tlsManual
 
 
-  # Question 8a. Workload git authentication Username
+  # Question 10a. Workload git authentication Username
   - name: tapWorkloadGitAuthUsername
     label: TAP Workload Git Server auth username (TAP Repo Reading account)
     description: TAP credential needed for supply-chains to pull workload sources from git repository
@@ -259,14 +259,14 @@ accelerator:
     display: true
     defaultValue: tfynes-pivotal
 
-  # Question 8b. Workload git authentication Password (eg GitHub personal access token) - or env-var with secret
+  # Question 10b. Workload git authentication Password (eg GitHub personal access token) - or env-var with secret
   - name: tapWorkloadGitAuthPassword
     label: TAP Workload Git Server auth token (TAP Repo Reading account token inline/via env-var)
     inputType: text
     display: true
     defaultValue: GITHUB_TOKEN
 
-  # Question 9. OKTA OIDC for SpringAPIPortal SSO Enable
+  # Question 11. OKTA OIDC for SpringAPIPortal SSO Enable
   - name: springApiPortalOktaIntegrationEnabled
     label: Enable Spring API-Portal Okta integration.
     description: Spring API-Portal can be used to self-manage API-KEY based TAP workload microservice protections, enforced natively in TAP Cluster with SpringCloudGateway. In order to use Spring-API-Portal for key management, it must itself be protected with an OIDC auth-provider such as OKTA.
@@ -275,7 +275,7 @@ accelerator:
     inputType: checkbox
     defaultValue: false
 
-  # Question 9a-1 Okta ClientID
+  # Question 11a-1 Okta ClientID
   - name: oktaClientId
     label: Okta Client ID
     inputType: text
@@ -283,7 +283,7 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
-  # Question 9a-2 Okta ClientSecret
+  # Question 11a-2 Okta ClientSecret
   - name: oktaClientSecret
     label: Okta Client Secret (direct or via env var)
     inputType: text
@@ -291,7 +291,7 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
-  # Question 9a-3 Okta Issuer URI
+  # Question 11a-3 Okta Issuer URI
   - name: oktaIssuerUri
     label: Okta Issuer Uri
     inputType: text
@@ -299,7 +299,7 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
-  # Question 9a-4 Okta Scopes
+  # Question 11a-4 Okta Scopes
   - name: oktaScopes
     label: Okta Scopes
     inputType: text
@@ -307,7 +307,7 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
-  # Question 9a-5 Okta Scopes
+  # Question 11a-5 Okta Scopes
   - name: oktaUsernameAttribute
     label: Okta Username Attribute
     inputType: text
@@ -315,7 +315,7 @@ accelerator:
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
-  # Question 10 Deploy test applications
+  # Question 12 Deploy test applications
   - name: deployDemoApplications
     label: Deploy Demo Applications
     dataType: boolean
