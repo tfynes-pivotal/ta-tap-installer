@@ -20,4 +20,4 @@ tap_install:
                 integrations:
                     github:
                         - host: github.com
-                          token: #@ data.values.tapGitAuthToken
+                          token: #@ data.values.tapGithubAuthToken
