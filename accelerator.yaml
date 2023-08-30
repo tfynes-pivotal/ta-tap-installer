@@ -344,7 +344,13 @@ accelerator:
       name: tlsMode
       value: tlsManual
 
-
+  - name: springApiPortalApiKeySupport
+    label: Enabled SpringAPI-Portal API-Key support
+    description: Configure Spring-API-Portal to integrate with vault and okta in support of native x-api-key management for tap-workload protecting with in-cluster Spring Cloud Gateway
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: true
 
   # Question 11. OKTA OIDC for SpringAPIPortal SSO Enable
   - name: springApiPortalOktaIntegrationEnabled
