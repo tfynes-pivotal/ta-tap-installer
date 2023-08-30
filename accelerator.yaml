@@ -25,14 +25,14 @@ accelerator:
     description: TAP GitOps installation will continuously reconcile cluster configuration against this repository
     inputType: text
     display: true
-    defaultValue: https://github.com/tfynes-pivotal/tap16-gitops-demo
+    defaultValue: $TAP_GITOPS_INSTALLATION_REPOSITORY_URL
 
   # Question 2b. TAP GitOps Installation Repository Branch
   - name: tapGitopsInstallationRepositoryBranch
     label: GitOps TAP Repository Branch for your TAP Cluster
     inputType: text
     display: true
-    defaultValue: main
+    defaultValue: $TAP_GITOPS_INSTALLATION_REPOSITORY_BRANCH
 
   # spacer
   - name: spacer2
@@ -48,7 +48,7 @@ accelerator:
     label: TAP Ingress Domain
     description: Wildcard DNS domain on which TAP-GUI and deployed workloads will reside
     inputType: text
-    defaultValue: akslab.tap.fynesy.com
+    defaultValue: $TAP_INGRESS_DOMAIN
 
     # spacer
   - name: spacer3
@@ -85,7 +85,7 @@ accelerator:
     label: Age key file location on local workstation 
     inputType: text
     dataType: string
-    defaultValue: 'key.txt'
+    defaultValue: "key.txt" 
     dependsOn:
       name: generateAgeKey
       value: false
@@ -117,7 +117,7 @@ accelerator:
   - name: tanzunetUsername
     label: Tanzunet Username
     inputType: text
-    defaultValue: mfynes@pivotal.io
+    defaultValue: $TANZUNET_USERNAME
     dependsOn:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
@@ -125,7 +125,7 @@ accelerator:
   - name: tanzunetPassword
     label: Tanzunet Password / token / env-variable name
     inputType: text
-    defaultValue: $INSTALL_REGISTRY_PASSWORD
+    defaultValue: $TANZUNET_PASSWORD
     dependsOn:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
@@ -147,7 +147,6 @@ accelerator:
   # Question 6b-3. Custom Platform Registry Password
   - name: customPlatformRegistryPassword
     label: Custom Platform Registry Password / Token env-variable name
-    defaultValue: $CUSTOM_REGISTRY_PASSWORD
     inputType: text
     dependsOn:
       name: platformRegistryLocation
@@ -179,7 +178,7 @@ accelerator:
   - name: dockerhubUsername
     label: DockerHub User ID
     inputType: text
-    defaultValue: fynesy
+    defaultValue: $DOCKERHUB_REGISTRY_USERNAME
     dependsOn:
       name: targetImageRegistryLocation
       value: dockerHub
@@ -195,7 +194,7 @@ accelerator:
   - name: dockerhubDefaultRegistry
     label: DockerHub Default Registry
     inputType: text
-    defaultValue: fynesy
+    defaultValue: $DOCKERHUB_REGISTRY_USERNAME
     dependsOn:
       name: targetImageRegistryLocation
       value: dockerHub
@@ -220,7 +219,6 @@ accelerator:
   - name: harborPassword
     label: Harbor Registry Password or env-variable name
     inputType: text
-    defaultValue: $HARBOR_PASSWORD
     dependsOn:
       name: targetImageRegistryLocation
       value: harbor
@@ -255,7 +253,7 @@ accelerator:
     label: "TAP Portal Catalog Repo URL"
     display: true
     inputType: text
-    defaultValue: "http://github.com/tfynes-pivotal/tapblankcatalog/blob/main/catalog-info.yaml"
+    defaultValue: $TAP_CATALOG_URL
 
   # tap-gui auth provider enabled
   # - name: tapPortalAuthProviderEnable
@@ -270,7 +268,7 @@ accelerator:
   - name: githubClientId
     label: GitHub Client Id
     inputType: text
-    defaultValue: 6340129c5dc522b6b30a
+    defaultValue: $GITHUB_CLIENT_ID
 
   - name: githubClientSecret
     label: GitHub Client Secret
@@ -292,14 +290,14 @@ accelerator:
     description: TAP credential needed for supply-chains to pull workload sources from git repository
     inputType: text
     display: true
-    defaultValue: tfynes-pivotal
+    defaultValue: $GITHUB_AUTH_USERNAME
 
   # Question 9b. GitHub authentication Token
   - name: tapGithubAuthToken
     label: TAP GitHub Server auth token 
     inputType: text
     display: true
-    defaultValue: $GITHUB_TOKEN
+    defaultValue: $GITHUB_AUTH_TOKEN
 
   # spacer
   - name: spacer8
@@ -365,7 +363,7 @@ accelerator:
   - name: oktaClientId
     label: Okta Client ID
     inputType: text
-    defaultValue: 0oa9p10659QLkw1on5d7
+    defaultValue: $OKTA_CLIENT_ID
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
@@ -373,7 +371,7 @@ accelerator:
   - name: oktaClientSecret
     label: Okta Client Secret (direct or via env var)
     inputType: text
-    defaultValue: $OKTA_CLIENT_SECRET_ENCODED
+    defaultValue: $OKTA_CLIENT_SECRET
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
@@ -381,7 +379,7 @@ accelerator:
   - name: oktaIssuerUri
     label: Okta Issuer Uri
     inputType: text
-    defaultValue: https://dev-75470464.okta.com/oauth2/aus9p0j4if0u58tNJ5d7
+    defaultValue: $OKTA_ISSUER_URI
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
@@ -389,7 +387,7 @@ accelerator:
   - name: oktaScopes
     label: Okta Scopes
     inputType: text
-    defaultValue: openid,profile,email,tanzu.read
+    defaultValue: $OKTA_SCOPES
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
@@ -397,7 +395,7 @@ accelerator:
   - name: oktaUsernameAttribute
     label: Okta Username Attribute
     inputType: text
-    defaultValue: user_name
+    defaultValue: $OKTA_USERNAME_ATTRIBUTE
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
