@@ -11,13 +11,13 @@ accelerator:
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
   # spacer
-  - name: spacer1
-    label: "TARGET REPOSITORY & BRANCH FOR YOUR TAP PLATFORM GITOPS ASSETS (Accelerator Outputs)"
-    description: " "
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
+  # - name: spacer1
+  #   label: "TARGET REPOSITORY & BRANCH FOR YOUR TAP PLATFORM GITOPS ASSETS (Accelerator Outputs)"
+  #   description: " "
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: false
 
   # Question 2a. TAP GitOps Installation Repository
   - name: tapGitopsInstallationRepositoryUrl
@@ -35,13 +35,13 @@ accelerator:
     defaultValue: $TAP_GITOPS_INSTALLATION_REPOSITORY_BRANCH
 
   # spacer
-  - name: spacer2
-    label: "WILDCARD DNS DOMAIN FOR TAP"
-    description: " "
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
+  # - name: spacer2
+  #   label: "WILDCARD DNS DOMAIN FOR TAP"
+  #   description: " "
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: false
 
   # Question 3. Ingress Domain
   - name: tapIngressDomain
@@ -51,13 +51,13 @@ accelerator:
     defaultValue: $TAP_INGRESS_DOMAIN
 
     # spacer
-  - name: spacer3
-    label: "SECRETS AS INPUTS TO THIS FORM"
-    description: " "
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
+  # - name: spacer3
+  #   label: "SECRETS AS INPUTS TO THIS FORM"
+  #   description: " "
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: false
 
   # Question 4. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
   - name: inlinedSecrets
@@ -87,13 +87,13 @@ accelerator:
       value: false
     
   # spacer
-  - name: specer4
-    label: "INSTALL TAP FROM REGISTRY..."
-    description: " "
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
+  # - name: specer4
+  #   label: "INSTALL TAP FROM REGISTRY..."
+  #   description: " "
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: false
 
   # Question 6. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
 
@@ -149,13 +149,13 @@ accelerator:
       value: customPlatformRegistrySelection
 
   # spacer
-  - name: spacer5
-    label: "DEPLOY TAP TO REGISTRY..."
-    description: " "
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
+  # - name: spacer5
+  #   label: "DEPLOY TAP TO REGISTRY..."
+  #   description: " "
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: false
 
   # Question 7. Target Image Registry
   - name: targetImageRegistryLocation
@@ -229,13 +229,13 @@ accelerator:
 
 
   # spacer
-  - name: spacer6
-    label: "TAP PORTAL SECURITY"
-    description: " "
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
+  # - name: spacer6
+  #   label: "TAP PORTAL SECURITY"
+  #   description: " "
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: false
 
   - name: tapPortalGuestAccessEnable
     label: "TAP-Portal Guest Access Enabled"
@@ -272,13 +272,13 @@ accelerator:
     defaultValue: $GITHUB_CLIENT_SECRET
 
   # spacer
-  - name: spacer7
-    label: "CODE REPOSITORY SECURITY"
-    description: " "
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
+  # - name: spacer7
+  #   label: "CODE REPOSITORY SECURITY"
+  #   description: " "
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: false
 
   # Question 9a. Workload git authentication Username
   - name: tapGithubAuthUsername
@@ -296,13 +296,13 @@ accelerator:
     defaultValue: $GITHUB_AUTH_TOKEN
 
   # spacer
-  - name: spacer8
-    label: " "
-    description: " "
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
+  # - name: spacer8
+  #   label: " "
+  #   description: " "
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: false
 
   # Question 10. TLS Mode
   - name: tlsMode
