@@ -60,17 +60,17 @@ accelerator:
     defaultValue: false
 
   # Question 4. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
-  - name: secrets
-    label: Secrets 
-    description: For sensitive values, accelerator will create encryption scripts to run as part of the generated output. Do not commit the entire accelerator output to a repository if inlining sensitive values. Alternatively provide local workstation environment variable names for each sensitive TAP configuration value. Acclerator generates a script for both cases to SOPS encrypt all sensitive values before pushing to a Platform GitOps Repo.
-    inputType: radio
-    display: true
-    defaultValue: environmentSecrets
-    choices:
-      - text: via Local Environment Variables
-        value: environmentSecrets
-      - text: Entered Directly (Caution!! do not commit entire acclerator output to repo)
-        value: inlineSecrets
+  # - name: secrets
+  #   label: Secrets 
+  #   description: For sensitive values, accelerator will create encryption scripts to run as part of the generated output. Do not commit the entire accelerator output to a repository if inlining sensitive values. Alternatively provide local workstation environment variable names for each sensitive TAP configuration value. Acclerator generates a script for both cases to SOPS encrypt all sensitive values before pushing to a Platform GitOps Repo.
+  #   inputType: radio
+  #   display: true
+  #   defaultValue: environmentSecrets
+  #   choices:
+  #     - text: via Local Environment Variables
+  #       value: environmentSecrets
+  #     - text: Entered Directly (Caution!! do not commit entire acclerator output to repo)
+  #       value: inlineSecrets
 
   # Question 5a: Generate new 'age' encryption key for sealing platform secrets
   - name: generateAgeKey
@@ -398,6 +398,14 @@ accelerator:
   # Question 12 Deploy test applications
   - name: deployDemoApplications
     label: Deploy Demo Applications
+    dataType: boolean
+    required: true
+    defaultValue: true
+
+  # Question 13 Tiny TAP - Resource-Optimized Deployment
+  - name: tinyTapMode
+    label: Tiny TAP Deployment
+    description: Removes all hard cpu and memory requests from TAP components at the cluster level to allow for deployment to much smaller clusters. Not for production use!
     dataType: boolean
     required: true
     defaultValue: true

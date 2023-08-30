@@ -115,6 +115,7 @@ tap_install:
          - name: api-portal
            secrets:
            - name: api-portal-cm-tls-overlay-secret
+        #@ if data.values.tinyTapMode:
          - name: accelerator
            secrets:
            - name: reqfix-overlay-secret
@@ -220,4 +221,4 @@ tap_install:
          - name: tekton-pipelines
            secrets:
            - name: reqfix-overlay-secret
-
+        #@ end
