@@ -371,7 +371,7 @@ accelerator:
     display: true
     dataType: boolean
     inputType: checkbox
-    defaultValue: false
+    defaultValue: true
 
   # Question 11a-1 Okta ClientID
   - name: oktaClientId
@@ -462,7 +462,7 @@ engine:
     - include: ['accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret.yaml']
       chain:
       - type: YTT
-        condition: "'#springApiPortalOktaIntegrationEnabled == true'"
+        
 
     - include: ['accelerator-assets/secrets-to-seal/values/tap-sensitive-values.yaml']
       chain:
