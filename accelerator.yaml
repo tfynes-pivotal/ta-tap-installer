@@ -11,13 +11,13 @@ accelerator:
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
   # spacer
-  - name: ignore1
+  - name: tapImageRepoEnable
     label: "TARGET REPOSITORY & BRANCH FOR YOUR TAP PLATFORM GITOPS ASSETS (Accelerator Outputs)"
     description: " "
     display: true
     dataType: boolean
     inputType: checkbox
-    defaultValue: false
+    defaultValue: true
 
   # Question 2a. TAP GitOps Installation Repository
   - name: tapGitopsInstallationRepositoryUrl
@@ -26,6 +26,9 @@ accelerator:
     inputType: text
     display: true
     defaultValue: https://github.com/tfynes-pivotal/tap16-gitops-demo
+    dependsOn:
+      name: tapImageRepoEnable
+      value: true
 
   # Question 2b. TAP GitOps Installation Repository Branch
   - name: tapGitopsInstallationRepositoryBranch
@@ -33,15 +36,18 @@ accelerator:
     inputType: text
     display: true
     defaultValue: main
+    dependsOn:
+      name: tapImageRepoEnable
+      value: true
 
   # spacer
-  - name: ignore2
+  - name: tapIngressDomainEnable
     label: "WILDCARD DNS DOMAIN FOR TAP"
     description: " "
     display: true
     dataType: boolean
     inputType: checkbox
-    defaultValue: false
+    defaultValue: true
 
   # Question 3. Ingress Domain
   - name: tapIngressDomain
@@ -49,15 +55,18 @@ accelerator:
     description: Wildcard DNS domain on which TAP-GUI and deployed workloads will reside
     inputType: text
     defaultValue: akslab.tap.fynesy.com
+    dependsOn:
+      name: tapIngressDomainEnable
+      value: true
 
     # spacer
-  - name: ignore3
+  - name: secretsModeEnable
     label: "SECRETS AS INPUTS TO THIS FORM"
     description: " "
     display: true
     dataType: boolean
     inputType: checkbox
-    defaultValue: false
+    defaultValue: true
 
   # Question 4. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
   - name: secrets
@@ -71,6 +80,9 @@ accelerator:
         value: environmentSecrets
       - text: Entered Directly (Caution!! do not commit entire acclerator output to repo)
         value: inlineSecrets
+    dependsOn:
+      name: secretsModeEnable
+      value: true
 
   # Question 5a: Generate new 'age' encryption key for sealing platform secrets
   - name: generateAgeKey
