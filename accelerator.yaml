@@ -11,7 +11,7 @@ accelerator:
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
   # spacer
-  - name: tapImageRepoEnable
+  - name: spacer1
     label: "TARGET REPOSITORY & BRANCH FOR YOUR TAP PLATFORM GITOPS ASSETS (Accelerator Outputs)"
     description: " "
     display: true
@@ -35,7 +35,7 @@ accelerator:
     defaultValue: main
 
   # spacer
-  - name: tapIngressDomainEnable
+  - name: spacer2
     label: "WILDCARD DNS DOMAIN FOR TAP"
     description: " "
     display: true
@@ -51,7 +51,7 @@ accelerator:
     defaultValue: akslab.tap.fynesy.com
 
     # spacer
-  - name: secretsModeEnable
+  - name: spacer3
     label: "SECRETS AS INPUTS TO THIS FORM"
     description: " "
     display: true
@@ -91,7 +91,7 @@ accelerator:
       value: false
     
   # spacer
-  - name: ignore4
+  - name: specer4
     label: "INSTALL TAP FROM REGISTRY..."
     description: " "
     display: true
@@ -154,7 +154,7 @@ accelerator:
       value: customPlatformRegistrySelection
 
   # spacer
-  - name: ignore5
+  - name: spacer5
     label: "DEPLOY TAP TO REGISTRY..."
     description: " "
     display: true
@@ -235,7 +235,7 @@ accelerator:
 
 
   # spacer
-  - name: tapPortalSecurityEnable
+  - name: spacer6
     label: "TAP PORTAL SECURITY"
     description: " "
     display: true
@@ -278,7 +278,7 @@ accelerator:
     defaultValue: $GITHUB_CLIENT_SECRET
 
   # spacer
-  - name: ignore7
+  - name: spacer7
     label: "CODE REPOSITORY SECURITY"
     description: " "
     display: true
@@ -302,7 +302,7 @@ accelerator:
     defaultValue: $GITHUB_TOKEN
 
   # spacer
-  - name: ignore8
+  - name: spacer8
     label: " "
     description: " "
     display: true
