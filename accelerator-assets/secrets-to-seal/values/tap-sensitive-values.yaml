@@ -1,0 +1,23 @@
+#@ load("@ytt:data", "data")
+
+tap_install:
+    sensitive_values:
+        shared:
+            image_registry:
+                project_path: #@ data.values.dockerhubDefaultRegistry
+                username: #@ data.values.dockerhubUsername
+                password: #@ data.values.dockerhubPassword
+        tap_gui:
+            app_config:
+                auth:
+                    allowGuestAccess: true
+                    environment: development
+                    providers:
+                        github:
+                            development:
+                                clientId: 18a9ac7f07f81d88760b
+                                clientSecret: f290303bec25d05570d08c8aec2c26bd11f6a4ff
+                integrations:
+                    github:
+                        - host: github.com
+                          token: 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

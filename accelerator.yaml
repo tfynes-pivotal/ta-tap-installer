@@ -272,7 +272,7 @@ accelerator:
 
   # spacer
   - name: ignore7
-    label: "TAP GUI IDENTITY PROVIDER"
+    label: "SUPPLYCHAIN SOURCE REPOSITORY CREDENTIALS"
     description: " "
     display: true
     dataType: boolean
