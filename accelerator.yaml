@@ -245,46 +245,59 @@ accelerator:
       name: targetImageRegistryLocation
       value: harbor
 
+
   # spacer
-  - name: ignore6
-    label: "DEVELOPER CODE REPOSITORY"
+  - name: tapGuiSecurityEnable
+    label: "TAP GUI SECURITY"
     description: " "
     display: true
     dataType: boolean
     inputType: checkbox
     defaultValue: false
 
-  # Question 8. Developer Source Repository
-  - name: sourceRepository
-    label: TAP Developer Source Repository
-    description: TAP Source Repository for Platform GitOps, Application GitOps and workload sources
-    inputType: select
-    defaultValue: gitHub
-    choices:
-    - value: gitHub
-      text: GitHub
-
-  # Question 8a-1. Github username
-  - name: githubRepositoryUsername
-    label: GitHub Repository Username
-    inputType: text
-    defaultValue: tfynes-pivotal
+  - name: tapPortalGuestAccessEnable
+    label: "TAP-Portal Guest Access Enabled"
+    description: "Passwordless access to TAP-Portal"
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: true
     dependsOn:
-      name: sourceRepository
-      value: gitHub
+      name: tapGuiSecurityEnable
+      value: true
 
-  # Question 8a-2. Github password
-  - name: githubRepositoryPassword
-    label: GitHub Repository Password / Token or env-variable name
-    inputType: text
-    defaultValue: $GITHUB_REPOSITORY_PASSWORD
+  # tap-gui auth provider enabled
+  - name: tapPortalAuthProviderEnable
+    label: "TAP-Portal Authentication Enabled"
+    description: "Authenticate users accessing TAP Portal against github"
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: true
     dependsOn:
-      name: sourceRepository
-      value: gitHub
+      name: tapGuiSecurityEnable
+      value: true
+
+  # Question 8a-1. Github client id
+  - name: githubClientId
+    label: GitHub Client Id
+    inputType: text
+    defaultValue: 6340129c5dc522b6b30a
+    dependsOn:
+      name: tapPortalAuthProviderEnable
+      value: true
+
+  - name: githubClientSecret
+    label: GitHub Client Secret
+    inputType: text
+    defaultValue: $GITHUB_CLIENT_SECRET
+    dependsOn:
+      name: tapPortalAuthProviderEnable
+      value: true
 
   # spacer
   - name: ignore7
-    label: "SUPPLYCHAIN SOURCE REPOSITORY CREDENTIALS"
+    label: "CODE REPOSITORY SECURITY"
     description: " "
     display: true
     dataType: boolean
@@ -293,7 +306,7 @@ accelerator:
 
   # Question 9a. Workload git authentication Username
   - name: tapWorkloadGitAuthUsername
-    label: TAP Workload Git Server auth username (TAP Repo Reading account)
+    label: TAP Workload Git Server auth username 
     description: TAP credential needed for supply-chains to pull workload sources from git repository
     inputType: text
     display: true
@@ -301,7 +314,7 @@ accelerator:
 
   # Question 9b. Workload git authentication Password (eg GitHub personal access token) - or env-var with secret
   - name: tapWorkloadGitAuthPassword
-    label: TAP Workload Git Server auth token (TAP Repo Reading account token inline/via env-var)
+    label: TAP Workload Git Server auth token 
     inputType: text
     display: true
     defaultValue: $GITHUB_TOKEN
