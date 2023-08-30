@@ -361,7 +361,7 @@ accelerator:
   - name: oktaClientSecret
     label: Okta Client Secret (direct or via env var)
     inputType: text
-    defaultValue: OKTA_CLIENT_SECRET_ENCODED
+    defaultValue: $OKTA_CLIENT_SECRET_ENCODED
     dependsOn:
       name: springApiPortalOktaIntegrationEnabled
 
@@ -443,6 +443,12 @@ engine:
     - include: ['accelerator-assets/secrets-to-seal/values/tap-sensitive-values.yaml']
       chain:
       - type: YTT  
+
+    - include: ['accelerator-assets/ytt-outputs/tap-non-sensitive-values.yaml']
+      chain:
+      - type: YTT  
+
+
 
     - include: ['accelerator-assets/secrets-to-seal/demo-secret.yaml']
       chain:

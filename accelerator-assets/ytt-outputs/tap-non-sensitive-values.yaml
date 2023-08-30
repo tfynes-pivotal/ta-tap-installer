@@ -1,8 +1,9 @@
+#@ load("@ytt:data", "data")
 ---
 tap_install:
   values: 
         shared:
-          ingress_domain: "akslab.tap.fynesy.com"
+          ingress_domain: "data.values.tapIngressDomain"
           ingress_issuer: "letsencrypt-production"
 
 
