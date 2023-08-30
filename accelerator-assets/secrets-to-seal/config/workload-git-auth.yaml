@@ -10,5 +10,5 @@ metadata:
   namespace: tap-install
 type: kubernetes.io/basic-auth
 stringData:
-  username: #@ data.values.tapWorkloadGitAuthUsername
-  password: #@ data.values.tapWorkloadGitAuthPassword
+  username: #@ data.values.tapGithubAuthUsername
+  password: #@ data.values.tapGithubAuthToken
