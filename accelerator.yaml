@@ -12,7 +12,7 @@ accelerator:
 
   # spacer
   - name: ignore1
-    label: "TARGET REPOSITORY & BRANCH FOR YOUR TAP PLATFORM GITOPS ASSETS"
+    label: "TARGET REPOSITORY & BRANCH FOR YOUR TAP PLATFORM GITOPS ASSETS (Accelerator Outputs)"
     description: " "
     display: true
     dataType: boolean
@@ -92,7 +92,7 @@ accelerator:
     
   # spacer
   - name: ignore4
-    label: "PLATFORM ASSETS SOURCE REGISTRY"
+    label: "INSTALL TAP FROM REGISTRY..."
     description: " "
     display: true
     dataType: boolean
@@ -155,7 +155,7 @@ accelerator:
 
   # spacer
   - name: ignore5
-    label: "PLATFORM TARGET OPERATIONAL REGISTRY"
+    label: "DEPLOY TAP TO REGISTRY..."
     description: " "
     display: true
     dataType: boolean
@@ -272,7 +272,7 @@ accelerator:
 
   # spacer
   - name: ignore7
-    label: " "
+    label: "TAP GUI IDENTITY PROVIDER"
     description: " "
     display: true
     dataType: boolean
