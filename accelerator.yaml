@@ -17,7 +17,7 @@ accelerator:
     display: true
     dataType: boolean
     inputType: checkbox
-    defaultValue: true
+    defaultValue: false
 
   # Question 2a. TAP GitOps Installation Repository
   - name: tapGitopsInstallationRepositoryUrl
@@ -26,9 +26,6 @@ accelerator:
     inputType: text
     display: true
     defaultValue: https://github.com/tfynes-pivotal/tap16-gitops-demo
-    dependsOn:
-      name: tapImageRepoEnable
-      value: true
 
   # Question 2b. TAP GitOps Installation Repository Branch
   - name: tapGitopsInstallationRepositoryBranch
@@ -36,9 +33,6 @@ accelerator:
     inputType: text
     display: true
     defaultValue: main
-    dependsOn:
-      name: tapImageRepoEnable
-      value: true
 
   # spacer
   - name: tapIngressDomainEnable
@@ -47,7 +41,7 @@ accelerator:
     display: true
     dataType: boolean
     inputType: checkbox
-    defaultValue: true
+    defaultValue: false
 
   # Question 3. Ingress Domain
   - name: tapIngressDomain
@@ -55,9 +49,6 @@ accelerator:
     description: Wildcard DNS domain on which TAP-GUI and deployed workloads will reside
     inputType: text
     defaultValue: akslab.tap.fynesy.com
-    dependsOn:
-      name: tapIngressDomainEnable
-      value: true
 
     # spacer
   - name: secretsModeEnable
@@ -262,9 +253,6 @@ accelerator:
     dataType: boolean
     inputType: checkbox
     defaultValue: true
-    dependsOn:
-      name: tapPortalSecurityEnable
-      value: true
 
   # tap-gui auth provider enabled
   - name: tapPortalAuthProviderEnable
@@ -274,26 +262,17 @@ accelerator:
     dataType: boolean
     inputType: checkbox
     defaultValue: true
-    dependsOn:
-      name: tapPortalSecurityEnable
-      value: true
 
   # Question 8a-1. Github client id
   - name: githubClientId
     label: GitHub Client Id
     inputType: text
     defaultValue: 6340129c5dc522b6b30a
-    dependsOn:
-      name: tapPortalAuthProviderEnable
-      value: true
 
   - name: githubClientSecret
     label: GitHub Client Secret
     inputType: text
     defaultValue: $GITHUB_CLIENT_SECRET
-    dependsOn:
-      name: tapPortalAuthProviderEnable
-      value: true
 
   # spacer
   - name: ignore7
