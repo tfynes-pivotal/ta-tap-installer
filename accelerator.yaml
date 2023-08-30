@@ -125,7 +125,7 @@ accelerator:
   - name: tanzunetPassword
     label: Tanzunet Password / token / env-variable name
     inputType: text
-    defaultValue: INSTALL_REGISTRY_PASSWORD
+    defaultValue: $INSTALL_REGISTRY_PASSWORD
     dependsOn:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
@@ -147,6 +147,7 @@ accelerator:
   # Question 6b-3. Custom Platform Registry Password
   - name: customPlatformRegistryPassword
     label: Custom Platform Registry Password / Token env-variable name
+    defaultValue: $CUSTOM_REGISTRY_PASSWORD
     inputType: text
     dependsOn:
       name: platformRegistryLocation
@@ -186,7 +187,7 @@ accelerator:
   - name: dockerhubPassword
     label: DockerHub Password / Access Token or env-variable name
     inputType: text
-    defaultValue: REGISTRY_PASSWORD
+    defaultValue: $DOCKERHUB_REGISTRY_PASSWORD
     dependsOn:
       name: targetImageRegistryLocation
       value: dockerHub
@@ -219,6 +220,7 @@ accelerator:
   - name: harborPassword
     label: Harbor Registry Password or env-variable name
     inputType: text
+    defaultValue: $HARBOR_PASSWORD
     dependsOn:
       name: targetImageRegistryLocation
       value: harbor
@@ -263,7 +265,7 @@ accelerator:
   - name: githubRepositoryPassword
     label: GitHub Repository Password / Token or env-variable name
     inputType: text
-    defaultValue: REGISTRY_PASSWORD
+    defaultValue: $GITHUB_REPOSITORY_PASSWORD
     dependsOn:
       name: sourceRepository
       value: gitHub
@@ -290,7 +292,7 @@ accelerator:
     label: TAP Workload Git Server auth token (TAP Repo Reading account token inline/via env-var)
     inputType: text
     display: true
-    defaultValue: GITHUB_TOKEN
+    defaultValue: $GITHUB_TOKEN
 
   # spacer
   - name: ignore8
