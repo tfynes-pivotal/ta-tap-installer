@@ -11,8 +11,8 @@ accelerator:
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
   # spacer
-  - name: ignore-a
-    defaultValue: " "
+  - name: ignore1
+    label: " "
     description: " "
     display: true
     dataType: boolean
