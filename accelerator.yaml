@@ -52,7 +52,7 @@ accelerator:
 
     # spacer
   - name: ignore3
-    label: "SECRETS PROVISIONING"
+    label: "SECRETS AS INPUTS TO THIS FORM"
     description: " "
     display: true
     dataType: boolean
