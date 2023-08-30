@@ -15,9 +15,9 @@ tap_install:
                     providers:
                         github:
                             development:
-                                clientId: 18a9ac7f07f81d88760b
-                                clientSecret: f29030
+                                clientId: #@ data.values.githubClientId
+                                clientSecret: #@ data.values.githubClientSecret
                 integrations:
                     github:
                         - host: github.com
-                          token: ghp_bq
+                          token: #@ data.values.tapGitAuthToken
