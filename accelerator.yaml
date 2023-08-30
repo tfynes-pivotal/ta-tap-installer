@@ -10,6 +10,15 @@ accelerator:
     defaultValue: tap-gitops-demo
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
+  # spacer
+  - name: ignore-a
+    defaultValue: " "
+    description: " "
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: false
+
   # Question 2a. TAP GitOps Installation Repository
   - name: tapGitopsInstallationRepositoryUrl
     label: GitOps TAP Repository URL for your TAP Cluster
