@@ -3,11 +3,11 @@
 tap_install:
   values: 
         shared:
-          ingress_domain: "data.values.tapIngressDomain"
+          ingress_domain: "#@ data.values.tapIngressDomain"
           ingress_issuer: "letsencrypt-production"
 
 
-        ceip_policy_disclosed: true
+        ceip_policy_disclosed: #@ dummytrue
 
         profile: full 
         supply_chain: basic 
