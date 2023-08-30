@@ -60,17 +60,13 @@ accelerator:
     defaultValue: false
 
   # Question 4. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
-  # - name: secrets
-  #   label: Secrets 
-  #   description: For sensitive values, accelerator will create encryption scripts to run as part of the generated output. Do not commit the entire accelerator output to a repository if inlining sensitive values. Alternatively provide local workstation environment variable names for each sensitive TAP configuration value. Acclerator generates a script for both cases to SOPS encrypt all sensitive values before pushing to a Platform GitOps Repo.
-  #   inputType: radio
-  #   display: true
-  #   defaultValue: environmentSecrets
-  #   choices:
-  #     - text: via Local Environment Variables
-  #       value: environmentSecrets
-  #     - text: Entered Directly (Caution!! do not commit entire acclerator output to repo)
-  #       value: inlineSecrets
+  - name: inlinedSecrets
+    label: Secrets Input Mode (inline / via local environment variables)
+    description: Directly input secrets in accelerator form or fetch later from your workstation exported enviroment variables. Warning - do NOT commit accelerator output to repo if inlining secrets!
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: true
 
   # Question 5a: Generate new 'age' encryption key for sealing platform secrets
   - name: generateAgeKey
@@ -444,14 +440,17 @@ engine:
     - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
       chain:
       - type: YTT
+        condition: "#inlinedSecrets"
       
     - include: ['accelerator-assets/secrets-to-seal/config/user-registry-dockerconfig.yaml']
       chain:
       - type: YTT
+        condition: "#inlinedSecrets"
 
     - include: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
       chain:
       - type: YTT
+        condition: "#inlinedSecrets"
 
     - include: ['accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret.yaml']
       chain:
