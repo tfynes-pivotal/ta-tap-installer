@@ -432,6 +432,10 @@ engine:
       chain:
       - type: YTT
 
+    - include: ['secrets-to-seal/dependent-resources/sso-credentials-secret.yaml']
+      chain:
+      - type: YTT
+
     - include: ['secrets-to-seal/demo-secret.yaml']
       chain:
       - type: YTT
