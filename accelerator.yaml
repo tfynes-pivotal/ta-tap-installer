@@ -195,7 +195,7 @@ accelerator:
   - name: dockerhubDefaultRegistry
     label: DockerHub Default Registry
     inputType: text
-    defaultValue: fynesy/buildservice
+    defaultValue: fynesy
     dependsOn:
       name: targetImageRegistryLocation
       value: dockerHub
@@ -250,6 +250,12 @@ accelerator:
     dataType: boolean
     inputType: checkbox
     defaultValue: true
+
+  - name: tapCatalogUrl
+    label: "TAP Portal Catalog Repo URL"
+    display: true
+    inputType: text
+    defaultValue: "http://github.com/tfynes-pivotal/tapblankcatalog/blob/main/catalog-info.yaml"
 
   # tap-gui auth provider enabled
   # - name: tapPortalAuthProviderEnable

@@ -3,11 +3,11 @@
 tap_install:
   values: 
         shared:
-          ingress_domain: "#@ data.values.tapIngressDomain"
+          ingress_domain: #@ data.values.tapIngressDomain
           ingress_issuer: "letsencrypt-production"
 
 
-        ceip_policy_disclosed: #@ dummytrue
+        ceip_policy_disclosed: true
 
         profile: full 
         supply_chain: basic 
@@ -15,7 +15,7 @@ tap_install:
         ootb_supply_chain_basic: 
           registry:
             server: "index.docker.io"
-            repository: "fynesy"
+            repository: #@ data.values.dockerhubDefaultRegistry
           gitops:
             ssh_secret: "workload-git-auth"
 
@@ -32,18 +32,18 @@ tap_install:
               type: LoadBalancer 
 
         buildservice:
-          kp_default_repository: "fynesy/buildservice"
+          kp_default_repository: #@ data.values.dockerhubDefaultRegistry + "/buildservice"
 
         tap_gui:
           service_type: ClusterIP #! If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
           metadataStoreAutoconfiguration: true 
           app_config:
-            #!auth:
-            #!  allowGuestAccess: true
+            auth:
+              allowGuestAccess: true
             catalog:
               locations:
                 - type: url
-                  target: http://github.com/tfynes-pivotal/tapblankcatalog/blob/main/catalog-info.yaml
+                  target: #@ data.values.tapCatalogUrl
 
         metadata_store:
           ns_for_export_app_cert: "*"
