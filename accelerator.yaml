@@ -447,23 +447,27 @@ engine:
       - text: akslab.tap.fynesy.com
         with: "#tapIngressDomain" 
 
-    - include: ['secrets-to-seal/config/tanzu-registry-secret.yaml']
+    - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
       chain:
       - type: YTT
       
-    - include: ['secrets-to-seal/config/user-registry-dockerconfig.yaml']
+    - include: ['accelerator-assets/secrets-to-seal/config/user-registry-dockerconfig.yaml']
       chain:
       - type: YTT
 
-    - include: ['secrets-to-seal/config/workload-git-auth.yaml']
+    - include: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
       chain:
       - type: YTT
 
-    - include: ['secrets-to-seal/dependent-resources/sso-credentials-secret.yaml']
+    - include: ['accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret.yaml']
       chain:
       - type: YTT
 
-    - include: ['secrets-to-seal/demo-secret.yaml']
+    - include: ['accelerator-assets/secrets-to-seal/values/tap-sensitive-values.yaml']
+      chain:
+      - type: YTT  
+
+    - include: ['accelerator-assets/secrets-to-seal/demo-secret.yaml']
       chain:
       - type: YTT
         #extraArgs: ["'-v INSTALL_REGISTRY_HOSTNAME=host'","'-v INSTALL_REGISTRY_USERNAME=user'","'-v INSTALL_REGISTRY_PASSWORD=pass'"]
