@@ -12,7 +12,7 @@ accelerator:
 
   # spacer
   - name: ignore1
-    label: " "
+    label: "TARGET REPOSITORY & BRANCH FOR YOUR TAP PLATFORM GITOPS ASSETS"
     description: " "
     display: true
     dataType: boolean
@@ -36,7 +36,7 @@ accelerator:
 
   # spacer
   - name: ignore2
-    label: " "
+    label: "WILDCARD DNS DOMAIN FOR TAP"
     description: " "
     display: true
     dataType: boolean
@@ -52,7 +52,7 @@ accelerator:
 
     # spacer
   - name: ignore3
-    label: " "
+    label: "SECRETS PROVISIONING"
     description: " "
     display: true
     dataType: boolean
@@ -92,7 +92,7 @@ accelerator:
     
   # spacer
   - name: ignore4
-    label: " "
+    label: "PLATFORM ASSETS SOURCE REGISTRY"
     description: " "
     display: true
     dataType: boolean
@@ -155,7 +155,7 @@ accelerator:
 
   # spacer
   - name: ignore5
-    label: " "
+    label: "PLATFORM TARGET OPERATIONAL REGISTRY"
     description: " "
     display: true
     dataType: boolean
@@ -235,7 +235,7 @@ accelerator:
 
   # spacer
   - name: ignore6
-    label: " "
+    label: "DEVELOPER CODE REPOSITORY"
     description: " "
     display: true
     dataType: boolean
@@ -393,7 +393,7 @@ accelerator:
     label: Deploy Demo Applications
     dataType: boolean
     required: true
-    defaultValue: false
+    defaultValue: true
 
   #iconUrl: ./tanzu-icon.png
 ####################################################################
