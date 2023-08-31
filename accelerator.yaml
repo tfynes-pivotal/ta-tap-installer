@@ -447,13 +447,8 @@ engine:
       substitutions:
       - text: akslab.tap.fynesy.com
         with: "#tapIngressDomain" 
-
-
-    # - include: ['**']
-    # - type: ReplaceText
-    #   substitutions:
-    #   - text: 'origin/akslab'
-    #     with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
+      - text: 'origin/akslab'
+        with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
     - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
       chain:
