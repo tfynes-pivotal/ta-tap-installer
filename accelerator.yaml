@@ -472,6 +472,7 @@ engine:
     - include: ['accelerator-assets/secrets-to-seal/**/*.yaml']
       chain:
       - type: YTT 
+      
 
     # - include: ['accelerator-assets/secrets-to-seal/values/tap-sensitive-values.yaml']
     #   chain:
@@ -515,6 +516,10 @@ engine:
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:
       - type: YTT
+      - type: ReplaceText
+        substitutions:
+        - text: origin/akslab
+          with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
     - include: ['clusters/taplab/cluster-config/config/kapp-dependent-resources.yaml']
       chain:
