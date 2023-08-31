@@ -451,7 +451,7 @@ engine:
       - type: ReplaceText
         substitutions:
         - text: originBranch
-          with: "originMain"
+          with: "'originMain'"
           # with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       - type: ReplaceText
         substitutions:
