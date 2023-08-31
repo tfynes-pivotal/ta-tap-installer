@@ -450,9 +450,8 @@ engine:
           with: "#tapIngressDomain" 
       - type: ReplaceText
         substitutions:
-        - text: originBranch
-          with: "'originMain'"
-          # with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
+        - text: origin/akslab
+          with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       - type: ReplaceText
         substitutions:
         - text: SecretKeyFileContentPlaceholder
@@ -465,49 +464,53 @@ engine:
       # substitutions:
       # - text: akslab.tap.fynesy.com
       #   with: "#tapIngressDomain" 
-      # - text: originBranch
+      # - text: origin/akslab
       #   with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       # - text: SecretKeyFileContentPlaceholder
       #   with: "#existingAgeKeyContent"
 
-
-
-    - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
+    - include: ['accelerator-assets/secrets-to-seal/**/*.yaml']
       chain:
-      - type: YTT
-        condition: "#inlinedSecrets"
+      - type: YTT 
+
+    # - include: ['accelerator-assets/secrets-to-seal/values/tap-sensitive-values.yaml']
+    #   chain:
+    #   - type: YTT  
+
+    # - include: ['accelerator-assets/secrets-to-seal/tanzu-sync/tanzu-sync-values.yaml']
+    #   chain:
+    #   - type: YTT  
+
+    # - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
+    #   chain:
+    #   - type: YTT
+    #     condition: "#inlinedSecrets"
       
-    - include: ['accelerator-assets/secrets-to-seal/config/user-registry-dockerconfig.yaml']
-      chain:
-      - type: YTT
-        condition: "#inlinedSecrets"
+    # - include: ['accelerator-assets/secrets-to-seal/config/user-registry-dockerconfig.yaml']
+    #   chain:
+    #   - type: YTT
+    #     condition: "#inlinedSecrets"
 
-    - include: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
-      chain:
-      - type: YTT
-        condition: "#inlinedSecrets"
+    # - include: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
+    #   chain:
+    #   - type: YTT
+    #     condition: "#inlinedSecrets"
 
-    - include: ['accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret.yaml']
-      chain:
-      - type: YTT
-        condition: "#springApiPortalOktaIntegrationEnabled"
+    # - include: ['accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret.yaml']
+    #   chain:
+    #   - type: YTT
+    #     condition: "#springApiPortalOktaIntegrationEnabled"
         
+    # - include: ['accelerator-assets/secrets-to-seal/demo-secret.yaml']
+    #   chain:
+    #   - type: YTT
 
-    - include: ['accelerator-assets/secrets-to-seal/values/tap-sensitive-values.yaml']
+
+
+    - include: ['accelerator-assets/non-sensitive-config/tap-non-sensitive-values.yaml']
       chain:
       - type: YTT  
 
-    - include: ['accelerator-assets/secrets-to-seal/tanzu-sync/tanzu-sync-values.yaml']
-      chain:
-      - type: YTT  
-
-    - include: ['accelerator-assets/ytt-outputs/tap-non-sensitive-values.yaml']
-      chain:
-      - type: YTT  
-
-    - include: ['accelerator-assets/secrets-to-seal/demo-secret.yaml']
-      chain:
-      - type: YTT
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:

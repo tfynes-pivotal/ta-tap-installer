@@ -2,7 +2,7 @@
 ---
 git:
   url: #@ data.values.tapGitopsInstallationRepositoryUrl
-  ref: originBranch
+  ref: origin/akslab
   sub_path: clusters/taplab/cluster-config
 tap_package_repository:
   oci_repository: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
