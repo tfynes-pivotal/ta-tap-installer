@@ -85,6 +85,17 @@ accelerator:
     dependsOn:
       name: generateAgeKey
       value: false
+
+  # Question 5c: age key content
+  - name: existingAgeKeyContent
+    label: age key file content
+    description: USE CAUTION NOT TO PUBLISH KEY TO ANY REPO
+    inputType: textarea
+    dataType: string
+    defaultValue: $KEY_FILE_CONTENT
+    dependsOn:
+      name: generateAgeKey
+      value: false
     
   # spacer
   # - name: specer4
@@ -436,6 +447,12 @@ engine:
       substitutions:
       - text: akslab.tap.fynesy.com
         with: "#tapIngressDomain" 
+
+    - include: ['**']
+    - type: ReplaceText
+      substitutions:
+      - text: origin/akslab
+        with: "origin/#tapGitopsInstallationRepositoryBranch"
 
     - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
       chain:
