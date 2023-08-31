@@ -449,8 +449,8 @@ engine:
         with: "#tapIngressDomain" 
       - text: origin/akslab
         with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
-      - text: SecretKeyFileContentPlaceholder
-        with: "#existingAgeKeyContent"
+      # - text: SecretKeyFileContentPlaceholder
+      #   with: "#existingAgeKeyContent"
 
     - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
       chain:
