@@ -4,7 +4,7 @@ tap_install:
     sensitive_values:
         shared:
             image_registry:
-                project_path: #@ data.values.dockerhubDefaultRegistry
+                project_path: #@ data.values.dockerhubDefaultRegistry + '/buildservice'
                 username: #@ data.values.dockerhubUsername
                 password: #@ data.values.dockerhubPassword
         tap_gui:
