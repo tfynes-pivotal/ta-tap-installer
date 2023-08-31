@@ -450,7 +450,7 @@ engine:
           with: "#tapIngressDomain" 
       - type: ReplaceText
         substitutions:
-        - text: 'originBranch'
+        - text: originBranch
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       - type: ReplaceText
         substitutions:
