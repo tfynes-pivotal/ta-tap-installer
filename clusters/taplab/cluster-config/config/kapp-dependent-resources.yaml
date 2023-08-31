@@ -1,3 +1,4 @@
+#@ load("@ytt:data", "data")
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
@@ -10,7 +11,7 @@ spec:
   fetch:
     - git:
         ref: origin/akslab
-        url: https://github.com/tfynes-pivotal/tap16-gitops-sc
+        url: #@ data.values.tapGitopsInstallationRepositoryUrl
         subPath: clusters/taplab/cluster-config/dependent-resources
   template:
     - sops:
