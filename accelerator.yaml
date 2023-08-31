@@ -451,7 +451,8 @@ engine:
       - type: ReplaceText
         substitutions:
         - text: originBranch
-          with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
+          with: "originMain"
+          # with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       - type: ReplaceText
         substitutions:
         - text: SecretKeyFileContentPlaceholder
