@@ -450,7 +450,7 @@ engine:
           with: "#tapIngressDomain" 
       - type: ReplaceText
         substitutions:
-        - text: 'origin/akslab'
+        - text: 'originBranch'
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       - type: ReplaceText
         substitutions:
@@ -464,7 +464,7 @@ engine:
       # substitutions:
       # - text: akslab.tap.fynesy.com
       #   with: "#tapIngressDomain" 
-      # - text: origin/akslab
+      # - text: originBranch
       #   with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       # - text: SecretKeyFileContentPlaceholder
       #   with: "#existingAgeKeyContent"

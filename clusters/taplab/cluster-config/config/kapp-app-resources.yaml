@@ -10,7 +10,7 @@ spec:
   serviceAccountName: sync-sa
   fetch:
     - git:
-        ref: origin/akslab
+        ref: originBranch
         url: #@ data.values.tapGitopsInstallationRepositoryUrl
         subPath: clusters/taplab/cluster-config/app-resources
   template:

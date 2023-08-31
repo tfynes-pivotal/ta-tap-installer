@@ -94,14 +94,14 @@ tap_install:
           controller: false
           additional_sources:
           - git:
-              ref: origin/akslab
+              ref: originBranch
               subPath: clusters/taplab/cluster-config/namespaces/namespace-resources
               url: #@ data.values.tapGitopsInstallationRepositoryUrl
               #!secretRef:
                #! name: workload-git-auth
                 #!namespace: tap-install
           gitops_install:
-            ref: origin/akslab
+            ref: originBranch
             subPath: clusters/taplab/cluster-config/namespaces
             url: #@ data.values.tapGitopsInstallationRepositoryUrl
             path: _ytt_lib/namespace-resources
