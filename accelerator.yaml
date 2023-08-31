@@ -443,14 +443,33 @@ engine:
   chain:
   - merge:
     - include: ['**']
-    - type: ReplaceText
-      substitutions:
-      - text: akslab.tap.fynesy.com
-        with: "#tapIngressDomain" 
-      - text: origin/akslab
-        with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: akslab.tap.fynesy.com
+          with: "#tapIngressDomain" 
+      - type: ReplaceText
+        substitutions:
+        - text: origin/akslab
+          with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
+      - type: ReplaceText
+        substitutions:
+        - text: SecretKeyFileContentPlaceholder
+          with: "#existingAgeKeyContent"
+
+  # chain:
+  # - merge:
+  #   - include: ['**']
+  #   - type: ReplaceText
+      # substitutions:
+      # - text: akslab.tap.fynesy.com
+      #   with: "#tapIngressDomain" 
+      # - text: origin/akslab
+      #   with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       # - text: SecretKeyFileContentPlaceholder
       #   with: "#existingAgeKeyContent"
+
+
 
     - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
       chain:
