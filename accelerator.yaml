@@ -451,7 +451,7 @@ engine:
     - include: ['**']
     - type: ReplaceText
       substitutions:
-      - text: origin/akslab
+      - text: "origin/akslab"
         with: "origin/#tapGitopsInstallationRepositoryBranch"
 
     - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
