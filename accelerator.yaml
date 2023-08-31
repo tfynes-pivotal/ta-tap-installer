@@ -77,14 +77,14 @@ accelerator:
     defaultValue: false
 
   # Question 5b: if age key already exists, where is the file located on local workstation
-  - name: existingAgeKey
-    label: Age key file location on local workstation 
-    inputType: text
-    dataType: string
-    defaultValue: "key.txt" 
-    dependsOn:
-      name: generateAgeKey
-      value: false
+  # - name: existingAgeKey
+  #   label: Age key file location on local workstation 
+  #   inputType: text
+  #   dataType: string
+  #   defaultValue: "key.txt" 
+  #   dependsOn:
+  #     name: generateAgeKey
+  #     value: false
 
   # Question 5c: age key content
   - name: existingAgeKeyContent
