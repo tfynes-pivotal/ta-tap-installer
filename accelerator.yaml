@@ -511,7 +511,10 @@ engine:
     - include: ['accelerator-assets/non-sensitive-config/tap-non-sensitive-values.yaml']
       chain:
       - type: YTT  
-
+      - type: ReplaceText
+        substitutions:
+        - text: origin/akslab
+          with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:
