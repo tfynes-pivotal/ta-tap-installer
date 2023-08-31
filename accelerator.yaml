@@ -497,7 +497,7 @@ engine:
       chain:
       - type: YTT
 
-    - include: ['clusters/taplab/cluster-config/tanzu-sync/app/values/tanzu-sync.yaml']
+    - include: ['clusters/taplab/tanzu-sync/app/values/tanzu-sync.yaml']
       chain:
       - type: YTT
 
