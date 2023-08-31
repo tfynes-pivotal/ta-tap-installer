@@ -12,4 +12,4 @@ secrets:
     git:
       basic_auth:
         username: #@ data.values.tapGithubAuthUsername
-        password: #@ data.values.tapGithubAuthtoken
+        password: #@ data.values.tapGithubAuthToken
