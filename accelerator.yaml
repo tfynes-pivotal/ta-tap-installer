@@ -450,7 +450,7 @@ engine:
           with: "#tapIngressDomain" 
       - type: ReplaceText
         substitutions:
-        - text: origin/akslab
+        - text: 'origin/akslab'
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       - type: ReplaceText
         substitutions:
