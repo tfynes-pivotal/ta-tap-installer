@@ -12,4 +12,6 @@ cp ./secrets-to-seal/dependent-resources/sso-credentials-secret.sops.yaml ../clu
 mkdir -p ../clusters/taplab/tanzu-sync/app/sensitive-values
 cp ./secrets-to-seal/tanzu-sync/tanzu-sync-values.sops.yaml ../clusters/taplab/tanzu-sync/app/sensitive-values/
 
+cp ./secrets-to-seal/values/tap-sensitive-values.sops.yaml ../clusters/taplab/cluster-config/values/
+
 cp ./non-sensitive-config/tap-non-sensitive-values.yaml             ../clusters/taplab/cluster-config/values/
