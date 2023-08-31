@@ -500,7 +500,10 @@ engine:
       chain:
       - type: YTT
 
-#@ data.values.tapGitopsInstallationRepositoryUrl
+    - include: ['clusters/taplab/cluster-config/tanzu-sync/app/values/tanzu-sync.yaml']
+      chain:
+      - type: YTT
+
 
         #extraArgs: ["'-v INSTALL_REGISTRY_HOSTNAME=host'","'-v INSTALL_REGISTRY_USERNAME=user'","'-v INSTALL_REGISTRY_PASSWORD=pass'"]
       # - type: RewritePath
