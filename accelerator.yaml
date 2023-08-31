@@ -447,7 +447,7 @@ engine:
       substitutions:
       - text: akslab.tap.fynesy.com
         with: "#tapIngressDomain" 
-      - text: 'origin/akslab'
+      - text: origin/akslab
         with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
       - text: SecretKeyFileContentPlaceholder
         with: "#existingAgeKeyContent"
@@ -515,6 +515,8 @@ engine:
     include: ['**']
     condition: "#deploydemoapplications == false"
 
+  - exclude: ['**/unused/**']
+    include: ['**']
 
 # engine: 
 #   type: chain
