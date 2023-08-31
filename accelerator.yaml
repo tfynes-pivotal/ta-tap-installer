@@ -447,6 +447,11 @@ engine:
       substitutions:
       - text: akslab.tap.fynesy.com
         with: "#tapIngressDomain" 
+    - type: ReplaceText
+      substitutions:
+      - text: .com
+        with: .computer
+
 
     # - include: ['**']
     # - type: ReplaceText
