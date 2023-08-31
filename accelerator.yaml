@@ -448,11 +448,11 @@ engine:
       - text: akslab.tap.fynesy.com
         with: "#tapIngressDomain" 
 
-    - include: ['**']
-    - type: ReplaceText
-      substitutions:
-      - text: 'origin/akslab'
-        with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
+    # - include: ['**']
+    # - type: ReplaceText
+    #   substitutions:
+    #   - text: 'origin/akslab'
+    #     with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
     - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
       chain:
@@ -476,6 +476,10 @@ engine:
         
 
     - include: ['accelerator-assets/secrets-to-seal/values/tap-sensitive-values.yaml']
+      chain:
+      - type: YTT  
+
+    - include: ['accelerator-assets/secrets-to-seal/tanzu-sync/tanzu-sync-values.yaml']
       chain:
       - type: YTT  
 
