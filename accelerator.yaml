@@ -129,7 +129,6 @@ accelerator:
   - name: dockerhubDefaultRegistry
     label: DockerHub Default Registry
     inputType: text
-    defaultValue: $DOCKERHUB_REGISTRY_USERNAME
     dependsOn:
       name: targetImageRegistryLocation
       value: dockerHub
@@ -374,7 +373,7 @@ engine:
   - name: tanzunetUrl
     expression: "'registry.tanzu.vmware.com'"
 
-  - name: testRegistry
+  - name: dummyTestRegistry
     expression: "'#dockerhubDefaultRegistry.isEmpty() ? #dockerhubUsername : #dockerhubDefaultRegistry'"
 
   chain:
@@ -393,6 +392,10 @@ engine:
         substitutions:
         - text: SecretKeyFileContentPlaceholder
           with: "#existingAgeKeyContent"
+      - type: ReplaceText
+        substitutions:
+        - text: dummyTestRegistry
+          with: "#dummyTestRegistry"
 
   # chain:
   # - merge:
