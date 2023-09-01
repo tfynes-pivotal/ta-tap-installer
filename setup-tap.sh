@@ -15,3 +15,8 @@
 # workload-git-auth.sops.yaml
 # sso-credentials-secret.sops.yaml
 # tap-sensitive-values.sops.yaml 
+
+
+pushd ./accelerator-assets
+./configure-deployment.sh
+popd
