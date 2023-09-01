@@ -1,6 +1,4 @@
 
-if [ -f ./key.txt ]
-then
 export SOPS_AGE_RECIPIENTS=$(cat ./key.txt | grep "# public key: " | sed 's/# public key: //')
 export SOPS_AGE_KEY=$(cat ./key.txt)
 
@@ -15,8 +13,7 @@ sops -e ./tanzu-sync/tanzu-sync-values.yaml > ./tanzu-sync/tanzu-sync-values.sop
 
 sops -e ./values/tap-sensitive-values.yaml > ./values/tap-sensitive-values.sops.yaml
 
-else
+echo
+echo DELETE 'secrets-to-seal' FOLDER AS UNENCRYPTED SECRETS CONTAINED THEREIN MUST NOT BE PUSH TO A REPO
+echo
 
-echo copy 'key.txt' to current secrets-to-seal folder
-
-fi
