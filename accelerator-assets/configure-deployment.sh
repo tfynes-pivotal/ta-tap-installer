@@ -16,3 +16,6 @@ mv ./secrets-to-seal/values/tap-sensitive-values.sops.yaml ../clusters/taplab/cl
 
 mv ./non-sensitive-config/tap-non-sensitive-values.yaml             ../clusters/taplab/cluster-config/values/
 
+echo
+echo DELETE /accelerator-log.md BEFORE PUSHING TO REPO AS IT CONTAINS SENSITIVE VALUES
+echo
