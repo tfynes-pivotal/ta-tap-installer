@@ -375,7 +375,7 @@ engine:
     expression: "'registry.tanzu.vmware.com'"
 
   - name: testRegistry
-    expression: "'#dockerhubDefaultRegistry.isEmpty() ? #dockerhubUsername : '#dockerhubDefaultRegistry'"
+    expression: "'#dockerhubDefaultRegistry.isEmpty() ? #dockerhubUsername : #dockerhubDefaultRegistry'"
 
   chain:
   - merge:
