@@ -5,23 +5,15 @@ accelerator:
   - beta
 
   options:
-  # Question 1. Project name
+  # Question 1. TAP GitOps Installation Project name
   - name: projectName
+    label: TAP GitOps Installation PROJECT NAME
     defaultValue: tap-gitops-demo
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
-  # spacer
-  # - name: spacer1
-  #   label: "TARGET REPOSITORY & BRANCH FOR YOUR TAP PLATFORM GITOPS ASSETS (Accelerator Outputs)"
-  #   description: " "
-  #   display: true
-  #   dataType: boolean
-  #   inputType: checkbox
-  #   defaultValue: false
-
-  # Question 2a. TAP GitOps Installation Repository
+  # Question 2a. TAP GitOps Installation TARGET REPOSITORY
   - name: tapGitopsInstallationRepositoryUrl
-    label: GitOps TAP Repository URL for your TAP Cluster
+    label: GitOps TAP TARGET REPOSITORY URL for your TAP Cluster
     description: TAP GitOps installation will continuously reconcile cluster configuration against this repository
     inputType: text
     display: true
@@ -29,87 +21,29 @@ accelerator:
 
   # Question 2b. TAP GitOps Installation Repository Branch
   - name: tapGitopsInstallationRepositoryBranch
-    label: GitOps TAP Repository Branch for your TAP Cluster
+    label: GitOps TAP RESPOITORY BRANCH for your TAP Cluster
     inputType: text
     display: true
     defaultValue: $TAP_GITOPS_INSTALLATION_REPOSITORY_BRANCH
 
-  # spacer
-  # - name: spacer2
-  #   label: "WILDCARD DNS DOMAIN FOR TAP"
-  #   description: " "
-  #   display: true
-  #   dataType: boolean
-  #   inputType: checkbox
-  #   defaultValue: false
-
   # Question 3. Ingress Domain
   - name: tapIngressDomain
-    label: TAP Ingress Domain
+    label: TAP INGRESS DOMAIN
     description: Wildcard DNS domain on which TAP-GUI and deployed workloads will reside
     inputType: text
     defaultValue: $TAP_INGRESS_DOMAIN
 
-    # spacer
-  # - name: spacer3
-  #   label: "SECRETS AS INPUTS TO THIS FORM"
-  #   description: " "
-  #   display: true
-  #   dataType: boolean
-  #   inputType: checkbox
-  #   defaultValue: false
-
-  # Question 4. Direct input of secrets in accelerator UI or provide names of env-var's containing sensitive values
-  - name: inlinedSecrets
-    label: Secrets Input Mode (inline / via local environment variables)
-    description: Directly input secrets in accelerator form or fetch later from your workstation exported enviroment variables. Warning - do NOT commit accelerator output to repo if inlining secrets!
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: true
-
-  # Question 5a: Generate new 'age' encryption key for sealing platform secrets
-  - name: generateAgeKey
-    label: Generate GitOps (age) Encryption key
-    description: Accelerator generates scripts which will use age cli to create new age encryption key for TAP senstive configuration value protecting, storing them in platform GitOps repo as encrypted values 
-    inputType: checkbox
-    dataType: boolean
-    defaultValue: false
-
-  # Question 5b: if age key already exists, where is the file located on local workstation
-  # - name: existingAgeKey
-  #   label: Age key file location on local workstation 
-  #   inputType: text
-  #   dataType: string
-  #   defaultValue: "key.txt" 
-  #   dependsOn:
-  #     name: generateAgeKey
-  #     value: false
-
-  # Question 5c: age key content
+  # Question 5: age key content
   - name: existingAgeKeyContent
-    label: age key file content
-    description: USE CAUTION NOT TO PUBLISH KEY TO ANY REPO
+    label: SOPS ENCRYPTION KEY
+    description: age key for secrets encryption
     inputType: textarea
     dataType: string
     defaultValue: $KEY_FILE_CONTENT
-    dependsOn:
-      name: generateAgeKey
-      value: false
     
-  # spacer
-  # - name: specer4
-  #   label: "INSTALL TAP FROM REGISTRY..."
-  #   description: " "
-  #   display: true
-  #   dataType: boolean
-  #   inputType: checkbox
-  #   defaultValue: false
-
   # Question 6. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
-
   - name: platformRegistryLocation
-    label: Platform binaries location 
+    label: PLATFORM BINARIES LOCATION
     description: Deploy TAP directly from TanzuNet or from a Registry to which all assets have previously been copied (using imgpkg)
     inputType: radio
     display: true
@@ -122,7 +56,7 @@ accelerator:
 
   # Question 6a-1. TanzuNet - username
   - name: tanzunetUsername
-    label: Tanzunet Username
+    label: Tanzunet USERNAME
     inputType: text
     defaultValue: $TANZUNET_USERNAME
     dependsOn:
@@ -130,7 +64,7 @@ accelerator:
       value: tanzunetRegistrySelection
   # Question 6a-2. TanzuNet - password
   - name: tanzunetPassword
-    label: Tanzunet Password / token / env-variable name
+    label: Tanzunet PASSSWORD
     inputType: text
     defaultValue: $TANZUNET_PASSWORD
     dependsOn:
@@ -159,18 +93,10 @@ accelerator:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
 
-  # spacer
-  # - name: spacer5
-  #   label: "DEPLOY TAP TO REGISTRY..."
-  #   description: " "
-  #   display: true
-  #   dataType: boolean
-  #   inputType: checkbox
-  #   defaultValue: false
 
   # Question 7. Target Image Registry
   - name: targetImageRegistryLocation
-    label: Container Images Target Registry
+    label: TAP TARGET IMAGES REGISTRY
     description: Registry to be used by TAP cluster for both Platform and Application container images
     inputType: radio
     display: true
@@ -183,7 +109,7 @@ accelerator:
 
   # Question 7a-1. Dockerhub username
   - name: dockerhubUsername
-    label: DockerHub User ID
+    label: DOCKERHUB USERNAME
     inputType: text
     defaultValue: $DOCKERHUB_REGISTRY_USERNAME
     dependsOn:
@@ -191,12 +117,14 @@ accelerator:
       value: dockerHub
   # Question 7a-2. Dockerhub password
   - name: dockerhubPassword
-    label: DockerHub Password / Access Token or env-variable name
+    label: DOCKERHUB PASSWORD
+    description: password or access token
     inputType: text
     defaultValue: $DOCKERHUB_REGISTRY_PASSWORD
     dependsOn:
       name: targetImageRegistryLocation
       value: dockerHub
+
   # Question 7a-3. Dockerhub registry
   - name: dockerhubDefaultRegistry
     label: DockerHub Default Registry
@@ -262,25 +190,31 @@ accelerator:
     inputType: text
     defaultValue: $TAP_CATALOG_URL
 
-  # tap-gui auth provider enabled
-  # - name: tapPortalAuthProviderEnable
-  #   label: "TAP-Portal Authentication Enabled"
-  #   description: "Authenticate users accessing TAP Portal against github"
-  #   display: true
-  #   dataType: boolean
-  #   inputType: checkbox
-  #   defaultValue: true
+   # tap-gui auth provider enabled
+  - name: tapPortalAuthProviderEnable
+    label: "TAP-Portal Authentication Enabled"
+    description: "Authenticate users accessing TAP Portal against github"
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: true
 
   # Question 8a-1. Github client id
   - name: githubClientId
     label: GitHub Client Id
     inputType: text
     defaultValue: $GITHUB_CLIENT_ID
+    dependsOn:
+      name: tapPortalAuthProviderEnable
+      value: true
 
   - name: githubClientSecret
     label: GitHub Client Secret
     inputType: text
     defaultValue: $GITHUB_CLIENT_SECRET
+    dependsOn:
+      name: tapPortalAuthProviderEnable
+      value: true
 
   # spacer
   # - name: spacer7
@@ -439,6 +373,9 @@ engine:
 
   - name: tanzunetUrl
     expression: "'registry.tanzu.vmware.com'"
+
+  - name: testRegistry
+    expression: "'#dockerhubDefaultRegistry.isEmpty() ? #dockerhubUsername : '#dockerhubDefaultRegistry'"
 
   chain:
   - merge:
