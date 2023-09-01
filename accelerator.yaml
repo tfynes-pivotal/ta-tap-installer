@@ -284,21 +284,21 @@ accelerator:
       value: tlsManual
 
   - name: springApiPortalApiKeySupport
-    label: Enabled SpringAPI-Portal API-Key support
-    description: Configure Spring-API-Portal to integrate with vault and okta in support of native x-api-key management for tap-workload protecting with in-cluster Spring Cloud Gateway
+    label: Enable SpringAPI-Portal API-Key support
+    description: Spring API-Portal can be used to self-manage API-KEY based TAP workload microservice protections, enforced natively in TAP Cluster with SpringCloudGateway. In order to use Spring-API-Portal for key management, it must itself be protected with an OIDC auth-provider such as OKTA
     display: true
     dataType: boolean
     inputType: checkbox
     defaultValue: true
 
   # Question 11. OKTA OIDC for SpringAPIPortal SSO Enable
-  - name: springApiPortalOktaIntegrationEnabled
-    label: Enable Spring API-Portal Okta integration.
-    description: Spring API-Portal can be used to self-manage API-KEY based TAP workload microservice protections, enforced natively in TAP Cluster with SpringCloudGateway. In order to use Spring-API-Portal for key management, it must itself be protected with an OIDC auth-provider such as OKTA.
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: true
+  # - name: springApiPortalOktaIntegrationEnabled
+  #   label: Enable Spring API-Portal Okta integration.
+  #   description: Spring API-Portal can be used to self-manage API-KEY based TAP workload microservice protections, enforced natively in TAP Cluster with SpringCloudGateway. In order to use Spring-API-Portal for key management, it must itself be protected with an OIDC auth-provider such as OKTA.
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: true
 
   # Question 11a-1 Okta ClientID
   - name: oktaClientId
@@ -306,7 +306,7 @@ accelerator:
     inputType: text
     defaultValue: $OKTA_CLIENT_ID
     dependsOn:
-      name: springApiPortalOktaIntegrationEnabled
+      name: springApiPortalApiKeySupport
 
   # Question 11a-2 Okta ClientSecret
   - name: oktaClientSecret
@@ -314,7 +314,7 @@ accelerator:
     inputType: text
     defaultValue: $OKTA_CLIENT_SECRET
     dependsOn:
-      name: springApiPortalOktaIntegrationEnabled
+      name: springApiPortalApiKeySupport
 
   # Question 11a-3 Okta Issuer URI
   - name: oktaIssuerUri
@@ -322,7 +322,7 @@ accelerator:
     inputType: text
     defaultValue: $OKTA_ISSUER_URI
     dependsOn:
-      name: springApiPortalOktaIntegrationEnabled
+      name: springApiPortalApiKeySupport
 
   # Question 11a-4 Okta Scopes
   - name: oktaScopes
@@ -330,7 +330,7 @@ accelerator:
     inputType: text
     defaultValue: $OKTA_SCOPES
     dependsOn:
-      name: springApiPortalOktaIntegrationEnabled
+      name: springApiPortalApiKeySupport
 
   # Question 11a-5 Okta Scopes
   - name: oktaUsernameAttribute
@@ -338,7 +338,7 @@ accelerator:
     inputType: text
     defaultValue: $OKTA_USERNAME_ATTRIBUTE
     dependsOn:
-      name: springApiPortalOktaIntegrationEnabled
+      name: springApiPortalApiKeySupport
 
   # Question 12 Deploy test applications
   - name: deployDemoApplications
