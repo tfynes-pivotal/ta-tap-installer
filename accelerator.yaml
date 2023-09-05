@@ -437,6 +437,8 @@ engine:
     - include: ['accelerator-assets/secrets-to-seal/config/*.yaml']
       chain:
       - type: YTT 
+
+
     - include: ['accelerator-assets/secrets-to-seal/dependent-resources/*.yaml']
       chain:
       - type: YTT 
@@ -463,6 +465,18 @@ engine:
         substitutions:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
+
+    - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
+      chain:
+      - type: YTT
+    - include: ['clusters/taplab/cluster-config/app-resources/**/tdemo-gateway-certificate.yaml']
+      chain:
+      - type: YTT    
+    - include: ['clusters/taplab/cluster-config/app-resources/**/petclinic-gateway-certificate.yaml']
+      chain:
+      - type: YTT
+
+
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:
