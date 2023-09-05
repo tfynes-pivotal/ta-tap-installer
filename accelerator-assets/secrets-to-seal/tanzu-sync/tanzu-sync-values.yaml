@@ -9,7 +9,10 @@ secrets:
       username: #@ data.values.tanzunetUsername if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryUsername
       password: #@ data.values.tanzunetPassword if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryPassword
 
+    #@ if data.values.tapWorkloadAuthEnable:
     git:
       basic_auth:
         username: #@ data.values.tapGithubAuthUsername
         password: #@ data.values.tapGithubAuthToken
+    #@ end
+
