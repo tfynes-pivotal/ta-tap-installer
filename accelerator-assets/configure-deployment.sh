@@ -13,7 +13,7 @@ mv ./secrets-to-seal/dependent-resources/sso-credentials-secret.sops.yaml ../clu
 mkdir -p ../clusters/taplab/tanzu-sync/app/sensitive-values
 mv ./secrets-to-seal/tanzu-sync/tanzu-sync-values.sops.yaml ../clusters/taplab/tanzu-sync/app/sensitive-values/
 
-mv ./secrets-to-seal/tanzu-sync/registry-credentials.sops.yaml ../clusters/taplab/tanzu-sync/config/.tanzu-managed/
+# mv ./secrets-to-seal/tanzu-sync/registry-credentials.sops.yaml ../clusters/taplab/tanzu-sync/config/.tanzu-managed/
 
 mv ./secrets-to-seal/values/tap-sensitive-values.sops.yaml ../clusters/taplab/cluster-config/values/
 

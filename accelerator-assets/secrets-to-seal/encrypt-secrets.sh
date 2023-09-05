@@ -10,7 +10,7 @@ sops -e ./dependent-resources/sso-credentials-secret.yaml > ./dependent-resource
 
 sops -e ./tanzu-sync/tanzu-sync-values.yaml > ./tanzu-sync/tanzu-sync-values.sops.yaml
 
-sops -e ./tanzu-sync/registry-credentials.yaml > ./tanzu-sync/registry-credentials.sops.yaml
+# sops -e ./tanzu-sync/registry-credentials.yaml > ./tanzu-sync/registry-credentials.sops.yaml
                                              
 
 sops -e ./values/tap-sensitive-values.yaml > ./values/tap-sensitive-values.sops.yaml
