@@ -175,6 +175,12 @@ accelerator:
   #   inputType: checkbox
   #   defaultValue: false
 
+  - name: tapCatalogUrl
+    label: "TAP Portal Catalog Repo URL"
+    display: true
+    inputType: text
+    defaultValue: $TAP_CATALOG_URL
+
   - name: tapPortalGuestAccessEnable
     label: "TAP-Portal Guest Access Enabled"
     description: "Passwordless access to TAP-Portal"
@@ -182,12 +188,6 @@ accelerator:
     dataType: boolean
     inputType: checkbox
     defaultValue: true
-
-  - name: tapCatalogUrl
-    label: "TAP Portal Catalog Repo URL"
-    display: true
-    inputType: text
-    defaultValue: $TAP_CATALOG_URL
 
    # tap-gui auth provider enabled
   - name: tapPortalAuthProviderEnable
