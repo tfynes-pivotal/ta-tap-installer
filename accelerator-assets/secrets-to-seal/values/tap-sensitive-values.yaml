@@ -12,12 +12,16 @@ tap_install:
                 auth:
                     allowGuestAccess: true
                     environment: development
+                    #@ if data.values.tapPortalAuthProviderEnable:
                     providers:
                         github:
                             development:
                                 clientId: #@ data.values.githubClientId
                                 clientSecret: #@ data.values.githubClientSecret
+                    #@ end
+                #@ if data.values.tapWorkloadAuthEnable:
                 integrations:
                     github:
                         - host: github.com
                           token: #@ data.values.tapGithubAuthToken
+                #@ end
