@@ -24,6 +24,6 @@ echo TAP GitOps GitHub repo created.
 echo
 cd cluster/taplab
 echo 
-echo run ./tanzu-sync/scripts/deploy.sh
+echo target appropriate k8s cluster and run ./tanzu-sync/scripts/deploy.sh to continue
 echo 
 fi

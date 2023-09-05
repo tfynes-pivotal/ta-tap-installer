@@ -437,41 +437,6 @@ engine:
       chain:
       - type: YTT 
       
-
-    # - include: ['accelerator-assets/secrets-to-seal/values/tap-sensitive-values.yaml']
-    #   chain:
-    #   - type: YTT  
-
-    # - include: ['accelerator-assets/secrets-to-seal/tanzu-sync/tanzu-sync-values.yaml']
-    #   chain:
-    #   - type: YTT  
-
-    # - include: ['accelerator-assets/secrets-to-seal/config/tanzu-registry-secret.yaml']
-    #   chain:
-    #   - type: YTT
-    #     condition: "#inlinedSecrets"
-      
-    # - include: ['accelerator-assets/secrets-to-seal/config/user-registry-dockerconfig.yaml']
-    #   chain:
-    #   - type: YTT
-    #     condition: "#inlinedSecrets"
-
-    # - include: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
-    #   chain:
-    #   - type: YTT
-    #     condition: "#inlinedSecrets"
-
-    # - include: ['accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret.yaml']
-    #   chain:
-    #   - type: YTT
-    #     condition: "#springApiPortalOktaIntegrationEnabled"
-        
-    # - include: ['accelerator-assets/secrets-to-seal/demo-secret.yaml']
-    #   chain:
-    #   - type: YTT
-
-
-
     - include: ['accelerator-assets/non-sensitive-config/tap-non-sensitive-values.yaml']
       chain:
       - type: YTT  
@@ -504,15 +469,6 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
-        #extraArgs: ["'-v INSTALL_REGISTRY_HOSTNAME=host'","'-v INSTALL_REGISTRY_USERNAME=user'","'-v INSTALL_REGISTRY_PASSWORD=pass'"]
-      # - type: RewritePath
-      #  rewriteTo: "/config/foo.yaml"
-    
-    #   patterns: ['**/clusters/taplab/cluster-config/values/tap-non-sensitive-values-12.yaml']
-    # - type: ReplaceText
-    #   substitutions:
-    #   - text: letsencrypt-production
-    #     with: "'dummy-issuer'"
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**']
     include: ['**']
     condition: "#deploydemoapplications == false"
