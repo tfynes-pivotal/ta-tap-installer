@@ -224,6 +224,15 @@ accelerator:
   #   inputType: checkbox
   #   defaultValue: false
 
+  # tap workload auth enabled
+  - name: tapWorkloadAuthEnable
+    label: "TAP Workload Authentication Enabled"
+    description: "Allows Supply-chains to read from priviate repo"
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: true
+
   # Question 9a. Workload git authentication Username
   - name: tapGithubAuthUsername
     label: TAP Workload GitHub Server auth username 
@@ -231,6 +240,9 @@ accelerator:
     inputType: text
     display: true
     defaultValue: $GITHUB_AUTH_USERNAME
+    dependsOn:
+      name: tapWorkloadAuthEnable
+      value: true
 
   # Question 9b. GitHub authentication Token
   - name: tapGithubAuthToken
@@ -238,6 +250,9 @@ accelerator:
     inputType: text
     display: true
     defaultValue: $GITHUB_AUTH_TOKEN
+    dependsOn:
+      name: tapWorkloadAuthEnable
+      value: true
 
   # spacer
   # - name: spacer8
