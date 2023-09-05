@@ -434,10 +434,28 @@ engine:
       # - text: SecretKeyFileContentPlaceholder
       #   with: "#existingAgeKeyContent"
 
-    - include: ['accelerator-assets/secrets-to-seal/**/*.yaml']
+    - include: ['accelerator-assets/secrets-to-seal/config/*.yaml']
       chain:
       - type: YTT 
-      
+    - include: ['accelerator-assets/secrets-to-seal/dependent-resources/*.yaml']
+      chain:
+      - type: YTT 
+    - include: ['accelerator-assets/secrets-to-seal/tanzu-sync/*.yaml']
+      chain:
+      - type: YTT 
+    - include: ['accelerator-assets/secrets-to-seal/values/*.yaml']
+      chain:
+      - type: YTT 
+    
+    - include: ['accelerator-assets/secrets-to-seal/tls/*.yaml']
+      chain:
+      - type: YTT 
+        condition: "#tlsMode == tlsManual"
+
+
+
+
+
     - include: ['accelerator-assets/non-sensitive-config/tap-non-sensitive-values.yaml']
       chain:
       - type: YTT  
