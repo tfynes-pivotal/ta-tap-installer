@@ -11,5 +11,5 @@ metadata:
 type: kubernetes.io/basic-auth
 stringData:
 
-  username: #@ data.values.tapGithubAuthUsername if data.values.tapWorkloadAuthEnable else ""
-  password: #@ data.values.tapGithubAuthToken if data.values.tapWorkloadAuthEnable else ""
+  username: #@ data.values.tapGithubAuthUsername if data.values.tapWorkloadAuthEnable else "dummy-value"
+  password: #@ data.values.tapGithubAuthToken if data.values.tapWorkloadAuthEnable else "dummy-value"
