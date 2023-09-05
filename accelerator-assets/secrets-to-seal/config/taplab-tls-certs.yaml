@@ -5,7 +5,7 @@
 apiVersion: v1
 data:
     tls.crt: #@ base64.encode(data.values.tlsManualCertificate)
-    tls.key: #@ #@ base64.encode(data.values.tlsManualPrivateKey)
+    tls.key: #@ base64.encode(data.values.tlsManualPrivateKey)
 kind: Secret
 metadata:
     name: tapfynesycom
