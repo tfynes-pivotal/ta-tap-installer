@@ -17,14 +17,14 @@ tap_install:
             server: "index.docker.io"
             repository: #@ data.values.dockerhubDefaultRegistry
           gitops:
-            ssh_secret: "workload-git-auth"
+            ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
 
-        ootb_supply_chain_testing_scanning:
-          registry:
-            server: "index.docker.io"
-            repository: "fynesy"
-          gitops:
-            ssh_secret: ""
+        # ootb_supply_chain_testing_scanning:
+        #   registry:
+        #     server: "index.docker.io"
+        #     repository: "fynesy"
+        #   gitops:
+        #     ssh_secret: ""
 
         contour:
           envoy:
