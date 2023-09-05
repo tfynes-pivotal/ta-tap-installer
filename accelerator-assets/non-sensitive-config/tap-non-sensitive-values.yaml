@@ -4,7 +4,11 @@ tap_install:
   values: 
         shared:
           ingress_domain: #@ data.values.tapIngressDomain
-          ingress_issuer: "letsencrypt-production"
+          #@ if data.values.tlsMode == 'tlsManual':
+          ingress_issuer: ""
+          #@ else:
+          ingress_issuer: "letsencrypt-production" 
+          #@ end
 
 
         ceip_policy_disclosed: true
@@ -35,6 +39,11 @@ tap_install:
           kp_default_repository: #@ data.values.dockerhubDefaultRegistry + "/buildservice"
 
         tap_gui:
+          #@ if data.values.tlsMode == 'tlsMode':
+          tls:
+            namespace: tanzu-system-ingress
+            secretName: tapfynesycom
+          #@ end
           service_type: ClusterIP #! If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
           metadataStoreAutoconfiguration: true 
           app_config:
@@ -65,6 +74,9 @@ tap_install:
 
         cnrs:
           domain_template: '{{.Name}}-{{.Namespace}}.{{.Domain}}'
+          #@ if data.values.tlsMode == 'tlsManual':
+          default_tls_secret: tanzu-system-ingress/tapfynesycom
+          #@ end
 
         api_portal:
           apiPortalServer:

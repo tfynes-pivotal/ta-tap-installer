@@ -1,3 +1,7 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:base64", "base64")
+#@ load("@ytt:json", "json")
+---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -6,7 +10,11 @@ metadata:
 spec:
   dnsNames:
   - tdemo.akslab.tap.fynesy.com
+  #@ if data.values.tlsMode = 'tlsManual':
+  secretName: tapfynesycom
+  #@ else:
   secretName: tdemo-gateway-tls-cert
+  #@ end
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer

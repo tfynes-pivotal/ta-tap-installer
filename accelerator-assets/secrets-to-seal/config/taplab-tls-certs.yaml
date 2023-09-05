@@ -1,0 +1,13 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:base64", "base64")
+#@ load("@ytt:json", "json")
+---
+apiVersion: v1
+data:
+    tls.crt: #@ base64.encode(data.values.tlsManualCertificate)
+    tls.key: #@ #@ base64.encode(data.values.tlsManualPrivateKey)
+kind: Secret
+metadata:
+    name: tapfynesycom
+    namespace: tap-install
+type: kubernetes.io/tls

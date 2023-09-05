@@ -283,16 +283,17 @@ accelerator:
     label: TAP Wildcard TLS Certificate
     inputType: textarea
     display: true
+    defaultValue: $TAP_TLS_CERTIFICATE
     dependsOn:
       name: tlsMode
       value: tlsManual
 
   # Question 10b-2. TAP Ingress Wildcard Private Key
-  - name: tlsManualPrivateKeyEncoded
-    label: TAP Wildcard TLS Private key or Env-var containing base64 encoded value
+  - name: tlsManualPrivateKey
+    label: TAP Wildcard TLS Private key 
     inputType: textarea
     display: true
-    defaultValue: TAP_TLS_PRIVATE_KEY_ENCODED
+    defaultValue: $TAP_TLS_PRIVATE_KEY
     dependsOn:
       name: tlsMode
       value: tlsManual
