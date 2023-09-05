@@ -450,7 +450,7 @@ engine:
     - include: ['accelerator-assets/secrets-to-seal/tls/*.yaml']
       chain:
       - type: YTT 
-        condition: "#tlsMode == tlsManual"
+        condition: "#tlsMode == 'tlsManual'"
 
 
 
