@@ -20,3 +20,5 @@
 pushd ./accelerator-assets
 ./configure-deployment.sh
 popd
+
+echo Run ./initialize-repo.sh to to continue

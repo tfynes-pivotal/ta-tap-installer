@@ -411,6 +411,15 @@ engine:
         substitutions:
         - text: dummyTestRegistry
           with: "#dummyTestRegistry"
+      - type: ReplaceText
+        substitutions:
+        - text: TAP_GITOPS_REPO_NAME
+          with: "#projectName"
+      - type: ReplaceText
+        substitutions:
+        - text: TAP_GITOPS_REPO_URL
+          with: "#tapGitopsInstallationRepositoryUrl"
+
 
   # chain:
   # - merge:
