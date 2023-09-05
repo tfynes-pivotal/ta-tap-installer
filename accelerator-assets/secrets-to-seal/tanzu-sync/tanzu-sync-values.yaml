@@ -5,14 +5,12 @@ secrets:
     age_key: #@ data.values.existingAgeKeyContent  
     
     registry:
-      hostname: #@ "registry.tanzu.vmware.com" if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryUrl
+      hostname: #@ "registry.tanzu.vmware.com"  if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryUrl
       username: #@ data.values.tanzunetUsername if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryUsername
       password: #@ data.values.tanzunetPassword if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryPassword
 
-    #@ if data.values.tapWorkloadAuthEnable:
     git:
       basic_auth:
-        username: #@ data.values.tapGithubAuthUsername
-        password: #@ data.values.tapGithubAuthToken
-    #@ end
+        username: #@ data.values.tapGithubAuthUsername if data.values.tapWorkloadAuthEnable else "dummy-value"
+        password: #@ data.values.tapGithubAuthToken    if data.values.tapWorkloadAuthEnable else "dummy-value"
 
