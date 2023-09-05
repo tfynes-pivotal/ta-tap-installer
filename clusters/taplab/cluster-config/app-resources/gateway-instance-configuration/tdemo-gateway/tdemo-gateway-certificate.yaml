@@ -10,7 +10,7 @@ metadata:
 spec:
   dnsNames:
   - tdemo.akslab.tap.fynesy.com
-  #@ if data.values.tlsMode = 'tlsManual':
+  #@ if data.values.tlsMode == 'tlsManual':
   secretName: tapfynesycom
   #@ else:
   secretName: tdemo-gateway-tls-cert
