@@ -5,7 +5,8 @@ echo WARNING: Ensure unencrypted sensitive files removed from repo
 echo  ./accelerator.log
 echo  ./accelerator-assets/secrets-to-seal/*
 echo
-echo Continue to create GitHub TAP GitOps Repo
+echo Continue to create GitHub TAP GitOps Repo TAP_GITOPS_REPO_NAME
+echo     TAP_GITOPS_REPO_URL
 echo
 
 read -r -p "Unencrypted Files Removed? [y/N] " response
