@@ -457,7 +457,6 @@ engine:
 
 
 
-
     - include: ['accelerator-assets/non-sensitive-config/tap-non-sensitive-values.yaml']
       chain:
       - type: YTT  
@@ -508,7 +507,7 @@ engine:
 
   - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
     include: ['**']
-    condition: "#tlsMode != tlsManual"
+    condition: "#tlsMode != 'tlsManual'"
 
   - exclude: ['**/unused/**']
     include: ['**']
