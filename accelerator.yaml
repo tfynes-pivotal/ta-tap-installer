@@ -420,6 +420,16 @@ engine:
         substitutions:
         - text: TAP_GITOPS_REPO_URL
           with: "#tapGitopsInstallationRepositoryUrl"
+      - type: ReplaceText
+        substitutions:
+        - text: TLS_MODE_MANUAL
+          with: "'true'"
+          condition: #tlsMode == 'tlsManual'
+      - type: ReplaceText
+        substitutions:
+        - text: TLS_MODE_MANUAL
+          with: "'false'"
+          condition: #tlsMode != 'tlsManual'
 
 
   # chain:
@@ -453,12 +463,6 @@ engine:
       chain:
       - type: YTT 
         condition: "#tlsMode == 'tlsManual'"
-      - type: RewritePath
-        regex: accelerator-assets/secrets-to-seal/tls/taplab-tls-certs\.yaml
-        rewriteTo: "'clusters/taplab/cluster-config/config'"
-        condition: "#tlsMode == 'tlsManual'"
-
-
 
 
     - include: ['accelerator-assets/non-sensitive-config/tap-non-sensitive-values.yaml']
@@ -509,9 +513,10 @@ engine:
     include: ['**']
     condition: "#deploydemoapplications == false"
 
-  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
-    include: ['**']
-    condition: "#tlsMode != 'tlsManual'"
+  # would be better to pull unnecessary files - must revisit
+  # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
+  #   include: ['**']
+  #   condition: "#tlsMode != 'tlsManual'"
 
   - exclude: ['**/unused/**']
     include: ['**']

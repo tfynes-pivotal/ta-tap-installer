@@ -17,7 +17,10 @@ mv ./secrets-to-seal/tanzu-sync/tanzu-sync-values.sops.yaml ../clusters/taplab/t
 
 mv ./secrets-to-seal/values/tap-sensitive-values.sops.yaml ../clusters/taplab/cluster-config/values/
 
-#mv ./secrets-to-seal/tls/taplab-tls-certs.sops.yaml ../clusters/taplab/cluster-config/config/
+if [ TLS_MODE_MANUAL ]
+then
+mv ./secrets-to-seal/tls/taplab-tls-certs.sops.yaml ../clusters/taplab/cluster-config/config/
+fi
 
 mv ./non-sensitive-config/tap-non-sensitive-values.yaml             ../clusters/taplab/cluster-config/values/
 
