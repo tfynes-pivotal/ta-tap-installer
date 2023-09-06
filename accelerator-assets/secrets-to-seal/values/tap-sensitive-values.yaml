@@ -19,9 +19,7 @@ tap_install:
                                 clientId: #@ data.values.githubClientId
                                 clientSecret: #@ data.values.githubClientSecret
                     #@ end
-                #@ if data.values.tapWorkloadAuthEnable:
                 integrations:
                     github:
                         - host: github.com
                           token: #@ data.values.tapGithubAuthToken
-                #@ end
