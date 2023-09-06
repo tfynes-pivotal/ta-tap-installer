@@ -427,7 +427,7 @@ engine:
           with: "#tlsMode"
       - chain:
         - type: ReplaceText
-        substitutions:
+          substitutions:
         - text: akslab.tap.fynesy.com
           with: "#tapIngressDomain" 
         - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
