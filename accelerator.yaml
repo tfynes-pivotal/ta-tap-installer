@@ -453,6 +453,10 @@ engine:
       chain:
       - type: YTT 
         condition: "#tlsMode == 'tlsManual'"
+      - type: RewritePath
+        regex: accelerator-assets/secrets-to-seal/tls/taplab-tls-certs\.yaml
+        rewriteTo: "'clusters/taplab/cluster-config/config'"
+        condition: "#tlsMode == 'tlsManual'"
 
 
 
