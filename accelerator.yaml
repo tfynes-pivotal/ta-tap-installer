@@ -428,8 +428,8 @@ engine:
       - chain:
         - type: ReplaceText
           substitutions:
-        - text: akslab.tap.fynesy.com
-          with: "#tapIngressDomain" 
+          - text: akslab.tap.fynesy.com
+            with: "#tapIngressDomain" 
         - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
           chain:
           - type: YTT
