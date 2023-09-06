@@ -518,9 +518,15 @@ engine:
     include: ['**']
     condition: "#deploydemoapplications == false"
 
-  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls-cert**']
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls-cert**',
+              '**/clusters/taplab/cluster-config/config/taplab-tls-certs-export']
     include: ['**']
     condition: "#tlsMode != 'tlsManual'"
+
+  - exclude: ['**/clusters/taplab/**/workload-git-auth**']
+    include: ['**']
+    condition: "#tapWorkloadAuthEnable == false"
+  
   
 
   # would be better to pull unnecessary files - must revisit
