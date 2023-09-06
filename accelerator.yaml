@@ -427,8 +427,12 @@ engine:
           with: "#tlsMode"
       - merge:
         - include: ["**"]
-          exclude: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
-        - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
+          exclude: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml',\
+                    'clusters/taplab/cluster-config/app-resources/**/tdemo-gateway-certificate.yaml',\
+                    'clusters/taplab/cluster-config/app-resources/**/petclinic-gateway-certificate.yaml']
+        - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml',\
+                    'clusters/taplab/cluster-config/app-resources/**/tdemo-gateway-certificate.yaml',\
+                    'clusters/taplab/cluster-config/app-resources/**/petclinic-gateway-certificate.yaml']
           chain:
           - type: YTT 
 
@@ -470,12 +474,12 @@ engine:
     # - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
     #   chain:
     #   - type: YTT
-    - include: ['clusters/taplab/cluster-config/app-resources/**/tdemo-gateway-certificate.yaml']
-      chain:
-      - type: YTT    
-    - include: ['clusters/taplab/cluster-config/app-resources/**/petclinic-gateway-certificate.yaml']
-      chain:
-      - type: YTT
+    # - include: ['clusters/taplab/cluster-config/app-resources/**/tdemo-gateway-certificate.yaml']
+    #   chain:
+    #   - type: YTT    
+    # - include: ['clusters/taplab/cluster-config/app-resources/**/petclinic-gateway-certificate.yaml']
+    #   chain:
+    #   - type: YTT
 
 
 
