@@ -523,6 +523,10 @@ engine:
     include: ['**']
     condition: "#tlsMode != 'tlsManual'"
 
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/sso-credentials-secret**']
+    include: ['**']
+    condition: "#springApiPortalApiKeySupport == false"
+
   - exclude: ['**/clusters/taplab/**/workload-git-auth**']
     include: ['**']
     condition: "#tapWorkloadAuthEnable == false"
