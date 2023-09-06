@@ -425,21 +425,17 @@ engine:
       #  substitutions:
         - text: TLS_MODE
           with: "#tlsMode"
+      - chain:
         - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
-        chain:
-        - type: YTT
+          chain:
+          - type: YTT
+        
 
-  # chain:
-  # - merge:
-  #   - include: ['**']
-  #   - type: ReplaceText
-      # substitutions:
-      # - text: akslab.tap.fynesy.com
-      #   with: "#tapIngressDomain" 
-      # - text: origin/akslab
-      #   with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
-      # - text: SecretKeyFileContentPlaceholder
-      #   with: "#existingAgeKeyContent"
+
+#    - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
+#      chain:
+#      - type: YTT
+
 
     - include: ['accelerator-assets/secrets-to-seal/config/*.yaml']
       chain:
