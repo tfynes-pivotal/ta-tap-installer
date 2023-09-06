@@ -518,6 +518,11 @@ engine:
     include: ['**']
     condition: "#deploydemoapplications == false"
 
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls-cert**']
+    include: ['**']
+    condition: "#tlsMode != 'tlsManual'"
+  
+
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
   #   include: ['**']
