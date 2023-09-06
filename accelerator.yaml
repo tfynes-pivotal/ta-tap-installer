@@ -129,6 +129,7 @@ accelerator:
   - name: dockerhubDefaultRegistry
     label: DockerHub Default Registry
     inputType: text
+    defaultValue: $MY_REPO
     dependsOn:
       name: targetImageRegistryLocation
       value: dockerHub
