@@ -425,7 +425,12 @@ engine:
       #  substitutions:
         - text: TLS_MODE
           with: "#tlsMode"
-        
+      - merge:
+        - include: ["**"]
+          exclude: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
+        - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
+          chain:
+          - type: YTT 
 
 
 #    - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
