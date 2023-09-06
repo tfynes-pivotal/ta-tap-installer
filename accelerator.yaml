@@ -422,14 +422,8 @@ engine:
           with: "#tapGitopsInstallationRepositoryUrl"
       - type: ReplaceText
         substitutions:
-        - text: TLS_MODE_MANUAL
-          with: "'true'"
-          condition: #tlsMode == 'tlsManual'
-      - type: ReplaceText
-        substitutions:
-        - text: TLS_MODE_MANUAL
-          with: "'false'"
-          condition: #tlsMode != 'tlsManual'
+        - text: TLS_MODE
+          with: "#tlsMode"
 
 
   # chain:
