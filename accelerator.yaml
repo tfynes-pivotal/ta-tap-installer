@@ -462,9 +462,9 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
-    - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
-      chain:
-      - type: YTT
+    # - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
+    #   chain:
+    #   - type: YTT
     - include: ['clusters/taplab/cluster-config/app-resources/**/tdemo-gateway-certificate.yaml']
       chain:
       - type: YTT    
