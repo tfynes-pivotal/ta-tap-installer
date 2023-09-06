@@ -400,28 +400,28 @@ engine:
         substitutions:
         - text: akslab.tap.fynesy.com
           with: "#tapIngressDomain" 
-      - type: ReplaceText
-        substitutions:
+      #- type: ReplaceText
+      #  substitutions:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
-      - type: ReplaceText
-        substitutions:
+      #- type: ReplaceText
+      #  substitutions:
         - text: SecretKeyFileContentPlaceholder
           with: "#existingAgeKeyContent"
-      - type: ReplaceText
-        substitutions:
+      #- type: ReplaceText
+      #  substitutions:
         - text: dummyTestRegistry
           with: "#dummyTestRegistry"
-      - type: ReplaceText
-        substitutions:
+      #- type: ReplaceText
+      #  substitutions:
         - text: TAP_GITOPS_REPO_NAME
           with: "#projectName"
-      - type: ReplaceText
-        substitutions:
+      #- type: ReplaceText
+      #  substitutions:
         - text: TAP_GITOPS_REPO_URL
           with: "#tapGitopsInstallationRepositoryUrl"
-      - type: ReplaceText
-        substitutions:
+      #- type: ReplaceText
+      #  substitutions:
         - text: TLS_MODE
           with: "#tlsMode"
 
