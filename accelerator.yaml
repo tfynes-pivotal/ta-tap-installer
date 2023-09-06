@@ -426,6 +426,10 @@ engine:
         - text: TLS_MODE
           with: "#tlsMode"
       - chain:
+        - type: ReplaceText
+        substitutions:
+        - text: akslab.tap.fynesy.com
+          with: "#tapIngressDomain" 
         - include: ['clusters/taplab/cluster-config/app-resources/**/api-portal-tls-cert.yaml']
           chain:
           - type: YTT
