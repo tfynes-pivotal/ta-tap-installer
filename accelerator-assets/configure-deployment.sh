@@ -24,6 +24,20 @@ fi
 
 mv ./non-sensitive-config/tap-non-sensitive-values.yaml             ../clusters/taplab/cluster-config/values/
 
+
+pushd ..
+mv ./secrets-to-seal/key.txt ../../
 echo
+echo SOPS ENCRYPTION KEY MOVED TO TOP LEVEL OF GITREPO FOLDER 
+echo INITIALIZE SOPS ENV VAR AS FOLLOWS
+echo
+echo export SOPS_AGE_KEY=\$(cat $(pwd)/key.txt)
+popd
+echo (/key.txt added to .gitignore)
+echo
+echo
+echo
+popd
+
 echo DELETE /accelerator-log.md BEFORE PUSHING TO REPO AS IT CONTAINS SENSITIVE VALUES
 echo
