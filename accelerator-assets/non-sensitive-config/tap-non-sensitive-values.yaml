@@ -3,13 +3,13 @@
 tap_install:
   values: 
         excluded_packages:
-          #@ if not data.values.learningCenterIncluded:
+        #@ if not data.values.learningCenterIncluded:
           - learningcenter.tanzu.vmware.com
           - workshops.learningcenter.tanzu.vmware.com
-          #@ end
-          #@ if not data.values.kNativeEventingIncluded:
+        #@ end
+        #@ if not data.values.kNativeEventingIncluded:
           - eventing.tanzu.vmware.com
-          #@ end
+        #@ end
 
         shared:
           ingress_domain: #@ data.values.tapIngressDomain
