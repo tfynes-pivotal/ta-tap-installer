@@ -181,7 +181,7 @@ tap_install:
          - name: developer-conventions
            secrets:
            - name: reqfix-overlay-secret
-        #@ if data.values.kNativeEventingEnabled:
+        #@ if data.values.kNativeEventingIncluded:
          - name: eventing
            secrets:
            - name: reqfix-overlay-secret
@@ -192,7 +192,7 @@ tap_install:
          - name: grype
            secrets:
            - name: reqfix-overlay-secret
-        #@ if data.values.learningCenterEnabled:
+        #@ if data.values.learningCenterIncluded:
          - name: learningcenter
            secrets:
            - name: reqfix-overlay-secret
