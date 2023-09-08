@@ -2,6 +2,15 @@
 ---
 tap_install:
   values: 
+        excluded_packages:
+          #@ if not learningCenterIncluded:
+          - learningcenter.tanzu.vmware.com
+          - workshops.learningcenter.tanzu.vmware.com
+          #@ end
+          #@ if not kNativeEventingIncluded:
+          - eventing.tanzu.vmware.com
+          #@ end
+
         shared:
           ingress_domain: #@ data.values.tapIngressDomain
           #@ if data.values.tlsMode == 'tlsManual':
@@ -172,21 +181,25 @@ tap_install:
          - name: developer-conventions
            secrets:
            - name: reqfix-overlay-secret
+        #@ if kNativeEventingEnabled:
          - name: eventing
            secrets:
            - name: reqfix-overlay-secret
+        #@ end
          - name: fluxcd-source-controller
            secrets:
            - name: reqfix-overlay-secret
          - name: grype
            secrets:
            - name: reqfix-overlay-secret
+        #@ if learningCenterEnabled:
          - name: learningcenter
            secrets:
            - name: reqfix-overlay-secret
          - name: learningcenter-workshops
            secrets:
            - name: reqfix-overlay-secret
+        #@ end
          - name: metadata-store
            secrets:
            - name: reqfix-overlay-secret

@@ -371,6 +371,19 @@ accelerator:
     required: true
     defaultValue: true
 
+  # Optional TAP Package Inclusion
+  - name: learningCenterIncluded
+    label: Install TAP Learning Center
+    dataType: boolean
+    required: true
+    defaultValue: true
+
+  - name: kNativeEventingIncluded
+    label: Install kNative Eventing Support
+    dataType: boolean
+    required: true
+    defaultValue: true
+
   #iconUrl: ./tanzu-icon.png
 ####################################################################
 
