@@ -3,11 +3,11 @@
 tap_install:
   values: 
         excluded_packages:
-          #@ if not learningCenterIncluded:
+          #@ if not data.values.learningCenterIncluded:
           - learningcenter.tanzu.vmware.com
           - workshops.learningcenter.tanzu.vmware.com
           #@ end
-          #@ if not kNativeEventingIncluded:
+          #@ if not data.values.kNativeEventingIncluded:
           - eventing.tanzu.vmware.com
           #@ end
 
@@ -181,7 +181,7 @@ tap_install:
          - name: developer-conventions
            secrets:
            - name: reqfix-overlay-secret
-        #@ if kNativeEventingEnabled:
+        #@ if data.values.kNativeEventingEnabled:
          - name: eventing
            secrets:
            - name: reqfix-overlay-secret
@@ -192,7 +192,7 @@ tap_install:
          - name: grype
            secrets:
            - name: reqfix-overlay-secret
-        #@ if learningCenterEnabled:
+        #@ if data.values.learningCenterEnabled:
          - name: learningcenter
            secrets:
            - name: reqfix-overlay-secret
