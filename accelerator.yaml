@@ -24,7 +24,7 @@ accelerator:
     label: GitOps TAP RESPOITORY BRANCH for your TAP Cluster
     inputType: text
     display: true
-    defaultValue: $TAP_GITOPS_INSTALLATION_REPOSITORY_BRANCH
+    defaultValue: main
 
   # Question 3. Ingress Domain
   - name: tapIngressDomain
