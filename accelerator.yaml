@@ -455,7 +455,7 @@ engine:
         substitutions:
           - text: CREATE_AGE_KEY
             with: 'true'
-            condition: #createAgeKey
+        condition: "#createAgeKey"
       - merge:
         - include: ["**"]
           exclude: ['clusters/taplab/cluster-config/app-resources/**/*.yaml']
