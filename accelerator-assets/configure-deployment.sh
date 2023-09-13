@@ -3,6 +3,7 @@ pushd ..
 if [ CREATE_AGE_KEY = 'create-key' ]
 then
 age-keygen > ../key.txt
+export SOPS_AGE_KEY=\$(cat $(pwd)/key.txt)
 echo SOPS ENCRYPTION KEY CREATED IN TOP LEVEL OF GITREPO FOLDER
 fi
 popd
