@@ -451,6 +451,8 @@ engine:
       #  substitutions:
         - text: TLS_MODE
           with: "#tlsMode"
+        - text: CREATE_AGE_KEY
+          with: "#createAgeKey"
       - merge:
         - include: ["**"]
           exclude: ['clusters/taplab/cluster-config/app-resources/**/*.yaml']
