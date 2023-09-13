@@ -10,7 +10,6 @@ pushd ./secrets-to-seal
 ./encrypt-secrets.sh
 popd
 
-mv ./secrets-to-seal/key.txt ../
 echo
 echo SOPS ENCRYPTION KEY MOVED TO TOP LEVEL OF GITREPO FOLDER 
 
@@ -24,6 +23,8 @@ echo
 echo
 echo
 popd
+
+mv ./secrets-to-seal/key.txt ../
 
 mv ./secrets-to-seal/config/tanzu-registry-secret.sops.yaml ../clusters/taplab/cluster-config/config/
 mv ./secrets-to-seal/config/user-registry-dockerconfig.sops.yaml ../clusters/taplab/cluster-config/config/
