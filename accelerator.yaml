@@ -33,13 +33,26 @@ accelerator:
     inputType: text
     defaultValue: $TAP_INGRESS_DOMAIN
 
-  # Question 5: age key content
+
+  # Question 5a: create age encryption key
+  - name: createAgeKey
+    label: Create Sealed Secrets Encryption Key (age key)
+    description: "Create age-key (post create script will call age-keygen)"
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: false
+
+  # Question 5b: age key content
   - name: existingAgeKeyContent
     label: SOPS ENCRYPTION KEY
     description: age key for secrets encryption
     inputType: textarea
     dataType: string
     defaultValue: $KEY_FILE_CONTENT
+    dependsOn:
+      name: createAgeKey
+      value: false
     
   # Question 6. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
   - name: platformRegistryLocation
