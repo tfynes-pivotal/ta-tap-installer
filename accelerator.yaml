@@ -454,7 +454,7 @@ engine:
       - type: ReplaceText
         substitutions:
           - text: CREATE_AGE_KEY
-            with: "true"
+            with: "create-key"
         condition: "#createAgeKey"
       - merge:
         - include: ["**"]

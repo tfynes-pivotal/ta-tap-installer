@@ -4,7 +4,7 @@ pushd ./secrets-to-seal
 popd
 
 pushd ..
-if [ CREATE_AGE_KEY = 'true' ]
+if [ CREATE_AGE_KEY = 'create-key' ]
 then
 age-keygen > ../key.txt
 echo SOPS ENCRYPTION KEY CREATED IN TOP LEVEL OF GITREPO FOLDER
