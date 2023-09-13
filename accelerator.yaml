@@ -451,11 +451,8 @@ engine:
       #  substitutions:
         - text: TLS_MODE
           with: "#tlsMode"
-      # - type: ReplaceText
-      #   substitutions:
-      #     - text: CREATE_AGE_KEY
-      #       with: "'create-key'"
-      #   condition: "#createAgeKey"
+        - text: CREATE_AGE_KEY
+          with: "#createAgeKey ? 'create-key': 'false'"
       - merge:
         - include: ["**"]
           exclude: ['clusters/taplab/cluster-config/app-resources/**/*.yaml']
