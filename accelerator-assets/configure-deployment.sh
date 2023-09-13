@@ -1,18 +1,26 @@
 
-pushd ./secrets-to-seal
-./encrypt-secrets.sh
-popd
-
 pushd ..
 if [ CREATE_AGE_KEY = 'create-key' ]
 then
 age-keygen > ../key.txt
 echo SOPS ENCRYPTION KEY CREATED IN TOP LEVEL OF GITREPO FOLDER
-else
+fi
+popd
+
+
+pushd ./secrets-to-seal
+./encrypt-secrets.sh
+popd
+
+pushd ..
+if [ CREATE_AGE_KEY != 'create-key' ]
+then
 mv ./secrets-to-seal/key.txt ../
 echo
 echo SOPS ENCRYPTION KEY MOVED TO TOP LEVEL OF GITREPO FOLDER 
 fi
+
+
 echo INITIALIZE SOPS ENV VAR AS FOLLOWS
 echo
 echo "export SOPS_AGE_KEY=\$(cat $(pwd)/key.txt)"
