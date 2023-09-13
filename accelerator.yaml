@@ -35,13 +35,13 @@ accelerator:
 
 
   # Question 5a: create age encryption key
-  - name: createAgeKey
-    label: Create Sealed Secrets Encryption Key (age key)
-    description: "Create age-key (post create script will call age-keygen)"
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
+  # - name: createAgeKey
+  #   label: Create Sealed Secrets Encryption Key (age key)
+  #   description: "Create age-key (post create script will call age-keygen)"
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: false
 
   # Question 5b: age key content
   - name: existingAgeKeyContent
@@ -50,9 +50,9 @@ accelerator:
     inputType: textarea
     dataType: string
     defaultValue: $KEY_FILE_CONTENT
-    dependsOn:
-      name: createAgeKey
-      value: false
+    # dependsOn:
+    #   name: createAgeKey
+    #   value: false
     
   # Question 6. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
   - name: platformRegistryLocation
@@ -451,8 +451,8 @@ engine:
       #  substitutions:
         - text: TLS_MODE
           with: "#tlsMode"
-        - text: CREATE_AGE_KEY
-          with: "#createAgeKey ? 'create-key': 'false'"
+        # - text: CREATE_AGE_KEY
+        #   with: "#createAgeKey ? 'create-key': 'false'"
       - merge:
         - include: ["**"]
           exclude: ['clusters/taplab/cluster-config/app-resources/**/*.yaml']

@@ -1,9 +1,9 @@
 
-if [ CREATE_AGE_KEY = 'create-key' ]
-then
-age-keygen > secrets-to-seal/key.txt
-echo SOPS ENCRYPTION KEY CREATED 
-fi
+# if [ CREATE_AGE_KEY = 'create-key' ]
+# then
+# age-keygen > secrets-to-seal/key.txt
+# echo SOPS ENCRYPTION KEY CREATED 
+# fi
 
 
 pushd ./secrets-to-seal
@@ -47,3 +47,7 @@ mv ./non-sensitive-config/tap-non-sensitive-values.yaml             ../clusters/
 
 echo "DELETE /accelerator-log.md BEFORE PUSHING TO REPO AS IT CONTAINS SENSITIVE VALUES"
 echo
+
+
+# echo '#@ load("@ytt:data", "data")' | cat - x.yaml > /tmp/x && mv /tmp/x ./x.yaml
+# KEY=$(cat ./key.txt) ytt -f ./prefix.yaml -v newAgeKeyContent="$KEY"
