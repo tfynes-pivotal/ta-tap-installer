@@ -151,6 +151,7 @@ accelerator:
   - name: harborUrl
     label: Harbor Registry Location
     inputType: text
+    defaultValue: harbor.harborlab.fynesy.net
     dependsOn:
       name: targetImageRegistryLocation
       value: harbor
@@ -159,6 +160,7 @@ accelerator:
   - name: harborUsername
     label: Harbor Registry Username
     inputType: text
+    defaultValue: admin
     dependsOn:
       name: targetImageRegistryLocation
       value: harbor
@@ -167,6 +169,7 @@ accelerator:
   - name: harborPassword
     label: Harbor Registry Password or env-variable name
     inputType: text
+    defaultValue: 'Harbor12345!'
     dependsOn:
       name: targetImageRegistryLocation
       value: harbor
@@ -175,6 +178,7 @@ accelerator:
   - name: harborDefaultRegistry
     label: Harbor Default Registry
     inputType: text
+    defaultValue: tap
     dependsOn:
       name: targetImageRegistryLocation
       value: harbor
