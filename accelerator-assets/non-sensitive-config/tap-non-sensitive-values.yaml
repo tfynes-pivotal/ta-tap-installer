@@ -25,23 +25,13 @@ tap_install:
         profile: full 
         supply_chain: basic 
 
-        #@ if data.values.targetImageRegistryLocation == 'harbor':
         ootb_supply_chain_basic: 
           registry:
-           server:  harborUrl
-            repository: #@ data.values.harborDefaultRegistry
+           server: #@ data.values.targetImageRegistryLocation == 'harbor' ? data.values.harborUrl : "index.docker.io"
+            repository: #@ data.values.targetImageRegistryLocation == 'harbor' ? data.values.harborDefaultRegistry : data.values.dockerhubDefaultRegistry
           gitops:
             ssh_secret: #@ "workload-git-auth" 
             #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
-        #@ else:
-        ootb_supply_chain_basic: 
-          registry:
-            server: "index.docker.io"
-            repository: #@ data.values.dockerhubDefaultRegistry
-          gitops:
-            ssh_secret: #@ "workload-git-auth" 
-            #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
-        #@ end 
 
 
         #! ootb_supply_chain_testing_scanning:
