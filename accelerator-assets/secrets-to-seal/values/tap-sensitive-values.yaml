@@ -5,7 +5,7 @@ tap_install:
         shared:
             #@ if data.values.targetImageRegistryLocation == 'harbor':
             image_registry:
-                project_path: #@ data.values.harborDefaultRegistry + '/buildservice'
+                project_path: #@ data.values.harborUrl + '/' + data.values.harborDefaultRegistry + '/buildservice'
                 username: #@ data.values.harborUsername
                 password: #@ data.values.harborPassword
             #@ else:
