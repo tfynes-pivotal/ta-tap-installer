@@ -28,7 +28,7 @@ tap_install:
         #@ if data.values.targetImageRegistryLocation == 'harbor':
         ootb_supply_chain_basic: 
           registry:
-           server: #@ data.values.harborUrl
+           server:  harborUrl
             repository: #@ data.values.harborDefaultRegistry
           gitops:
             ssh_secret: #@ "workload-git-auth" 
