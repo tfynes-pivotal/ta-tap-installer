@@ -27,9 +27,9 @@ tap_install:
 
         ootb_supply_chain_basic: 
           registry:
-            server: "index.docker.io"
+            #! server: "index.docker.io"
             repository: #@ data.values.dockerhubDefaultRegistry
-           #! server: #@ data.values.targetImageRegistryLocation == 'harbor' ? data.values.harborUrl : "index.docker.io"
+            server: #@ data.values.targetImageRegistryLocation == 'harbor' ? data.values.harborUrl : "index.docker.io"
            #! repository: #@ data.values.targetImageRegistryLocation == 'harbor' ? data.values.harborDefaultRegistry : data.values.dockerhubDefaultRegistry
           gitops:
             ssh_secret: #@ "workload-git-auth" 
