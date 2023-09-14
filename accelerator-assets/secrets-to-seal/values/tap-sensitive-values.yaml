@@ -3,10 +3,17 @@
 tap_install:
     sensitive_values:
         shared:
+            #@ if data.values.targetImageRegistryLocation == 'harbor':
+            image_registry:
+                project_path: #@ data.values.harborDefaultRegistry + '/buildservice'
+                username: #@ data.values.harborUsername
+                password: #@ data.values.harborPassword
+            #@ else:
             image_registry:
                 project_path: #@ data.values.dockerhubDefaultRegistry + '/buildservice'
                 username: #@ data.values.dockerhubUsername
                 password: #@ data.values.dockerhubPassword
+            #@ end
         tap_gui:
             app_config:
                 auth:
