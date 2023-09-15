@@ -75,11 +75,11 @@ tap_install:
 
         scanning:
           metadataStore:
-            url: "" 
+            url: #@ "metadata-store." + data.values.tapIngressDomain 
 
         grype:
           namespace: "default"
-          targetImagePullSecret: "tap-registry"
+          targetImagePullSecret: "registries-credentials"
           #! In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store.
 
         policy:
