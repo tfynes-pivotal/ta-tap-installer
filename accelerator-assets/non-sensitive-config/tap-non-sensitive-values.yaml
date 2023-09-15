@@ -49,7 +49,7 @@ tap_install:
               type: LoadBalancer 
 
         buildservice:
-          kp_default_repository: #@ data.values.dockerhubDefaultRegistry + "/buildservice"
+          kp_default_repository: #@ data.values.harborDefaultRegistry + "/buildservice" if data.values.targetImageRegistryLocation == 'harbor' else data.values.dockerhubDefaultRegistry + "/buildservice"
 
         tap_gui:
           #@ if data.values.tlsMode == 'tlsMode':
