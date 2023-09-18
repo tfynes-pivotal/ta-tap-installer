@@ -453,8 +453,8 @@ engine:
           - type: YTT 
       - merge:
         - include: ["**"]
-          exclude: ['clusters/taplab/cluster-config/config/api-portal-cm-tls-overlay-secret']
-        - include: ['clusters/taplab/cluster-config/config/api-portal-cm-tls-overlay-secret']
+          exclude: ['clusters/taplab/cluster-config/config/api-portal-cm-tls-overlay-secret.yaml']
+        - include: ['clusters/taplab/cluster-config/config/api-portal-cm-tls-overlay-secret.yaml']
           chain:
           - type: ReplaceText
             substitutions:
