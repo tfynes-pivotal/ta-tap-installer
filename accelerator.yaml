@@ -461,6 +461,26 @@ engine:
             - text: api-portal-tls-cert
               with: "'tapfynesycom'"
             condition: "#tlsMode == 'tlsManual'"
+      - merge:
+        - include: ["**"]
+          exclude: ['clusters/taplab/cluster-config/app-resources/**/tdemo-gateway-httpproxy.yaml']
+        - include: ['clusters/taplab/cluster-config/app-resources/**/tdemo-gateway-httpproxy.yaml']
+          chain:
+          - type: ReplaceText
+            substitutions:
+            - text: tdemo-gateway-tls-cert
+              with: "'tapfynesycom'"
+            condition: "#tlsMode == 'tlsManual'"
+      - merge:
+        - include: ["**"]
+          exclude: ['clusters/taplab/cluster-config/app-resources/**/petclinic-gateway-httpproxy.yaml']
+        - include: ['clusters/taplab/cluster-config/app-resources/**/petclinic-gateway-httpproxy.yaml']
+          chain:
+          - type: ReplaceText
+            substitutions:
+            - text: petclinic-gateway-tls-cert
+              with: "'tapfynesycom'"
+            condition: "#tlsMode == 'tlsManual'"      
 
       # - merge:
       #   - include: ["**"]
@@ -553,7 +573,9 @@ engine:
     include: ['**']
     condition: "#tlsMode != 'tlsManual'"
 
-  - exclude: ['**/clusters/taplab/cluster-config/app-resources/api-portal/api-portal-tls-cert.yaml']
+  - exclude: ['**/clusters/taplab/cluster-config/app-resources/api-portal/api-portal-tls-cert.yaml',
+              '**/clusters/taplab/cluster-config/app-resources/gateway-instance-configuration/tdemo-gateway-certificate.yaml',
+              '**/clusters/taplab/cluster-config/app-resources/gateway-instance-configuration/petclinic-gateway-certificate.yaml']
     include: ['**']
     condition: "#tlsMode == 'tlsManual'"
 
