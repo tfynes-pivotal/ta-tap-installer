@@ -459,7 +459,7 @@ engine:
           - type: ReplaceText
             substitutions:
             - text: api-portal-tls-cert
-              with: tapfynesycom 
+              with: "'tapfynesycom'"
             condition: "#tlsMode == 'tlsManual'"
 
       # - merge:
