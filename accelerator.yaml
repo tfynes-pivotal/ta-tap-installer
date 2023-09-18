@@ -451,6 +451,16 @@ engine:
         - include: ['clusters/taplab/cluster-config/app-resources/**/*.yaml']
           chain:
           - type: YTT 
+      - merge:
+        - include: ["**"]
+          exclude: ['clusters/taplab/cluster-config/config/api-portal-cm-tls-overlay-secret']
+        - include: ['clusters/taplab/cluster-config/config/api-portal-cm-tls-overlay-secret']
+          chain:
+          - type: ReplaceText
+            substitutions:
+            - text: api-portal-tls-cert
+              with: tapfynesycom 
+            condition: "#tlsMode == 'tlsManual'"
 
       # - merge:
       #   - include: ["**"]
@@ -542,6 +552,10 @@ engine:
               '**/clusters/taplab/cluster-config/config/taplab-tls-certs-export']
     include: ['**']
     condition: "#tlsMode != 'tlsManual'"
+
+  - exclude: ['**/clusters/taplab/cluster-config/app-resources/api-portal/api-portal-tls-cert.yaml']
+    include: ['**']
+    condition: "#tlsMode == 'tlsManual'"
 
   - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/sso-credentials-secret**']
     include: ['**']

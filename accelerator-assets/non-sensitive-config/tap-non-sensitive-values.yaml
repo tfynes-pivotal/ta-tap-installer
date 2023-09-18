@@ -52,7 +52,7 @@ tap_install:
           kp_default_repository: #@ data.values.harborUrl + '/' + data.values.harborDefaultRegistry + "/buildservice" if data.values.targetImageRegistryLocation == 'harbor' else data.values.dockerhubDefaultRegistry + "/buildservice"
 
         tap_gui:
-          #@ if data.values.tlsMode == 'tlsMode':
+          #@ if data.values.tlsMode == 'tlsManual':
           tls:
             namespace: tanzu-system-ingress
             secretName: tapfynesycom
