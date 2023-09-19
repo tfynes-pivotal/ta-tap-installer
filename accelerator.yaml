@@ -109,8 +109,8 @@ accelerator:
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
-#! platformRegistryLocation
-#! customPlatformTdsRegistry
+
+#! Question 6b-4. Custom TDS Registry location
   - name: customPlatformTdsRegistry
     label: Custom Platform Tanzu Data Services Registry 
     inputType: text
@@ -432,8 +432,8 @@ engine:
   - name: tanzunetUrl
     expression: "'registry.tanzu.vmware.com'"
 
-  - name: dummyTestRegistry
-    expression: "'#dockerhubDefaultRegistry.isEmpty() ? #dockerhubUsername : #dockerhubDefaultRegistry'"
+  # - name: dummyTestRegistry
+  #   expression: "'#dockerhubDefaultRegistry.isEmpty() ? #dockerhubUsername : #dockerhubDefaultRegistry'"
 
   chain:
   - merge:
@@ -447,8 +447,8 @@ engine:
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
         - text: SecretKeyFileContentPlaceholder
           with: "#existingAgeKeyContent"
-        - text: dummyTestRegistry
-          with: "#dummyTestRegistry"
+        # - text: dummyTestRegistry
+        #   with: "#dummyTestRegistry"
         - text: TAP_GITOPS_REPO_NAME
           with: "#projectName"
         - text: TAP_GITOPS_REPO_URL
