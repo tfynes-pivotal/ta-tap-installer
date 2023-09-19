@@ -114,7 +114,7 @@ accelerator:
   - name: customPlatformTdsRegistry
     label: Custom Platform Tanzu Data Services Registry 
     inputType: text
-    defaultValue: 'harbor.harborlab.fynesy.net/tdp-packages'
+    defaultValue: 'harbor.harborlab.fynesy.net/tds-packages'
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
