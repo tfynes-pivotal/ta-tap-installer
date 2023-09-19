@@ -87,6 +87,7 @@ accelerator:
   # Question 6b-1. Custom Platform Registry URL
   - name: customPlatformRegistryUrl
     label: Custom Platform Registry URL
+    defaultValue: 'harbor.harborlab.fynesy.net/tap-packages'
     inputType: text
     dependsOn:
       name: platformRegistryLocation
@@ -95,6 +96,7 @@ accelerator:
   # Question 6b-2. Custom Platform Registry Username
   - name: customPlatformRegistryUsername
     label: Custom Registry Username
+    defaultValue: admin
     inputType: text
     dependsOn:
       name: platformRegistryLocation
@@ -102,6 +104,7 @@ accelerator:
   # Question 6b-3. Custom Platform Registry Password
   - name: customPlatformRegistryPassword
     label: Custom Platform Registry Password / Token env-variable name
+    defaultValue: 'Harbor12345!'
     inputType: text
     dependsOn:
       name: platformRegistryLocation
@@ -111,6 +114,7 @@ accelerator:
   - name: customPlatformTdsRegistry
     label: Custom Platform Tanzu Data Services Registry 
     inputType: text
+    defaultValue: 'harbor.harborlab.fynesy.net/tdp-packages'
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
