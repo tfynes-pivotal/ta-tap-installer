@@ -527,6 +527,10 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
+    - include: ['clusters/taplab/cluster-config/dependent-resources/tds-repo.yaml']
+      chain:
+      - type: YTT  
+
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:
