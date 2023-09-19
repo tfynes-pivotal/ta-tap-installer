@@ -531,6 +531,9 @@ engine:
       chain:
       - type: YTT  
 
+    - include: ['clusters/taplab/cluster-config/values/tap-install-values.yaml']
+      chain:
+      - type: YTT  
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:

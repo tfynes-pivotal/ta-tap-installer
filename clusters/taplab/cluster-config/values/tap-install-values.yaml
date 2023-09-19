@@ -1,6 +1,12 @@
+#@ load("@ytt:data", "data")
+---
 tap_install:
   package_repository:
+    #@ if data.values.platformRegistryLocation == 'customPlatformRegistrySelection':
+    oci_repository: #@ data.values.customPlatformRegistryUrl + '/tap-packages'
+    #@ else: 
     oci_repository: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
+    #@ end
   version:
     package_repo_bundle_tag: "1.6.3"
     package_version: "1.6.3"
