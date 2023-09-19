@@ -91,6 +91,7 @@ accelerator:
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
+      
   # Question 6b-2. Custom Platform Registry Username
   - name: customPlatformRegistryUsername
     label: Custom Registry Username
@@ -105,7 +106,14 @@ accelerator:
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
-
+#! platformRegistryLocation
+#! customPlatformTdsRegistry
+  - name: customPlatformTdsRegistry
+    label: Custom Platform Tanzu Data Services Registry 
+    inputType: text
+    dependsOn:
+      name: platformRegistryLocation
+      value: customPlatformRegistrySelection
 
   # Question 7. Target Image Registry
   - name: targetImageRegistryLocation
