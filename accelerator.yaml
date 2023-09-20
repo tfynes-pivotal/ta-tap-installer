@@ -445,6 +445,10 @@ engine:
 
     - include: ['clusters/taplab/cluster-config/dependent-resources/tds-repo.yaml']
       chain:
+      - type: YTT 
+
+    - include: ['clusters/taplab/cluster-config/dependent-resources/tbs-full-deps-repo.yaml']
+      chain:
       - type: YTT  
 
     - include: ['clusters/taplab/cluster-config/values/tap-install-values.yaml']
@@ -493,6 +497,10 @@ engine:
   - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/sso-credentials-secret**']
     include: ['**']
     condition: "#springApiPortalApiKeySupport == false"
+
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tbs-full-deps-repo.yaml']
+    include: ['**']
+    condition: "#platformRegistryLocation != 'customPlatformRegistrySelection'"
 
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
