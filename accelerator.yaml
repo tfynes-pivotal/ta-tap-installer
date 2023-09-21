@@ -455,9 +455,9 @@ engine:
       chain:
       - type: YTT  
 
-    - include: ['setup-utility-scripts/setup-tce.yaml']
-      chain:
-      - type: YTT
+    # - include: ['setup-utility-scripts/setup-tce.yaml']
+    #   chain:
+    #   - type: YTT
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:
