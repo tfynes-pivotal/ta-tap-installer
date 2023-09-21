@@ -455,7 +455,7 @@ engine:
       chain:
       - type: YTT  
 
-    - include: ['setup-utility-scripts/setup-tce.sh']
+    - include: ['setup-utility-scripts/setup-tce.yaml']
       chain:
       - type: YTT
 
