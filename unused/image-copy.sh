@@ -3,7 +3,6 @@ export IMGPKG_REGISTRY_USERNAME=admin
 export IMGPKG_REGISTRY_PASSWORD='Harbor12345!'
 export TAP_VERSION=1.6.3
 export TDS_VERSION=1.7.0
-export TBS_VERSION=1.6.3
 
 docker login registry.tanzu.vmware.com
 
@@ -16,7 +15,7 @@ docker login registry.tanzu.vmware.com
 #! copy tanzu data services to mirror registry
 #! imgpkg copy -b registry.tanzu.vmware.com/packages-for-vmware-tanzu-data-services/tds-packages:$TDS_VERSION  --to-repo $IMGPKG_REGISTRY_HOSTNAME/tds-packages/tds-packages --include-non-distributable-layers
 
-imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:$TBS_VERSION   --to-repo=$IMGPKG_REGISTRY_HOSTNAME/tap-packages/tbs-full-deps
+imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-deps-package-repo:$TAP_VERSION   --to-repo=$IMGPKG_REGISTRY_HOSTNAME/tap-packages/tbs-full-deps
 
 #!imgpkg copy -b registry.tanzu.vmware.com/p-rabbitmq-for-kubernetes/tanzu-rabbitmq-package-repo:1.4.1      --to-tar=/Users/thomasfynes/PIVOTAL/TAP/tap15offline/rmq.tar
 
