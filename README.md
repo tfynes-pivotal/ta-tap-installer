@@ -17,7 +17,7 @@ TAP installation configurator using Tanzu Accelerator to provide a tailored GitO
 	- Custom (Harbor)
 - Supported platform target binary registry locations
 	- DockerHub
-	- Custom (Harbor)
+	- Custom (Harbor tested with TAP, TBS-full-dependencies and TDS Repos mirrored)
 - Dual supply-chain support
 	- basic
 	- test & scan 
@@ -26,6 +26,7 @@ TAP installation configurator using Tanzu Accelerator to provide a tailored GitO
 	- Bring your own TLS wildcard certificate 
 - Tanzu Data Services
 	- PostgresQL Operator
+	- Demo workload (petclinic deployed with service binding to in-namespace TDS postgres db)
 - Spring Cloud Gateway and Spring API Portal 
 	- Vault (helm deployed) integration for API-KEY manged microservice deployment support
 - OKTA SSO protections for Spring API Portal
@@ -80,4 +81,3 @@ Optionally run k9s to watch TAP install and configuraiton on your target cluster
 - Deploy tanzu-cluster-essentials to cluster
 - Authenticate / login from your workstation to GitHub
 - Create a seal-secrets (sops) encryption key (using 'age-keygen" cli
-- 
