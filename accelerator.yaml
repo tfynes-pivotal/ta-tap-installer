@@ -502,6 +502,10 @@ engine:
     include: ['**']
     condition: "#platformRegistryLocation != 'customPlatformRegistrySelection'"
 
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tbs-full-deps.yaml']
+    include: ['**']
+    condition: "#platformRegistryLocation != 'customPlatformRegistrySelection'"
+
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
   #   include: ['**']

@@ -50,6 +50,10 @@ tap_install:
 
         buildservice:
           kp_default_repository: #@ data.values.harborUrl + '/' + data.values.harborDefaultRegistry + "/buildservice" if data.values.targetImageRegistryLocation == 'harbor' else data.values.dockerhubDefaultRegistry + "/buildservice"
+          #@ if data.values.platformRegistryLocation == 'customPlatformRegistrySelection':
+          exclude_dependencies: true
+          #@ end
+
 
         tap_gui:
           #@ if data.values.tlsMode == 'tlsManual':
