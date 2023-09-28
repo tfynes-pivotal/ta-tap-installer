@@ -59,7 +59,7 @@ accelerator:
   - name: tanzunetUsername
     label: Tanzunet USERNAME
     inputType: text
-    defaultValue: 'tfynes-pivotal'
+    defaultValue: 'mfynes@pivotal.io'
     dependsOn:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
