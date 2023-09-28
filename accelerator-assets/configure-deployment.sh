@@ -16,7 +16,7 @@ echo SOPS ENCRYPTION KEY MOVED TO TOP LEVEL OF GITREPO FOLDER
 
 echo INITIALIZE SOPS ENV VAR AS FOLLOWS
 echo
-echo "export SOPS_AGE_KEY=\$(cat $(pwd)/secrets-to-seal/key.txt)"
+echo "export SOPS_AGE_KEY=\$(cat $(pwd)/../key.txt)"
 
 echo "(/key.txt added to .gitignore)"
 echo
