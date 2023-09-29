@@ -1,5 +1,5 @@
 accelerator:
-  displayName: TAP Installer
+  displayName: TAP Installer *DEV BRANCH*
   description: TAP Installer Setup Wizard
   tags:
   - beta
