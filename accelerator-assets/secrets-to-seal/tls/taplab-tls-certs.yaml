@@ -8,6 +8,6 @@ data:
     tls.key: #@ base64.encode(data.values.tlsManualPrivateKey)  if data.values.tlsMode == 'tlsManual' else "dummy"
 kind: Secret
 metadata:
-    name: tapfynesycom
+    name: taptlscert
     namespace: tap-install
 type: kubernetes.io/tls
