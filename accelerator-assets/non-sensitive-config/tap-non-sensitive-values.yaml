@@ -35,6 +35,15 @@ tap_install:
             ssh_secret: #@ "workload-git-auth" 
             #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
 
+        ootb_supply_testing-scanning: 
+          registry:
+            #! server: "index.docker.io"
+            #! repository: #@ data.values.dockerhubDefaultRegistry
+            server: #@ data.values.harborUrl                 if data.values.targetImageRegistryLocation == 'harbor' else "index.docker.io"
+            repository: #@ data.values.harborDefaultRegistry if data.values.targetImageRegistryLocation == 'harbor' else data.values.dockerhubDefaultRegistry
+          gitops:
+            ssh_secret: #@ "workload-git-auth" 
+            #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
 
         #! ootb_supply_chain_testing_scanning:
         #!   registry:
