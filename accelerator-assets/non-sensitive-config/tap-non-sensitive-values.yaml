@@ -59,7 +59,7 @@ tap_install:
           #@ if data.values.tlsMode == 'tlsManual':
           tls:
             namespace: tanzu-system-ingress
-            secretName: tapfynesycom
+            secretName: taptlscert
           #@ end
           service_type: ClusterIP #! If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
           metadataStoreAutoconfiguration: true 
@@ -92,7 +92,7 @@ tap_install:
         cnrs:
           domain_template: '{{.Name}}-{{.Namespace}}.{{.Domain}}'
           #@ if data.values.tlsMode == 'tlsManual':
-          default_tls_secret: tanzu-system-ingress/tapfynesycom
+          default_tls_secret: tanzu-system-ingress/taptlscert
           #@ end
 
         api_portal:

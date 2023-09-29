@@ -1,7 +1,7 @@
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
 metadata:
-  name: tapfynesycom
+  name: taptlscert
   namespace: tap-install
 spec:
   toNamespaces:

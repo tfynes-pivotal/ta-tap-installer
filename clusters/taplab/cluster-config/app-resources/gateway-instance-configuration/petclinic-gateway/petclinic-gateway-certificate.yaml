@@ -11,7 +11,7 @@ spec:
   dnsNames:
   - petclinic.akslab.tap.fynesy.com
   #@ if data.values.tlsMode == 'tlsManual':
-  secretName: tapfynesycom
+  secretName: taptlscert
   #@ else:
   secretName: petclinic-gateway-tls-cert
   #@ end

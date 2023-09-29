@@ -11,7 +11,7 @@ spec:
   dnsNames:
   - tdemo.akslab.tap.fynesy.com
   #@ if data.values.tlsMode == 'tlsManual':
-  secretName: tapfynesycom
+  secretName: taptlscert
   #@ else:
   secretName: tdemo-gateway-tls-cert
   #@ end

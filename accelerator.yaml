@@ -395,7 +395,7 @@ engine:
           - type: ReplaceText
             substitutions:
             - text: api-portal-tls-cert
-              with: "'tapfynesycom'"
+              with: "'taptlscert'"
             condition: "#tlsMode == 'tlsManual'"
       - merge:
         - include: ["**"]
@@ -405,7 +405,7 @@ engine:
           - type: ReplaceText
             substitutions:
             - text: tdemo-gateway-tls-cert
-              with: "'tapfynesycom'"
+              with: "'taptlscert'"
             condition: "#tlsMode == 'tlsManual'"
       - merge:
         - include: ["**"]
@@ -415,7 +415,7 @@ engine:
           - type: ReplaceText
             substitutions:
             - text: petclinic-gateway-tls-cert
-              with: "'tapfynesycom'"
+              with: "'taptlscert'"
             condition: "#tlsMode == 'tlsManual'"      
 
 
