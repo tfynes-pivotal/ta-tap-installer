@@ -35,7 +35,7 @@ tap_install:
             ssh_secret: #@ "workload-git-auth" 
             #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
 
-        ootb_supply_testing-scanning: 
+        ootb_supply_testing_scanning: 
           registry:
             #! server: "index.docker.io"
             #! repository: #@ data.values.dockerhubDefaultRegistry
