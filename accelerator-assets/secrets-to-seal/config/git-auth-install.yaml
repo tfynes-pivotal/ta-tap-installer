@@ -1,0 +1,16 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:base64", "base64")
+#@ load("@ytt:json", "json")
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: git-auth-install
+  namespace: tap-install
+type: kubernetes.io/basic-auth
+stringData:
+  username: #@ data.values.tapGithubAuthUsername 
+  password: #@ data.values.tapGithubAuthToken 
+  #! username: #@ data.values.tapGithubAuthUsername if data.values.tapWorkloadAuthEnable else "dummy-value"
+  #! password: #@ data.values.tapGithubAuthToken if data.values.tapWorkloadAuthEnable else "dummy-value"
