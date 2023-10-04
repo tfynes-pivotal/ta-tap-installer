@@ -15,7 +15,7 @@ then
 git init -b main
 git add .
 git commit -am "."
-gh repo create TAP_GITOPS_REPO_NAME --public
+gh repo create TAP_GITOPS_REPO_NAME --private
 git remote add origin TAP_GITOPS_REPO_URL
 git branch -M main
 git push -u origin main
