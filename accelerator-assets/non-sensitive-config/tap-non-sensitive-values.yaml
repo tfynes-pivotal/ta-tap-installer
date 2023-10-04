@@ -130,18 +130,23 @@ tap_install:
 
         namespace_provisioner:
           controller: false
+          gitops_install:
+            ref: origin/akslab
+            subPath: clusters/taplab/cluster-config/namespaces
+            url: #@ data.values.tapGitopsInstallationRepositoryUrl
+            secretRef:
+              name: git-auth
+              namespace: tap-install
+              create_export: true
           additional_sources:
           - git:
               ref: origin/akslab
               subPath: clusters/taplab/cluster-config/namespaces/namespace-resources
               url: #@ data.values.tapGitopsInstallationRepositoryUrl
-              #!secretRef:
-               #! name: workload-git-auth
-                #!namespace: tap-install
-          gitops_install:
-            ref: origin/akslab
-            subPath: clusters/taplab/cluster-config/namespaces
-            url: #@ data.values.tapGitopsInstallationRepositoryUrl
+              secretRef:
+                name: git-auth-install
+                namespace: tap-install
+                create_export: true
             path: _ytt_lib/namespace-resources
           default_parameters:
             supply_chain_service_account:
