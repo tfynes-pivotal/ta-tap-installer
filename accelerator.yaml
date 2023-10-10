@@ -390,13 +390,13 @@ accelerator:
     dependsOn:
       name: customCaCertsProvided
 
-  - name: customCaCertsForKappControllerEnabled
-    label: Update kAppController with Custom CA Certs
-    dataType: boolean
-    required: true
-    defaultValue: false
-    dependsOn:
-      name: customCaCertsProvided
+  # - name: customCaCertsForKappControllerEnabled
+  #   label: Update kAppController with Custom CA Certs
+  #   dataType: boolean
+  #   required: true
+  #   defaultValue: false
+  #   dependsOn:
+  #     name: customCaCertsProvided
 
 ####################################################################
 

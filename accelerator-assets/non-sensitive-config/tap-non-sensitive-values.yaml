@@ -12,6 +12,11 @@ tap_install:
         #@ end
 
         shared:
+          #@ if data.values.customCaCertsProvided:
+          ca_cert_data: data.values.caCerts
+          #@ end
+
+
           ingress_domain: #@ data.values.tapIngressDomain
           #@ if data.values.tlsMode == 'tlsManual':
           ingress_issuer: ""
