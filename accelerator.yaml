@@ -513,7 +513,7 @@ engine:
     # - include: ['setup-utility-scripts/setup-tce.yaml']
     #   chain:
     #   - type: YTT
-    - include: ['cluster/taplab/cluster-config/config/kapp-controller-config.yaml']
+    - include: ['accelerator-assets/non-sensitive-config/kapp-controller-config.yaml']
       chain:
       - type: YTT
       condition: #customCaCertsProvided 
