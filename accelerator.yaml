@@ -43,19 +43,19 @@ accelerator:
     defaultValue: age-key-content
 
   # Question: deploy Postgres TDS
-  - name: deployTdsEnabled
-    label: Deploy Tanzu Postgres Operator
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: true
+  # - name: deployTdsEnabled
+  #   label: Deploy Tanzu Postgres Operator
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: true
 
-  - name: deployRmqEnabled
-    label: Deploy Tanzu RabbitMQ Operator
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: true
+  # - name: deployRmqEnabled
+  #   label: Deploy Tanzu RabbitMQ Operator
+  #   display: true
+  #   dataType: boolean
+  #   inputType: checkbox
+  #   defaultValue: true
     
   # Question 6. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
   - name: platformRegistryLocation
@@ -104,7 +104,7 @@ accelerator:
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
-      
+
  # Question 6b-1. Custom Platform Registry URL
   - name: customPlatformRegistryUrl
     label: Custom Platform Registry URL
@@ -121,9 +121,8 @@ accelerator:
     inputType: text
     defaultValue: 'harbor.harborlab.fynesy.net/tds-packages'
     dependsOn:
-      name: deployTdsEnabled
-#      name: platformRegistryLocation
-#      value: customPlatformRegistrySelection
+      name: platformRegistryLocation
+      value: customPlatformRegistrySelection
 
 # Question
   - name: customPlatformRmqRegistry
@@ -132,7 +131,8 @@ accelerator:
     inputType: text
     defaultValue: 'harbor.harborlab.fynesy.net/rmq-packages'
     dependsOn:
-      name: deployRmqEnabled
+      name: platformRegistryLocation
+      value: customPlatformRegistrySelection
 
   # Question 7. Target Image Registry
   - name: targetImageRegistryLocation
@@ -563,14 +563,6 @@ engine:
     include: ['**']
     condition: "#platformRegistryLocation != 'customPlatformRegistrySelection'"
 
-  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/rmq-repo.yaml']
-    include: ['**']
-    condition: "#deployRmqEnabled == false"
-
-  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tds-repo.yaml']
-    include: ['**']
-    condition: "#deployTdsEnabled == false"
-  
 
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
