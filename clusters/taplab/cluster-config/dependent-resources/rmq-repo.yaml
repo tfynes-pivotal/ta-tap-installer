@@ -11,7 +11,7 @@ spec:
   fetch:
     imgpkgBundle:
       #@ if data.values.platformRegistryLocation == 'customPlatformRegistrySelection':
-      image: #@ data.values.customPlatformTdsRegistry + '/rmq-packages:1.5.1'
+      image: #@ data.values.customPlatformRmqRegistry + '/rmq-packages:1.5.1'
       #@ else:
       image: "registry.tanzu.vmware.com/p-rabbitmq-for-kubernetes/tanzu-rabbitmq-package-repo:1.5.1"
       #@ end

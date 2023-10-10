@@ -41,6 +41,21 @@ accelerator:
     inputType: textarea
     dataType: string
     defaultValue: age-key-content
+
+  # Question: deploy Postgres TDS
+  - name: deployTdsEnabled
+    label: Deploy Tanzu Postgres Operator
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: true
+
+  - name: deployRmqEnabled
+    label: Deploy Tanzu RabbitMQ Operator
+    display: true
+    dataType: boolean
+    inputType: checkbox
+    defaultValue: true
     
   # Question 6. Direct install from TanzuNet or from an intermediate repo, previously populated using imgpkg
   - name: platformRegistryLocation
@@ -100,12 +115,23 @@ accelerator:
 
 #! Question 6b-4. Custom TDS Registry location
   - name: customPlatformTdsRegistry
-    label: Custom Platform Tanzu Data Services Registry 
+    label: Custom Platform Tanzu Postgres Registry
+    description: Target Registry for Tanzu Postgres (ignore if deploying directly from TanzuNet)
     inputType: text
     defaultValue: 'harbor.harborlab.fynesy.net/tds-packages'
     dependsOn:
-      name: platformRegistryLocation
-      value: customPlatformRegistrySelection
+      name: deployTdsEnabled
+#      name: platformRegistryLocation
+#      value: customPlatformRegistrySelection
+
+# Question
+  - name: customPlatformRmqRegistry
+    label: Custom Platform Tanzu RabbitMQ Registry
+    description: Target Registry for Tanzu RabbitMQ (ignore if deploying directly from TanzuNet)
+    inputType: text
+    defaultValue: 'harbor.harborlab.fynesy.net/rmq-packages'
+    dependsOn:
+      name: deployRmqEnabled
 
   # Question 7. Target Image Registry
   - name: targetImageRegistryLocation
