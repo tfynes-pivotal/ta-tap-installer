@@ -431,7 +431,7 @@ engine:
         - text: TLS_MODE
           with: "#tlsMode"
         - text: CUSTOM_CA_CERTS_PROVIDED
-          with: "#customCaCertsProvided"
+          with: "#customCaCertsProvided ? 'true' : 'false'"
       - merge:
         - include: ["**"]
           exclude: ['clusters/taplab/cluster-config/app-resources/**/*.yaml']
