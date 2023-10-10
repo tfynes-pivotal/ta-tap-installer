@@ -495,6 +495,10 @@ engine:
       chain:
       - type: YTT 
 
+    - include: ['clusters/taplab/cluster-config/dependent-resources/rmq-repo.yaml']
+      chain:
+      - type: YTT 
+
     - include: ['clusters/taplab/cluster-config/dependent-resources/tbs-full-deps-repo.yaml']
       chain:
       - type: YTT  
@@ -558,6 +562,13 @@ engine:
     include: ['**']
     condition: "#platformRegistryLocation != 'customPlatformRegistrySelection'"
 
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/rmq-repo.yaml']
+    include: ['**']
+    condition: "#deployRmqEnabled == false"
+
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tds-repo.yaml']
+    include: ['**']
+    condition: "#deployTdsEnabled == false"
   
 
   # would be better to pull unnecessary files - must revisit
