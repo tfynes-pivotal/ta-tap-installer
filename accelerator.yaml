@@ -430,6 +430,8 @@ engine:
           with: "#tapGitopsInstallationRepositoryUrl"
         - text: TLS_MODE
           with: "#tlsMode"
+        - text: CUSTOM_CA_CERTS_PROVIDED
+          with: "#customCaCertsProvided"
       - merge:
         - include: ["**"]
           exclude: ['clusters/taplab/cluster-config/app-resources/**/*.yaml']
@@ -511,6 +513,10 @@ engine:
     # - include: ['setup-utility-scripts/setup-tce.yaml']
     #   chain:
     #   - type: YTT
+    - include: ['cluster/taplab/cluster-config/config/kapp-controller-config.yaml']
+      chain:
+      - type: YTT
+      condition: #customCaCertsProvided 
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:
