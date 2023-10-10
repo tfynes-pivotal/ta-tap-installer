@@ -87,15 +87,7 @@ accelerator:
       name: platformRegistryLocation
       value: tanzunetRegistrySelection
 
-  # Question 6b-1. Custom Platform Registry URL
-  - name: customPlatformRegistryUrl
-    label: Custom Platform Registry URL
-    defaultValue: 'harbor.harborlab.fynesy.net/tap-packages'
-    inputType: text
-    dependsOn:
-      name: platformRegistryLocation
-      value: customPlatformRegistrySelection
-      
+ 
   # Question 6b-2. Custom Platform Registry Username
   - name: customPlatformRegistryUsername
     label: Custom Registry Username
@@ -112,7 +104,16 @@ accelerator:
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
-
+      
+ # Question 6b-1. Custom Platform Registry URL
+  - name: customPlatformRegistryUrl
+    label: Custom Platform Registry URL
+    defaultValue: 'harbor.harborlab.fynesy.net/tap-packages'
+    inputType: text
+    dependsOn:
+      name: platformRegistryLocation
+      value: customPlatformRegistrySelection
+      
 #! Question 6b-4. Custom TDS Registry location
   - name: customPlatformTdsRegistry
     label: Custom Platform Tanzu Postgres Registry
