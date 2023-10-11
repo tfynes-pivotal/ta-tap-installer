@@ -513,7 +513,11 @@ engine:
     # - include: ['setup-utility-scripts/setup-tce.yaml']
     #   chain:
     #   - type: YTT
-    - include: ['accelerator-assets/non-sensitive-config/kapp-controller-config.yaml']
+    - include: ['accelerator-assets/non-sensitive-config/kapp-controller-ca-cert.yaml']
+      chain:
+      - type: YTT
+      condition: #customCaCertsProvided 
+    - include: ['accelerator-assets/non-sensitive-config/azure-ca-cert.yaml']
       chain:
       - type: YTT
       condition: #customCaCertsProvided 

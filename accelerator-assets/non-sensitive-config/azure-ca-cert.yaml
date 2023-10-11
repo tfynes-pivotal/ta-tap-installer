@@ -5,11 +5,9 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: kapp-controller-config
-    namespace: kapp-controller
-stringData:
+    name: custom-ca-trust-secret
+    namespace: kube-system
+data:
     #@ if data.values.customCaCertsProvided:
-    caCerts: #@ data.values.caCerts 
-    #@ else:
-    caCerts: []
+    ca1.crt: #@ base64.encode(data.values.caCerts) 
     #@ end
