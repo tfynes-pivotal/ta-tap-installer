@@ -13,7 +13,7 @@ tap_install:
 
         shared:
           #@ if data.values.customCaCertsProvided:
-          ca_cert_data: data.values.caCerts
+          ca_cert_data: #@ data.values.caCerts
           #@ end
 
 
