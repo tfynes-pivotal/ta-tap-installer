@@ -1,0 +1,13 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:base64", "base64")
+#@ load("@ytt:json", "json")
+---
+apiVersion: v1
+kind: Secret
+metadata:
+    name: custom-ca-trust-secret
+    namespace: kube-system
+data:
+    #@ if data.values.customCaCertsProvided:
+    ca1.crt: #@ base64.encode(data.values.caCerts) 
+    #@ end
