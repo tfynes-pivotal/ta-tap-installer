@@ -12,5 +12,7 @@ type: kubernetes.io/basic-auth
 stringData:
   username: #@ data.values.tapGithubAuthUsername 
   password: #@ data.values.tapGithubAuthToken 
-  #! username: #@ data.values.tapGithubAuthUsername if data.values.tapWorkloadAuthEnable else "dummy-value"
-  #! password: #@ data.values.tapGithubAuthToken if data.values.tapWorkloadAuthEnable else "dummy-value"
+  #@ if data.values.customCaCertsProvided:
+  caFile: |
+    ca_cert_data: #@ data.values.caCerts
+  #@ end
