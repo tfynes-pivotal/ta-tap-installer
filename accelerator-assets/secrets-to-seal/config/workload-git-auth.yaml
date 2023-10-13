@@ -13,6 +13,5 @@ stringData:
   username: #@ data.values.tapGithubAuthUsername 
   password: #@ data.values.tapGithubAuthToken 
   #@ if data.values.customCaCertsProvided:
-  caFile: |
-    ca_cert_data: #@ data.values.caCerts
+  caFile: #@ 'ca_cert_data: ' + data.values.caCerts
   #@ end
