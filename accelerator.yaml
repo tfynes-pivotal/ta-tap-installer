@@ -521,6 +521,10 @@ engine:
       chain:
       - type: YTT
       condition: #customCaCertsProvided 
+    - include: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
+      chain:
+      - type: YTT
+      condition: #customCaCertsProvided 
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:
