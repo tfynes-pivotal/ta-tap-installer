@@ -467,7 +467,14 @@ engine:
             substitutions:
             - text: petclinic-gateway-tls-cert
               with: "'taptlscert'"
-            condition: "#tlsMode == 'tlsManual'"      
+            condition: "#tlsMode == 'tlsManual'"     
+      - merge:
+        - include: ["**"]
+          exclude: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
+        - include: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
+          chain:
+          - type: YTT
+            condition: #customCaCertsProvided 
 
 
     - include: ['accelerator-assets/secrets-to-seal/config/*.yaml']
@@ -521,10 +528,7 @@ engine:
       chain:
       - type: YTT
       condition: #customCaCertsProvided 
-    - include: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
-      chain:
-      - type: YTT
-      condition: #customCaCertsProvided 
+ 
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:
