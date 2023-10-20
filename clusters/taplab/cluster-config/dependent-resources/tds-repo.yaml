@@ -11,9 +11,9 @@ spec:
   fetch:
     imgpkgBundle:
       #@ if data.values.platformRegistryLocation == 'customPlatformRegistrySelection':
-      image: #@ data.values.customPlatformTdsRegistry + '/tds-packages:1.7.0'
+      image: #@ data.values.customPlatformTdsRegistry + '/tds-packages:1.12.0'
       #@ else:
-      image: "registry.tanzu.vmware.com/packages-for-vmware-tanzu-data-services/tds-packages:1.7.0"
+      image: "registry.tanzu.vmware.com/packages-for-vmware-tanzu-data-services/tds-packages:1.12.0"
       #@ end
       #!secretRef:
         #!name: install-registry-dockerconfig
