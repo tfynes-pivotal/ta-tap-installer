@@ -1,5 +1,5 @@
-export TAP_VERSION=1.6.3
-export TDS_VERSION=1.7.0
+export TAP_VERSION=1.6.4
+export TDS_VERSION=1.12.0
 
 #! Deploy Tanzu Cluster Essentials
 # if data.values.platformRegistryLocation == 'customPlatformRegistrySelection':
