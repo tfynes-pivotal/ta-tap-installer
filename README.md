@@ -2,7 +2,10 @@
 
 TAP installation configurator using Tanzu Accelerator to provide a tailored GitOps installation repo for the platform. 
 
- 
+Current version TAP/tbs-deps 1.6.4 / RMQ 1.5.1 / TDS 1.12.0
+
+NOTE: "tanzu-sync/scripts/deploy.sh" script errors out but installation will continue and fully reconcile.
+
 
 ## Features
 - Deploy, Configure and Load up a new TAP cluster without the need to edit / create configuration files!!
@@ -34,6 +37,10 @@ TAP installation configurator using Tanzu Accelerator to provide a tailored GitO
 - Tiny TAP Overlay 
 	- Allow for non-production full profile TAP cluster deployment into < 50% of typical requirements (1-2 x 16gb AKS nodes)
 	- Selectively omit deployment of TLC / Eventing packages to further reduce resource requirements
+- Private Registry support - provide self-signed certs for registry or intermediate CAs
+- RMQ operator support allowing for 'drag and drop' "Where for dinner" deployment support
+
+
 
 ## Installation Procedure
 - Provide configuration values/secrets to tap-installer wizard
