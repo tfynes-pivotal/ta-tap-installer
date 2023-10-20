@@ -517,10 +517,10 @@ engine:
       chain:
       - type: YTT
       condition: #customCaCertsProvided 
-    - include: ['accelerator-assets/non-sensitive-config/azure-ca-cert.yaml']
-      chain:
-      - type: YTT
-      condition: #customCaCertsProvided 
+    # - include: ['accelerator-assets/non-sensitive-config/azure-ca-cert.yaml']
+    #   chain:
+    #   - type: YTT
+    #   condition: #customCaCertsProvided 
 
     - include: ['clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
       chain:

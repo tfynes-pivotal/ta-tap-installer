@@ -47,7 +47,7 @@ mv ./non-sensitive-config/tap-non-sensitive-values.yaml             ../clusters/
 if [ CUSTOM_CA_CERTS_PROVIDED = 'true' ]
 then
 mv ./non-sensitive-config/kapp-controller-ca-cert.yaml             ../clusters/taplab/cluster-config/config/
-mv ./non-sensitive-config/azure-ca-cert.yaml  ../clusters/taplab/cluster-config/config/
+#mv ./non-sensitive-config/azure-ca-cert.yaml  ../clusters/taplab/cluster-config/config/
 fi
 
 
