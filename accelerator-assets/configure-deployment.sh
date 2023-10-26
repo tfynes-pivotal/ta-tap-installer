@@ -25,6 +25,7 @@ mv ./secrets-to-seal/key.txt ../
 
 mv ./secrets-to-seal/config/tanzu-registry-secret.sops.yaml ../clusters/taplab/cluster-config/config/
 mv ./secrets-to-seal/config/user-registry-dockerconfig.sops.yaml ../clusters/taplab/cluster-config/config/
+mv ./secrets-to-seal/config/lsp-push-credentials.sops.yaml ../clusters/taplab/cluster-config/config/
 mv ./secrets-to-seal/config/workload-git-auth.sops.yaml          ../clusters/taplab/cluster-config/config/
 mv ./secrets-to-seal/config/git-auth.sops.yaml          ../clusters/taplab/cluster-config/config/
 mv ./secrets-to-seal/config/git-auth-install.sops.yaml          ../clusters/taplab/cluster-config/config/

@@ -4,6 +4,7 @@ export SOPS_AGE_KEY=$(cat ./key.txt)
 
 sops -e ./config/tanzu-registry-secret.yaml > ./config/tanzu-registry-secret.sops.yaml
 sops -e ./config/user-registry-dockerconfig.yaml > ./config/user-registry-dockerconfig.sops.yaml
+sops -e ./config/lsp-push-credentials.yaml > ./config/lsp-push-credentials.sops.yaml
 sops -e ./config/workload-git-auth.yaml > ./config/workload-git-auth.sops.yaml
 sops -e ./config/git-auth.yaml > ./config/git-auth.sops.yaml
 sops -e ./config/git-auth-install.yaml > ./config/git-auth-install.sops.yaml
