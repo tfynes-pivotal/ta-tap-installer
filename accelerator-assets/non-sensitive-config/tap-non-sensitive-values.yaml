@@ -139,7 +139,7 @@ tap_install:
           repository: #@ data.values.harborUrl + "/" + data.values.harborDefaultRegistry + "/local-source"
           #@ else:
           #! repository: harbor.harborlab.fynesy.net/tap/local-source
-          respository: #@ "index.docker.io/" + data.values.dockerhubDefaultRegistry + "/local-source"
+          repository: #@ "index.docker.io/" + data.values.dockerhubDefaultRegistry + "/local-source"
           #@ end
           push_secret:
             name: lsp-push-credentials
