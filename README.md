@@ -40,7 +40,9 @@ NOTE: "tanzu-sync/scripts/deploy.sh" script errors out but installation will con
 - Private Registry support - provide self-signed certs for registry or intermediate CAs
 - RMQ operator support allowing for 'drag and drop' "Where for dinner" deployment support
 
-
+- Local Source Proxy auto-configuration for harbor & dockerhub image registries
+    - work directly from your IDE.. generate workload via accelerator and auto-deploy for subsequent 'live-update' 5second iterations
+	- select 'java debug' to connect remote debugger with breakpoint support to live-updating instance of running workload
 
 ## Installation Procedure
 - Provide configuration values/secrets to tap-installer wizard
