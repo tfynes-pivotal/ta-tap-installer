@@ -133,6 +133,19 @@ tap_install:
             name: api-portal
           #@ end
 
+        local_source_proxy:
+          #@ if data.values.targetImageRegistryLocation == 'harbor':
+          #! repository: harbor.harborlab.fynesy.net/tap/local-source
+          repository: #@ data.values.harborUrl + "/" + data.values.harborDefaultRegistry + "/local-source"
+          #@ else:
+          #! repository: harbor.harborlab.fynesy.net/tap/local-source
+          repository: #@ "index.docker.io/" + data.values.dockerhubDefaultRegistry + "/local-source"
+          #@ end
+          push_secret:
+            name: lsp-push-credentials
+            namespace: tap-install
+            create_export: true
+
         namespace_provisioner:
           controller: false
           gitops_install:
