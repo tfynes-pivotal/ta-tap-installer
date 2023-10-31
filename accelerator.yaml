@@ -7,7 +7,7 @@ accelerator:
   options:
   # Question 1. TAP GitOps Installation Project name
   - name: projectName
-    label: TAP GitOps Installer PROJECT NAME
+    label: TAP GitOps Installer PROJECT NAME.
     defaultValue: tap-gitops-demo
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
