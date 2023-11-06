@@ -1,6 +1,6 @@
 accelerator:
-  displayName: TAP Installer 
-  description: TAP Installer Setup Wizard
+  displayName: TAP Installer for TAPv17
+  description: TAP v17 Installer Setup Wizard
   tags:
   - beta
 
@@ -359,19 +359,6 @@ accelerator:
   - name: tinyTapMode
     label: Tiny TAP Deployment
     description: Removes all hard cpu and memory requests from TAP components at the cluster level to allow for deployment to much smaller clusters. Not for production use!
-    dataType: boolean
-    required: true
-    defaultValue: true
-
-  # Optional TAP Package Inclusion
-  - name: learningCenterIncluded
-    label: Install TAP Learning Center
-    dataType: boolean
-    required: true
-    defaultValue: true
-
-  - name: kNativeEventingIncluded
-    label: Install kNative Eventing Support
     dataType: boolean
     required: true
     defaultValue: true

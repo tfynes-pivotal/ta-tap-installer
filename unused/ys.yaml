@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tanzu-registry
+  namespace: tap-install
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJyZWdpc3RyeS50YW56dS52bXdhcmUuY29tIjp7ImF1dGgiOiJiV1o1Ym1WelFIQnBkbTkwWVd3dWFXODZUbTkwWVhKMGFYZ3lNREF5SVE9PSIsInBhc3N3b3JkIjoiTm90YXJ0aXgyMDAyISIsInVzZXJuYW1lIjoibWZ5bmVzQHBpdm90YWwuaW8ifX19

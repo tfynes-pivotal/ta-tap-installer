@@ -2,15 +2,7 @@
 ---
 tap_install:
   values: 
-        excluded_packages:
-        #@ if not data.values.learningCenterIncluded:
-          - learningcenter.tanzu.vmware.com
-          - workshops.learningcenter.tanzu.vmware.com
-        #@ end
-        #@ if not data.values.kNativeEventingIncluded:
-          - eventing.tanzu.vmware.com
-        #@ end
-
+        excluded_packages: []
         shared:
           #@ if data.values.customCaCertsProvided:
           ca_cert_data: #@ data.values.caCerts
@@ -91,9 +83,9 @@ tap_install:
           ns_for_export_app_cert: "*"
           app_service_type: ClusterIP #! Defaults to LoadBalancer. If shared.ingress_domain is set earlier, this must be set to ClusterIP.
 
-        scanning:
-          metadataStore:
-            url: #@ "metadata-store." + data.values.tapIngressDomain 
+       #! scanning:
+       #!   metadataStore:
+       #!     url: #@ "metadata-store." + data.values.tapIngressDomain 
 
         grype:
           namespace: "default"
@@ -112,7 +104,8 @@ tap_install:
         api_portal:
           apiPortalServer:
             #!sourceUrls: https://petstore.swagger.io/v2/swagger.json,http://10.0.166.161/openapi
-            sourceUrls: https://petstore.swagger.io/v2/swagger.json,http://customer-profile-x.default.svc.cluster.local:8080/api-docs,http://scg-operator.tap-install.svc.cluster.local/openapi
+            #!sourceUrls: https://petstore.swagger.io/v2/swagger.json,http://customer-profile-x.default.svc.cluster.local:8080/api-docs,http://scg-operator.tap-install.svc.cluster.local/openapi
+            sourceUrls: https://petstore.swagger.io/v2/swagger.json,http://scg-openapi-service.spring-cloud-gateway.svc.cluster.local/openapi
             trustInsecureSourceUrls: true
             sourceUrlsCacheTtlSec: "30"
             sourceUrlsTimeoutSec: "30"
@@ -220,25 +213,12 @@ tap_install:
          - name: developer-conventions
            secrets:
            - name: reqfix-overlay-secret
-        #@ if data.values.kNativeEventingIncluded:
-         - name: eventing
-           secrets:
-           - name: reqfix-overlay-secret
-        #@ end
          - name: fluxcd-source-controller
            secrets:
            - name: reqfix-overlay-secret
          - name: grype
            secrets:
            - name: reqfix-overlay-secret
-        #@ if data.values.learningCenterIncluded:
-         - name: learningcenter
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: learningcenter-workshops
-           secrets:
-           - name: reqfix-overlay-secret
-        #@ end
          - name: metadata-store
            secrets:
            - name: reqfix-overlay-secret
