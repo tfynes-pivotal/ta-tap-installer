@@ -1,7 +1,7 @@
 export IMGPKG_REGISTRY_HOSTNAME=harbor.harborlab.fynesy.net
 export IMGPKG_REGISTRY_USERNAME=admin
 export IMGPKG_REGISTRY_PASSWORD='Harbor12345!'
-export TAP_VERSION=1.7.0-rc.19
+export TAP_VERSION=1.7.0
 export TDS_VERSION=1.12.0
 
 docker login registry.tanzu.vmware.com

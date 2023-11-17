@@ -2,7 +2,7 @@
 
 TAP installation configurator using Tanzu Accelerator to provide a tailored GitOps installation repo for the platform. 
 
-Current version TAP/tbs-deps 1.7.0-rc.19 / RMQ 1.5.1 / TDS 1.12.0
+Current version TAP/tbs-deps 1.7.0 / RMQ 1.5.1 / TDS 1.12.0
 
 NOTE: "tanzu-sync/scripts/deploy.sh" script errors out but installation will continue and fully reconcile.
 
