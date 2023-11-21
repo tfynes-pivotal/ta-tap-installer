@@ -108,7 +108,7 @@ accelerator:
  # Question 6b-1. Custom Platform Registry URL
   - name: customPlatformRegistryUrl
     label: Custom Platform Registry URL
-    defaultValue: 'harbor.harborlab.fynesy.net/tanzu'
+    defaultValue: 'harbor.harborlab.fynesy.net/tanzu17'
     inputType: text
     dependsOn:
       name: platformRegistryLocation
@@ -119,7 +119,7 @@ accelerator:
     label: Custom Platform Tanzu Postgres Registry
     description: Target Registry for Tanzu Postgres (ignore if deploying directly from TanzuNet)
     inputType: text
-    defaultValue: 'harbor.harborlab.fynesy.net/tanzu'
+    defaultValue: 'harbor.harborlab.fynesy.net/tanzu17'
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection
@@ -129,7 +129,7 @@ accelerator:
     label: Custom Platform Tanzu RabbitMQ Registry
     description: Target Registry for Tanzu RabbitMQ (ignore if deploying directly from TanzuNet)
     inputType: text
-    defaultValue: 'harbor.harborlab.fynesy.net/tanzu'
+    defaultValue: 'harbor.harborlab.fynesy.net/tanzu17'
     dependsOn:
       name: platformRegistryLocation
       value: customPlatformRegistrySelection

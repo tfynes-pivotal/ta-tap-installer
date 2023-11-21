@@ -35,5 +35,7 @@ spec:
     - name: postgres-db
       ref:
         apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ResourceClaim
-        name: postgres1-claim
+        # kind: ResourceClaim
+        # name: postgres1-claim
+        kind: ClassClaim
+        name: postgres1
