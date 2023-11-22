@@ -115,24 +115,24 @@ accelerator:
       value: customPlatformRegistrySelection
       
 #! Question 6b-4. Custom TDS Registry location
-  - name: customPlatformTdsRegistry
-    label: Custom Platform Tanzu Postgres Registry
-    description: Target Registry for Tanzu Postgres (ignore if deploying directly from TanzuNet)
-    inputType: text
-    defaultValue: 'harbor.harborlab.fynesy.net/tanzu17'
-    dependsOn:
-      name: platformRegistryLocation
-      value: customPlatformRegistrySelection
+#!  - name: customPlatformTdsRegistry
+#!    label: Custom Platform Tanzu Postgres Registry
+#!    description: Target Registry for Tanzu Postgres (ignore if deploying directly from TanzuNet)
+#!    inputType: text
+#!    defaultValue: 'harbor.harborlab.fynesy.net/tanzu17'
+#!    dependsOn:
+#!      name: platformRegistryLocation
+#!      value: customPlatformRegistrySelection
 
 # Question
-  - name: customPlatformRmqRegistry
-    label: Custom Platform Tanzu RabbitMQ Registry
-    description: Target Registry for Tanzu RabbitMQ (ignore if deploying directly from TanzuNet)
-    inputType: text
-    defaultValue: 'harbor.harborlab.fynesy.net/tanzu17'
-    dependsOn:
-      name: platformRegistryLocation
-      value: customPlatformRegistrySelection
+#!  - name: customPlatformRmqRegistry
+#!    label: Custom Platform Tanzu RabbitMQ Registry
+#!    description: Target Registry for Tanzu RabbitMQ (ignore if deploying directly from TanzuNet)
+#!    inputType: text
+#!    defaultValue: 'harbor.harborlab.fynesy.net/tanzu17'
+#!    dependsOn:
+#!      name: platformRegistryLocation
+#!      value: customPlatformRegistrySelection
 
   # Question 7. Target Image Registry
   - name: targetImageRegistryLocation
@@ -488,13 +488,13 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
-    - include: ['clusters/taplab/cluster-config/dependent-resources/tds-repo.yaml']
-      chain:
-      - type: YTT 
+  #!  - include: ['clusters/taplab/cluster-config/dependent-resources/tds-repo.yaml']
+  #!    chain:
+  #!    - type: YTT 
 
-    - include: ['clusters/taplab/cluster-config/dependent-resources/rmq-repo.yaml']
-      chain:
-      - type: YTT 
+  #!  - include: ['clusters/taplab/cluster-config/dependent-resources/rmq-repo.yaml']
+  #!    chain:
+  #!    - type: YTT 
 
     - include: ['clusters/taplab/cluster-config/dependent-resources/tbs-full-deps-repo.yaml']
       chain:
