@@ -90,3 +90,12 @@ Optionally run k9s to watch TAP install and configuraiton on your target cluster
 - Deploy tanzu-cluster-essentials to cluster
 - Authenticate / login from your workstation to GitHub
 - Create a seal-secrets (sops) encryption key (using 'age-keygen" cli
+
+
+
+## 17 Experimental
+- updated provided pipeline.yaml to support both maven and gradle test&scan runs
+- still working on test&scan in more than one namespace (currently default only)
+- Removed TDS and RMQ explicit repo deployments - bitnami operator included
+- updated Spring Petclinic to use a class-claim to dynamically provision and bind to bitnami postgres (much simpler!)
+- Need to revisit for WFD wtih 1.7.0 as it's still using crossplane which uses full RMQ
