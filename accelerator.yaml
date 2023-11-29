@@ -457,8 +457,8 @@ engine:
             condition: "#tlsMode == 'tlsManual'"     
       - merge:
         - include: ["**"]  
-          exclude: ["**/accelerator-assets/*.sh"] 
-        - include: ["**/accelerator-assets/*.sh"]
+          exclude: ["**/accelerator-assets/**/*.sh"] 
+        - include: ["**/accelerator-assets/**/*.sh"]
           chain:
           - type: ReplaceText
             substitutions:
