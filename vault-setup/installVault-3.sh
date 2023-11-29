@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 # FUNCTIONS FOR RUNNING-IN OR COPYING-TO VAULT POD
 run-in-vault-pod() {
   kubectl -n vault exec -it vault-0 -- /bin/sh -c "export VAULT_TOKEN=$roottoken && $1"
@@ -12,25 +12,13 @@ write-to-vault-pod() {
   kubectl -n vault exec -it vault-0 -- /bin/sh -c "echo \"$1\" > $2"
 }
 
-# INITIALIZE VAULT TOKEN AND KEYS from vault.out FILE
-export key1=$(cat vault.out | grep "Unseal Key 1" | awk -F ' '   '{print $4}')
-export key2=$(cat vault.out | grep "Unseal Key 2" | awk -F ' '   '{print $4}')
-export key3=$(cat vault.out | grep "Unseal Key 3" | awk -F ' '   '{print $4}')
-export key4=$(cat vault.out | grep "Unseal Key 4" | awk -F ' '   '{print $4}')
-export key5=$(cat vault.out | grep "Unseal Key 5" | awk -F ' '   '{print $4}')
-export roottoken=$(cat vault.out | grep "Initial Root Token" | awk -F ' ' '{print $4}')
-
-# HACK TO REMOVE CONTROL CHARACTERS FROM KEY/TOKEN VALUES
-export roottoken=${roottoken::-5}
-export key1=${key1::-5}
-export key2=${key2::-5}
-export key3=${key3::-5}
-export key4=${key4::-5}
-export key5=${key5::-5}
-
+# INITIALIZE VAULT ROOT TOKEN from vault.out FILE
+export roottoken=$(yq e '.root_token' ./vault.out)
 
 # UNSEAL VAULT
-run-in-vault-pod "vault operator unseal $key1 && vault operator unseal $key2 && vault operator unseal $key3 && vault operator unseal $key4 && vault operator unseal $key5"
+run-in-vault-pod "vault operator unseal $(yq e '.unseal_keys_hex[0]' ./vault.out)"
+
+# ENABLE SECRETS FOR API-PORTAL
 run-in-vault-pod "vault secrets enable -path=api-portal-for-vmware-tanzu kv-v2"
 echo
 
@@ -54,10 +42,10 @@ run-in-vault-pod "cat /tmp/apip | vault policy write api-portal-policy -"
 run-in-vault-pod "vault auth enable kubernetes"
 
 # ADD API-PORTAL & SCG ROLE TO VAULT
-run-in-vault-pod "vault write auth/kubernetes/role/api-portal-role bound_service_account_names=api-portal,tdemo-gateway-svc-acc,navin-gateway-svc-acc bound_service_account_namespaces=api-portal,default,navin policies=api-portal-policy ttl=24h"
+run-in-vault-pod "vault write auth/kubernetes/role/api-portal-role bound_service_account_names=api-portal,tdemo-gateway-svc-acc bound_service_account_namespaces=api-portal,default policies=api-portal-policy ttl=24h"
 
 # CONFIGURE VAULT K8S CONFIG
-write-to-vault-pod "VAULT_TOKEN='$roottoken' vault write auth/kubernetes/config token_reviewer_jwt=\"\$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)\" kubernetes_host=\"https://\$KUBERNETES_PORT_443_TCP_ADDR:443\" kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt bound_service_account_names=api-portal,tdemo-gateway-svc-acc,navin-gateway-svc-acc bound_service_account_namespaces=api-portal,default,navin policies=api-portal-policy ttl=24h" "/tmp/vault-k8s-config"
+write-to-vault-pod "VAULT_TOKEN='$roottoken' vault write auth/kubernetes/config token_reviewer_jwt=\"\$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)\" kubernetes_host=\"https://\$KUBERNETES_PORT_443_TCP_ADDR:443\" kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt bound_service_account_names=api-portal,tdemo-gateway-svc-acc bound_service_account_namespaces=api-portal,default policies=api-portal-policy ttl=24h" "/tmp/vault-k8s-config"
 
 run-in-vault-pod "chmod +x /tmp/vault-k8s-config"
 run-in-vault-pod "/tmp/vault-k8s-config"
