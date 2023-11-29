@@ -541,7 +541,7 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
-  - exclude: ['**/clusters/taplab/cluster-config/app-resources/**']
+  - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
     include: ['**']
     condition: "#deployDemoApplications == false"
 
