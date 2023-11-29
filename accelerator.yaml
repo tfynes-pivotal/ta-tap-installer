@@ -455,6 +455,27 @@ engine:
             - text: petclinic-gateway-tls-cert
               with: "'taptlscert'"
             condition: "#tlsMode == 'tlsManual'"     
+      - merge:
+        - include: ["**"]  
+          exclude: ["**/accelerator-assets/configure-deployment.sh"] 
+        - include: ["**/accelerator-assets/configure-deployment.sh"]
+          chain:
+          - type: ReplaceText
+            text: MOVE_APIPORTAL_SSO_CREDS
+            with: "'mv ./secrets-to-seal/dependent-resources/sso-credentials-secret.sops.yaml ../clusters/taplab/cluster-config/dependent-resources/'"
+          condition: "#springApiPortalApiKeySupport == 'true'"
+
+      - merge:
+        - include: ["**"]  
+          exclude: ["**/accelerator-assets/secrets-to-seal/encrypt-secrets.sh"] 
+        - include: ["**/accelerator-assets/secrets-to-seal/encrypt-secrets.sh"]
+          chain:
+          - type: ReplaceText
+            text: ENCRYPT_APIPORTAL_SSO_CREDS
+            with: "'sops -e ./dependent-resources/sso-credentials-secret.yaml > ./dependent-resources/sso-credentials-secret.sops.yaml'"
+          condition: "#springApiPortalApiKeySupport == 'true'"
+
+      
       # - merge:
       #   - include: ["**"]
       #     exclude: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
@@ -556,7 +577,8 @@ engine:
     include: ['**']
     condition: "#tlsMode == 'tlsManual'"
 
-  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/sso-credentials-secret**']
+  #! - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/sso-credentials-secret**']
+  - exclude: ['**/accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret**']
     include: ['**']
     condition: "#springApiPortalApiKeySupport == false"
 
