@@ -541,9 +541,9 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
-  - exclude: ['**/clusters/taplab/cluster-config/app-resources/**']
-    include: ['**']
-    condition: "#deploydemoapplications == false"
+    - exclude: ['**/clusters/taplab/cluster-config/app-resources/**']
+      include: ['**']
+      condition: "#deploydemoapplications == false"
 
   - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls-cert**',
               '**/clusters/taplab/cluster-config/config/taplab-tls-certs-export']
