@@ -30,7 +30,8 @@ mv ./secrets-to-seal/config/workload-git-auth.sops.yaml          ../clusters/tap
 mv ./secrets-to-seal/config/git-auth.sops.yaml          ../clusters/taplab/cluster-config/config/
 mv ./secrets-to-seal/config/git-auth-install.sops.yaml          ../clusters/taplab/cluster-config/config/
 
-mv ./secrets-to-seal/dependent-resources/sso-credentials-secret.sops.yaml ../clusters/taplab/cluster-config/dependent-resources/
+MOVE_APIPORTAL_SSO_CREDS
+#mv ./secrets-to-seal/dependent-resources/sso-credentials-secret.sops.yaml ../clusters/taplab/cluster-config/dependent-resources/
 
 mkdir -p ../clusters/taplab/tanzu-sync/app/sensitive-values
 mv ./secrets-to-seal/tanzu-sync/tanzu-sync-values.sops.yaml ../clusters/taplab/tanzu-sync/app/sensitive-values/

@@ -455,6 +455,33 @@ engine:
             - text: petclinic-gateway-tls-cert
               with: "'taptlscert'"
             condition: "#tlsMode == 'tlsManual'"     
+      - merge:
+        - include: ["**"]  
+          exclude: ["**/accelerator-assets/**/*.sh"] 
+        - include: ["**/accelerator-assets/**/*.sh"]
+          chain:
+          - type: ReplaceText
+            substitutions:
+            - text: MOVE_APIPORTAL_SSO_CREDS
+              with: "'mv ./secrets-to-seal/dependent-resources/sso-credentials-secret.sops.yaml ../clusters/taplab/cluster-config/dependent-resources/'"
+            condition: "#springApiPortalApiKeySupport"
+          - type: ReplaceText
+            substitutions:
+            - text: MOVE_APIPORTAL_SSO_CREDS
+              with: "''"
+            condition: "!#springApiPortalApiKeySupport"
+
+          - type: ReplaceText
+            substitutions:
+            - text: ENCRYPT_APIPORTAL_SSO_CREDS
+              with: "'sops -e ./dependent-resources/sso-credentials-secret.yaml > ./dependent-resources/sso-credentials-secret.sops.yaml'"
+            condition: "#springApiPortalApiKeySupport"
+          - type: ReplaceText
+            substitutions:
+            - text: ENCRYPT_APIPORTAL_SSO_CREDS
+              with: "''"
+            condition: "!#springApiPortalApiKeySupport"
+      
       # - merge:
       #   - include: ["**"]
       #     exclude: ['accelerator-assets/secrets-to-seal/config/workload-git-auth.yaml']
@@ -510,7 +537,7 @@ engine:
     - include: ['accelerator-assets/non-sensitive-config/kapp-controller-ca-cert.yaml']
       chain:
       - type: YTT
-      condition: #customCaCertsProvided 
+      condition: "#customCaCertsProvided" 
       
     # - include: ['accelerator-assets/non-sensitive-config/azure-ca-cert.yaml']
     #   chain:
@@ -541,9 +568,9 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
-  - exclude: ['**/clusters/taplab/cluster-config/app-resources/**']
+  - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
     include: ['**']
-    condition: "#deploydemoapplications == false"
+    condition: "#deployDemoApplications == false"
 
   - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls-cert**',
               '**/clusters/taplab/cluster-config/config/taplab-tls-certs-export']
@@ -556,7 +583,8 @@ engine:
     include: ['**']
     condition: "#tlsMode == 'tlsManual'"
 
-  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/sso-credentials-secret**']
+  #! - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/sso-credentials-secret**']
+  - exclude: ['**/accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret**']
     include: ['**']
     condition: "#springApiPortalApiKeySupport == false"
 

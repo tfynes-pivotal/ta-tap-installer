@@ -9,7 +9,8 @@ sops -e ./config/workload-git-auth.yaml > ./config/workload-git-auth.sops.yaml
 sops -e ./config/git-auth.yaml > ./config/git-auth.sops.yaml
 sops -e ./config/git-auth-install.yaml > ./config/git-auth-install.sops.yaml
 
-sops -e ./dependent-resources/sso-credentials-secret.yaml > ./dependent-resources/sso-credentials-secret.sops.yaml
+ENCRYPT_APIPORTAL_SSO_CREDS
+# sops -e ./dependent-resources/sso-credentials-secret.yaml > ./dependent-resources/sso-credentials-secret.sops.yaml
 
 sops -e ./tanzu-sync/tanzu-sync-values.yaml > ./tanzu-sync/tanzu-sync-values.sops.yaml
 
