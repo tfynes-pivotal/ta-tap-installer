@@ -20,7 +20,8 @@ tap_install:
         ceip_policy_disclosed: true
 
         profile: full 
-        supply_chain: basic 
+        #! supply_chain: basic 
+        supply_chain: testing_scanning
 
         ootb_supply_chain_basic: 
           registry:
@@ -225,12 +226,12 @@ tap_install:
          - name: namespace-provisioner
            secrets:
            - name: reqfix-overlay-secret
-         - name: ootb-delivery-basic
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: ootb-supply-chain-basic
-           secrets:
-           - name: reqfix-overlay-secret
+        #!  - name: ootb-delivery-basic
+        #!    secrets:
+        #!    - name: reqfix-overlay-secret
+        #!  - name: ootb-supply-chain-basic
+        #!    secrets:
+        #!    - name: reqfix-overlay-secret
          - name: ootb-templates
            secrets:
            - name: reqfix-overlay-secret
