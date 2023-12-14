@@ -8,7 +8,7 @@ accelerator:
   # Question 1. TAP GitOps Installation Project name
   - name: projectName
     label: TAP GitOps Installer PROJECT NAME
-    defaultValue: tap-gitops-demo
+    defaultValue: tap-gitops-runcluster-demo
     description: Default name for git project that will contain your customized TAP GitOps repo.
 
   # Question 2a. TAP GitOps Installation TARGET REPOSITORY
@@ -17,7 +17,7 @@ accelerator:
     description: TAP GitOps installation will continuously reconcile cluster configuration against this repository. Ensure project name in URL matches above.
     inputType: text
     display: true
-    defaultValue: https://github.com/tfynes-pivotal/tap-gitops-demo
+    defaultValue: https://github.com/tfynes-pivotal/tap-gitops-runcluster-demo
 
   # Question 2b. TAP GitOps Installation Repository Branch
   - name: tapGitopsInstallationRepositoryBranch
