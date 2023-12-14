@@ -217,45 +217,6 @@ accelerator:
       value: harbor
 
 
-  - name: tapCatalogUrl
-    label: "TAP Portal Catalog Repo URL"
-    display: true
-    inputType: text
-    defaultValue: 'http://github.com/tfynes-pivotal/tapblankcatalog/blob/main/catalog-info.yaml'
-
-  - name: tapPortalGuestAccessEnable
-    label: "TAP-Portal Guest Access Enabled"
-    description: "Passwordless access to TAP-Portal"
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: true
-
-   # tap-gui auth provider enabled
-  - name: tapPortalAuthProviderEnable
-    label: "TAP-Portal Authentication Enabled"
-    description: "Authenticate users accessing TAP Portal against github"
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: true
-
-  # Question 8a-1. Github client id
-  - name: githubClientId
-    label: GitHub Client Id
-    inputType: text
-    defaultValue: 6340129c5dc522b6b30a
-    dependsOn:
-      name: tapPortalAuthProviderEnable
-      value: true
-
-  - name: githubClientSecret
-    label: GitHub Client Secret
-    inputType: text
-    defaultValue: 'github client secret'
-    dependsOn:
-      name: tapPortalAuthProviderEnable
-      value: true
 
 
   # Question 9a. Workload git authentication Username
@@ -306,68 +267,6 @@ accelerator:
       name: tlsMode
       value: tlsManual
 
-  - name: springApiPortalApiKeySupport
-    label: Enable SpringAPI-Portal API-Key support
-    description: Spring API-Portal can be used to self-manage API-KEY based TAP workload microservice protections, enforced natively in TAP Cluster with SpringCloudGateway. In order to use Spring-API-Portal for key management, it must itself be protected with an OIDC auth-provider such as OKTA
-    display: true
-    dataType: boolean
-    inputType: checkbox
-    defaultValue: false
-
-  # Question 11a-1 Okta ClientID
-  - name: oktaClientId
-    label: Okta Client ID
-    inputType: text
-    defaultValue: 0oa9p10659QLkw1on5d7
-    dependsOn:
-      name: springApiPortalApiKeySupport
-
-  # Question 11a-2 Okta ClientSecret
-  - name: oktaClientSecret
-    label: Okta Client Secret (direct or via env var)
-    inputType: text
-    defaultValue: 'okta client secret'
-    dependsOn:
-      name: springApiPortalApiKeySupport
-
-  # Question 11a-3 Okta Issuer URI
-  - name: oktaIssuerUri
-    label: Okta Issuer Uri
-    inputType: text
-    defaultValue: 'https://dev-75470464.okta.com/oauth2/aus9p0j4if0u58tNJ5d7'
-    dependsOn:
-      name: springApiPortalApiKeySupport
-
-  # Question 11a-4 Okta Scopes
-  - name: oktaScopes
-    label: Okta Scopes
-    inputType: text
-    defaultValue: 'openid,profile,email,tanzu.read' 
-    dependsOn:
-      name: springApiPortalApiKeySupport
-
-  # Question 11a-5 Okta Scopes
-  - name: oktaUsernameAttribute
-    label: Okta Username Attribute
-    inputType: text
-    defaultValue:  'user_name'
-    dependsOn:
-      name: springApiPortalApiKeySupport
-
-  # Question 12 Deploy test applications
-  - name: deployDemoApplications
-    label: Deploy Demo Applications
-    dataType: boolean
-    required: true
-    defaultValue: true
-
-  # Question 13 Tiny TAP - Resource-Optimized Deployment
-  - name: tinyTapMode
-    label: Tiny TAP Deployment
-    description: Removes all hard cpu and memory requests from TAP components at the cluster level to allow for deployment to much smaller clusters. Not for production use!
-    dataType: boolean
-    required: true
-    defaultValue: true
 
   - name: customCaCertsProvided
     label: Custom CA Certificates
