@@ -16,129 +16,36 @@ tap_install:
           ingress_issuer: "letsencrypt-production" 
           #@ end
 
-
         ceip_policy_disclosed: true
-
-        profile: full 
-        #! supply_chain: basic 
+        profile: run
         supply_chain: testing_scanning
-
-        ootb_supply_chain_basic: 
-          registry:
-            #! server: "index.docker.io"
-            #! repository: #@ data.values.dockerhubDefaultRegistry
-            server: #@ data.values.harborUrl                 if data.values.targetImageRegistryLocation == 'harbor' else "index.docker.io"
-            repository: #@ data.values.harborDefaultRegistry if data.values.targetImageRegistryLocation == 'harbor' else data.values.dockerhubDefaultRegistry
-          gitops:
-            ssh_secret: #@ "workload-git-auth" 
-            #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
-
-        ootb_supply_chain_testing_scanning: 
-          registry:
-            #! server: "index.docker.io"
-            #! repository: #@ data.values.dockerhubDefaultRegistry
-            server: #@ data.values.harborUrl                 if data.values.targetImageRegistryLocation == 'harbor' else "index.docker.io"
-            repository: #@ data.values.harborDefaultRegistry if data.values.targetImageRegistryLocation == 'harbor' else data.values.dockerhubDefaultRegistry
-          gitops:
-            ssh_secret: #@ "workload-git-auth" 
-            #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
-
-        #! ootb_supply_chain_testing_scanning:
-        #!   registry:
-        #!     server: "index.docker.io"
-        #!     repository: "fynesy"
-        #!   gitops:
-        #!     ssh_secret: ""
 
         contour:
           envoy:
             service:
               type: LoadBalancer 
 
-        buildservice:
-          kp_default_repository: #@ data.values.harborUrl + '/' + data.values.harborDefaultRegistry + "/buildservice" if data.values.targetImageRegistryLocation == 'harbor' else data.values.dockerhubDefaultRegistry + "/buildservice"
-          #@ if data.values.platformRegistryLocation == 'customPlatformRegistrySelection':
-          exclude_dependencies: true
-          #@ end
+        appliveview_connector:
+          backend:
+            sslDeactivated: false
+            ingressEnabled: true
+            host: #@ "appliveview." + data.values.tapIngressDomain
 
-
-        tap_gui:
-          #@ if data.values.tlsMode == 'tlsManual':
-          tls:
-            namespace: tanzu-system-ingress
-            secretName: taptlscert
-          #@ end
-          service_type: ClusterIP #! If the shared.ingress_domain is set as earlier, this must be set to ClusterIP.
-          metadataStoreAutoconfiguration: true 
-          app_config:
-            #@ if data.values.tapPortalGuestAccessEnable:
+        amr:
+          observer:
             auth:
-              allowGuestAccess: true
-            #@ end
-            catalog:
-              locations:
-                - type: url
-                  target: #@ data.values.tapCatalogUrl
-
-        metadata_store:
-          ns_for_export_app_cert: "*"
-          app_service_type: ClusterIP #! Defaults to LoadBalancer. If shared.ingress_domain is set earlier, this must be set to ClusterIP.
-
-       #! scanning:
-       #!   metadataStore:
-       #!     url: #@ "metadata-store." + data.values.tapIngressDomain 
-
-        grype:
-          namespace: "default"
-          targetImagePullSecret: "registries-credentials"
-          #! In a single cluster, the connection between the scanning pod and the metadata store happens inside the cluster and does not pass through ingress. This is automatically configured, you do not need to provide an ingress connection to the store.
-
-        policy:
-          tuf_enabled: false 
+              kubernetes_service_accounts:
+                enable: true
+            cloudevent_handler:
+              endpoint: #@ "https://amr-cloudevent-handler." + data.values.tapFullViewClusterIngressDomain
+            #! ca_cert_data: |
+        
 
         cnrs:
           domain_template: '{{.Name}}-{{.Namespace}}.{{.Domain}}'
           #@ if data.values.tlsMode == 'tlsManual':
           default_tls_secret: tanzu-system-ingress/taptlscert
           #@ end
-
-        api_portal:
-          apiPortalServer:
-            #!sourceUrls: https://petstore.swagger.io/v2/swagger.json,http://10.0.166.161/openapi
-            #!sourceUrls: https://petstore.swagger.io/v2/swagger.json,http://customer-profile-x.default.svc.cluster.local:8080/api-docs,http://scg-operator.tap-install.svc.cluster.local/openapi
-            sourceUrls: https://petstore.swagger.io/v2/swagger.json,http://scg-openapi-service.spring-cloud-gateway.svc.cluster.local/openapi
-            trustInsecureSourceUrls: true
-            sourceUrlsCacheTtlSec: "30"
-            sourceUrlsTimeoutSec: "30"
-          #@ if data.values.springApiPortalApiKeySupport:
-          sso:
-            enabled: true
-            secretName: sso-credentials
-            apiManager:
-              roles: tanzu.read
-          apiKey:
-            enabled: true
-            vault:
-              url: http://vault.vault.svc:8200/
-              role: api-portal-role
-              path: api-portal-for-vmware-tanzu
-          serviceAccount:
-            create: true
-            name: api-portal
-          #@ end
-
-        local_source_proxy:
-          #@ if data.values.targetImageRegistryLocation == 'harbor':
-          #! repository: harbor.harborlab.fynesy.net/tap/local-source
-          repository: #@ data.values.harborUrl + "/" + data.values.harborDefaultRegistry + "/local-source"
-          #@ else:
-          #! repository: harbor.harborlab.fynesy.net/tap/local-source
-          repository: #@ "index.docker.io/" + data.values.dockerhubDefaultRegistry + "/local-source"
-          #@ end
-          push_secret:
-            name: lsp-push-credentials
-            namespace: tap-install
-            create_export: true
 
         namespace_provisioner:
           controller: false
@@ -164,105 +71,3 @@ tap_install:
             supply_chain_service_account:
               secrets:
               - workload-git-auth
-        package_overlays:
-         - name: api-portal
-           secrets:
-           - name: api-portal-cm-tls-overlay-secret
-        #@ if data.values.tinyTapMode:
-         - name: accelerator
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: api-auto-registration
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: appliveview
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: appliveview-apiserver
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: appliveview-connector
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: appliveview-conventions
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: appsso
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: bitnami-services
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: buildservice
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: cartographer
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: cert-manager
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: cnrs
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: contour
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: crossplane
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: developer-conventions
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: fluxcd-source-controller
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: grype
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: metadata-store
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: namespace-provisioner
-           secrets:
-           - name: reqfix-overlay-secret
-        #!  - name: ootb-delivery-basic
-        #!    secrets:
-        #!    - name: reqfix-overlay-secret
-        #!  - name: ootb-supply-chain-basic
-        #!    secrets:
-        #!    - name: reqfix-overlay-secret
-         - name: ootb-templates
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: policy-controller
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: scanning
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: service-bindings
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: services-toolkit
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: source-controller
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: spring-boot-conventions
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: tap-auth
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: tap-gui
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: tap-telemetry
-           secrets:
-           - name: reqfix-overlay-secret
-         - name: tekton-pipelines
-           secrets:
-           - name: reqfix-overlay-secret
-        #@ end

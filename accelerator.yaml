@@ -31,6 +31,12 @@ accelerator:
     label: TAP INGRESS DOMAIN
     description: Wildcard DNS domain on which TAP-GUI and deployed workloads will reside
     inputType: text
+    defaultValue: a4.fynesy.com
+
+  - name: tapFullViewClusterIngressDomain
+    label: TAP FULL/VIEW CLUSTER INGRESS DOMAIN
+    description: Domain on which view/full TAP cluster is deployed
+    inputType: text
     defaultValue: a3.fynesy.com
 
 
