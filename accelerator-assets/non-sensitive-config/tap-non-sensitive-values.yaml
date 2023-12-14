@@ -20,7 +20,8 @@ tap_install:
         ceip_policy_disclosed: true
 
         profile: full 
-        supply_chain: basic 
+        #! supply_chain: basic 
+        supply_chain: testing_scanning
 
         ootb_supply_chain_basic: 
           registry:
