@@ -18,7 +18,8 @@ tap_install:
 
         ceip_policy_disclosed: true
         profile: run
-        supply_chain: testing_scanning
+        #! supply_chain: testing_scanning
+        supply_chain: basic
 
         contour:
           envoy:
