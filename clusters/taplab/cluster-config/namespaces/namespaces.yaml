@@ -8,4 +8,29 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: #@ ns.name
+#! #@ end
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: #@ "app-ops-" + ns.name
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-rule.0: upsert after upserting pkgi
+spec:
+  defaultNamespace: #@ ns.name
+  serviceAccountName: sync-sa
+  fetch:
+  - git:
+      ref: origin/main
+      url: https://github.com/tfynes-pivotal/tap-app-ops2
+      subPath: #@ "config/" + ns.name
+      secretRef:
+        name: sync-git
+  template:
+  - ytt: {}
+  deploy:
+  - kapp:
+      rawOptions:
+      - --dangerous-allow-empty-list-of-resources=true
 #@ end
