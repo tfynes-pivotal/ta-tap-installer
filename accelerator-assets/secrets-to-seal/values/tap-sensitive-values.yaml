@@ -14,19 +14,3 @@ tap_install:
                 username: #@ data.values.dockerhubUsername
                 password: #@ data.values.dockerhubPassword
             #@ end
-        tap_gui:
-            app_config:
-                auth:
-                    allowGuestAccess: true
-                    environment: development
-                    #@ if data.values.tapPortalAuthProviderEnable:
-                    providers:
-                        github:
-                            development:
-                                clientId: #@ data.values.githubClientId
-                                clientSecret: #@ data.values.githubClientSecret
-                    #@ end
-                integrations:
-                    github:
-                        - host: github.com
-                          token: #@ data.values.tapGithubAuthToken
