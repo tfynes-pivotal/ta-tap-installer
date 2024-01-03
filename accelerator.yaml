@@ -639,6 +639,14 @@ engine:
   - exclude: ['**/unused/**']
     include: ['**']
 
+
+  - include: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
+    chain:
+    - type: ReplaceText
+      substitutions:
+      - text: "tapdemo1-workloads-"
+        with: "#@tapWorkloadsKappNamePrefix"
+
   # toggle in namespaces-simple vs namespaces-advanced as the namespaces.yaml file for ns-provisioner
   # depending on multi-cluster enable being set
   - type: RewritePath
@@ -655,9 +663,3 @@ engine:
   - exclude: ['clusters/taplab/cluster-config/namespaces/namespaces-simple.yaml']
     include: ['**']
     condition: "#tapMultiClusterSupport"
-  - include: ['clusters/taplab/cluster-config/namespaces/namespaces.yaml']
-    chain:
-    - type: ReplaceText
-      substitutions:
-      - text: "tapdemo1-workloads-"
-        with: "'#@tapWorkloadsKappNamePrefix'"
