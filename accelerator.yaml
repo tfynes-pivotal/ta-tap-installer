@@ -641,5 +641,5 @@ engine:
 
   - type: RewritePath
     regex: clusters/taplab/cluster-config/namespaces/namespaces-simple\.yaml
-    rewriteTo: clusters/taplab/cluster-config/namespaces/namespaces\.yaml
+    rewriteTo: "'clusters/taplab/cluster-config/namespaces/namespaces.yaml'"
     condition: "!#tapMultiClusterSupport"
