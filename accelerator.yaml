@@ -324,6 +324,15 @@ accelerator:
       name: tapMultiClusterSupport
       value: true
 
+  - name: tapDeliverablesRepositoryUrl
+    label: Git Repository URL for TAP Deliverables
+    description: a subPath in this repo will be monitored for each provisioned TAP namespace. e.g /dev, /default... and assets found in each with be targetted to the appropriate namespace of the same name.
+    inputType: text
+    defaultValue: "https://github.com/tfynes-pivotal/tapdemo1-deliverables"
+    dependsOn:
+      name: tapMultiClusterSupport
+      value: true
+
   - name: tapDeliverablesKappNamePrefix
     label: name prefix for kApps deployed per namespace to monitor for workloads
     inputType: text
@@ -331,6 +340,8 @@ accelerator:
     dependsOn: 
       name: tapMultiClusterSupport
       value: true
+
+
 
   - name: springApiPortalApiKeySupport
     label: Enable SpringAPI-Portal API-Key support
@@ -620,6 +631,16 @@ engine:
           with: "#tapWorkloadsRepositoryUrl"
         - text: "tapdemo1-deliverables-"
           with: "#tapDeliverablesKappNamePrefix"
+        - text: "https://github.com/tfynes-pivotal/tapdemo1-deliverables"
+          with: "#tapDeliverablesRepositoryUrl"
+      condition: "#tapMultiClusterSupport"
+
+    - include: ['clusters/taplab/cluster-config/dependent-resources/ootb-supply-chain-overlay_yaml']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: "xxx"
+          with: "yyy"
       condition: "#tapMultiClusterSupport"
 
 
