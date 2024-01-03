@@ -655,4 +655,9 @@ engine:
   - exclude: ['clusters/taplab/cluster-config/namespaces/namespaces-simple.yaml']
     include: ['**']
     condition: "#tapMultiClusterSupport"
-
+  - include: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
+    chain:
+    - type: ReplaceText
+      substitutions:
+      - text: "tapdemo1-workloads-"
+        with: "'#@tapWorkloadsKappNamePrefix'"
