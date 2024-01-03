@@ -1,0 +1,62 @@
+#@ load("@ytt:data", "data")
+#! This for loop will loop over the namespace list in desired-namespaces.yaml and will create those namespaces.
+#! NOTE: if you have another tool like Tanzu Mission Control or some other process that is taking care of creating namespaces for you, 
+#! and you don’t want namespace provisioner to create the namespaces, you can delete this file from your GitOps install repository.
+#@ for ns in data.values.namespaces:
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: #@ ns.name
+#! #@ end
+
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: #@ "tapdemo1-workloads-" + ns.name
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-rule.0: upsert after upserting pkgi
+spec:
+  defaultNamespace: #@ ns.name
+  serviceAccountName: sync-sa
+  fetch:
+  - git:
+      ref: origin/main
+      url: https://github.com/tfynes-pivotal/tapdemo1-workloads
+      subPath: #@ ns.name
+      secretRef:
+        name: sync-git
+  template:
+  - ytt: {}
+  deploy:
+  - kapp:
+      rawOptions:
+      - --dangerous-allow-empty-list-of-resources=true
+
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: #@ "tapdemo1-deliverables-" + ns.name
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-rule.0: upsert after upserting pkgi
+spec:
+  defaultNamespace: #@ ns.name
+  serviceAccountName: sync-sa
+  fetch:
+  - git:
+      ref: origin/main
+      url: https://github.com/tfynes-pivotal/tapdemo1-deliverables
+      subPath: #@ "config/" + ns.name
+      secretRef:
+        name: sync-git
+  template:
+  - ytt: {}
+  deploy:
+  - kapp:
+      rawOptions:
+      - --dangerous-allow-empty-list-of-resources=true
+#@ end

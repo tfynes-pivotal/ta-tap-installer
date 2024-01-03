@@ -562,7 +562,7 @@ engine:
     #     substitutions:
     #     - text: "HEADER: PLACEHOLDER"
     #       with: "'#@ load(\"@ytt:data\", \"data\")'"
-
+    
 
     # - include: ['setup-utility-scripts/setup-tce.yaml']
     #   chain:
@@ -629,6 +629,7 @@ engine:
     include: ['**']
     condition: "#platformRegistryLocation != 'customPlatformRegistrySelection'"
 
+  
 
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
@@ -637,3 +638,8 @@ engine:
 
   - exclude: ['**/unused/**']
     include: ['**']
+
+  - type: RewritePath
+    regex: clusters/taplab/cluster-config/namespaces/namespaces-simple\.yaml
+    rewriteTo: clusters/taplab/cluster-config/namespaces/namespaces\.yaml
+    condition: "!#tapMultiClusterSupport"
