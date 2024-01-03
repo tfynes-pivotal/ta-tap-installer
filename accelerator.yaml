@@ -307,6 +307,12 @@ accelerator:
     dataType: boolean
     defaultValue: false
 
+  - name: tapWorkloadsRepositoryUrl
+    label: Git Repository URL for TAP Workloads
+    description: a subPath in this repo will be monitored for each provisioned TAP namespace. e.g /dev, /default... and assets found in each with be targetted to the appropriate namespace of the same name.
+    inputType: text
+    defaultValue: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
+
   - name: springApiPortalApiKeySupport
     label: Enable SpringAPI-Portal API-Key support
     description: Spring API-Portal can be used to self-manage API-KEY based TAP workload microservice protections, enforced natively in TAP Cluster with SpringCloudGateway. In order to use Spring-API-Portal for key management, it must itself be protected with an OIDC auth-provider such as OKTA
