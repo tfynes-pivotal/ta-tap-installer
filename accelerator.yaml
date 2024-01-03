@@ -341,6 +341,29 @@ accelerator:
       name: tapMultiClusterSupport
       value: true
 
+  - name: tapDeliverablesRepositoryServerAddress
+    label: TAP deliverables target git server address
+    inputType: text
+    defaultValue: "https://github.com"
+    dependsOn: 
+      name: tapMultiClusterSupport
+      value: true
+
+  - name: tapDeliverablesRepositoryOwner
+    label: TAP deliverables target git repo owner
+    inputType: text
+    defaultValue: "tfynes-pivotal"
+    dependsOn: 
+      name: tapMultiClusterSupport
+      value: true
+
+  - name: tapDeliverablesRepositoryName
+    label: name prefix for kApps deployed per namespace to monitor for workloads
+    inputType: text
+    defaultValue: "tapdemo1-deliverables"
+    dependsOn: 
+      name: tapMultiClusterSupport
+      value: true
 
 
   - name: springApiPortalApiKeySupport
@@ -635,12 +658,16 @@ engine:
           with: "#tapDeliverablesRepositoryUrl"
       condition: "#tapMultiClusterSupport"
 
-    - include: ['clusters/taplab/cluster-config/dependent-resources/ootb-supply-chain-overlay_yaml']
+    - include: ['clusters/taplab/cluster-config/dependent-resources/ootb-supply-chain-overlay_yaml.yaml']
       chain:
       - type: ReplaceText
         substitutions:
-        - text: "xxx"
-          with: "yyy"
+        - text: "https://github.com"
+          with: "#tapDeliverablesRepositoryServerAddress"
+        - text: "tfynes-pivotal"
+          with: "#tapDeliverablesRepositoryOwner"
+        - text: "tapdemo1-deliverables"
+          with: "#tapDeliverablesRepositoryName"
       condition: "#tapMultiClusterSupport"
 
 
@@ -673,6 +700,9 @@ engine:
     condition: "#platformRegistryLocation != 'customPlatformRegistrySelection'"
 
   
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/ootb-supply-chain-overlay_yaml.yaml']
+    include: ['**']
+    condition: "!#tapMultiClusterSupport"
 
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
