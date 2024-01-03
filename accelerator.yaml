@@ -602,13 +602,13 @@ engine:
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
 
-    # - include: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
-    #   chain:
-    #   - type: ReplaceText
-    #     substitutions:
-    #     - text: "tapdemo1-workloads-"
-    #       with: "'' + #@tapWorkloadsKappNamePrefix"
-    #     condition: "#tapMultiClusterSupport"
+    - include: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: "tapdemo1-workloads-"
+          with: "'DUMMY'" #! " + #@tapWorkloadsKappNamePrefix"
+      condition: "#tapMultiClusterSupport"
 
 
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
