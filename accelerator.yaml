@@ -601,6 +601,16 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
+
+    - include: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: "tapdemo1-workloads-"
+          with: "#@tapWorkloadsKappNamePrefix"
+        condition: "#tapMultiClusterSupport"
+
+
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
     include: ['**']
     condition: "#deployDemoApplications == false"
@@ -640,12 +650,6 @@ engine:
     include: ['**']
 
 
-  - include: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
-    chain:
-    - type: ReplaceText
-      substitutions:
-      - text: "tapdemo1-workloads-"
-        with: "#@tapWorkloadsKappNamePrefix"
 
   # toggle in namespaces-simple vs namespaces-advanced as the namespaces.yaml file for ns-provisioner
   # depending on multi-cluster enable being set
