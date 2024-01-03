@@ -319,7 +319,7 @@ accelerator:
   - name: tapWorkloadsKappNamePrefix
     label: name prefix for kApps deployed per namespace to monitor for workloads
     inputType: text
-    defaultValue: "tap-workloads-"
+    defaultValue: "tap-workloads-watcher-for-ns-"
     dependsOn: 
       name: tapMultiClusterSupport
       value: true
