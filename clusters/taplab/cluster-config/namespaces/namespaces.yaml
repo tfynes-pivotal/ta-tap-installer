@@ -1,5 +1,6 @@
 #@ load("@ytt:data", "data")
-#@ "load(\"@ytt:data\", \"data\")"
+#@ header = "load(\"@ytt:data\", \"data\")"
+#@ header
 #! This for loop will loop over the namespace list in desired-namespaces.yaml and will create those namespaces.
 #! NOTE: if you have another tool like Tanzu Mission Control or some other process that is taking care of creating namespaces for you, 
 #! and you don’t want namespace provisioner to create the namespaces, you can delete this file from your GitOps install repository.
