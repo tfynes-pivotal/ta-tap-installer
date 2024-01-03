@@ -607,7 +607,7 @@ engine:
       - type: ReplaceText
         substitutions:
         - text: "tapdemo1-workloads-"
-          with: "'DUMMY'" #! " + #@tapWorkloadsKappNamePrefix"
+          with: "#tapWorkloadsKappNamePrefix"
       condition: "#tapMultiClusterSupport"
 
 
