@@ -316,6 +316,14 @@ accelerator:
       name: tapMultiClusterSupport
       value: true
 
+  - name: tapWorkloadsKappNamePrefix
+    label: name prefix for kApps deployed per namespace to monitor for workloads
+    inputType: text
+    defaultValue: "tap-workloads-"
+    dependsOn: 
+      name: tapMultiClusterSupport
+      value: true
+
   - name: springApiPortalApiKeySupport
     label: Enable SpringAPI-Portal API-Key support
     description: Spring API-Portal can be used to self-manage API-KEY based TAP workload microservice protections, enforced natively in TAP Cluster with SpringCloudGateway. In order to use Spring-API-Portal for key management, it must itself be protected with an OIDC auth-provider such as OKTA
