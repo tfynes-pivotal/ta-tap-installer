@@ -312,6 +312,9 @@ accelerator:
     description: a subPath in this repo will be monitored for each provisioned TAP namespace. e.g /dev, /default... and assets found in each with be targetted to the appropriate namespace of the same name.
     inputType: text
     defaultValue: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
+    dependsOn:
+      name: tapMultiClusterSupport
+      value: true
 
   - name: springApiPortalApiKeySupport
     label: Enable SpringAPI-Portal API-Key support
