@@ -561,7 +561,7 @@ engine:
       - type: ReplaceText
         substitutions:
         - text: "HEADER: PLACEHOLDER"
-          with: "#@ load(\"@ytt:data\", \"data\")"
+          with: "'#@ load(\"@ytt:data\", \"data\")'"
 
 
     # - include: ['setup-utility-scripts/setup-tce.yaml']
