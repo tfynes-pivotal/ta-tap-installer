@@ -15,7 +15,7 @@ metadata:
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
 metadata:
-  name: #@ ""#@ tapdemo1-workloads-\" + ns.name"
+  name: #@ "#@ \"tapdemo1-workloads-\" + ns.name"
   namespace: tanzu-sync
   annotations:
     kapp.k14s.io/change-rule.0: upsert after upserting pkgi
