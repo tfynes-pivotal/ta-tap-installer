@@ -643,7 +643,7 @@ engine:
     regex: clusters/taplab/cluster-config/namespaces/namespaces-simple\.yaml
     rewriteTo: "'clusters/taplab/cluster-config/namespaces/namespaces.yaml'"
     condition: "!#tapMultiClusterSupport"
-  - exclude: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced\.yaml']
+  - exclude: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
     include: ['**']
     condition: "!#tapMultiClusterSupport"
 
