@@ -639,6 +639,8 @@ engine:
   - exclude: ['**/unused/**']
     include: ['**']
 
+  # toggle in namespaces-simple vs namespaces-advanced as the namespaces.yaml file for ns-provisioner
+  # depending on multi-cluster enable being set
   - type: RewritePath
     regex: clusters/taplab/cluster-config/namespaces/namespaces-simple\.yaml
     rewriteTo: "'clusters/taplab/cluster-config/namespaces/namespaces.yaml'"
@@ -646,4 +648,11 @@ engine:
   - exclude: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
     include: ['**']
     condition: "!#tapMultiClusterSupport"
+  - type: RewritePath
+    regex: clusters/taplab/cluster-config/namespaces/namespaces-advanced\.yaml
+    rewriteTo: "'clusters/taplab/cluster-config/namespaces/namespaces.yaml'"
+    condition: "#tapMultiClusterSupport"
+  - exclude: ['clusters/taplab/cluster-config/namespaces/namespaces-simple.yaml']
+    include: ['**']
+    condition: "#tapMultiClusterSupport"
 
