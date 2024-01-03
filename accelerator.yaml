@@ -558,6 +558,10 @@ engine:
     - include: ['clusters/taplab/cluster-config/namespaces/namespaces.yaml']
       chain:
       - type: YTT
+      - type: ReplaceText
+        substitutions:
+        - text: "HEADER: PLACEHOLDER"
+          with: "#@ load(\"@ytt:data\", \"data\")"
 
 
     # - include: ['setup-utility-scripts/setup-tce.yaml']
