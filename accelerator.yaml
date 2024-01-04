@@ -515,7 +515,7 @@ engine:
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
 
   - name: tapWorkloadsKappNamePrefix
-    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + '-watcher-for-ns-'"
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'watcher-for-ns-'"
 
   - name: tapDeliverablesKappNamePrefix
     expression: "'tap-deliverables-watcher-for-ns-'"
