@@ -765,6 +765,10 @@ engine:
     include: ['**']
     condition: "!#tapMultiClusterSupport"
 
+  - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
+    include: ['**']
+    condition: "#tapMultiClusterSupport"
+
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
   #   include: ['**']
