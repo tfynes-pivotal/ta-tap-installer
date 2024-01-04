@@ -514,6 +514,9 @@ engine:
   - name: tapWorkloadsRepositoresUrlPrefix
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
 
+  - name: tapWorkloadsKappNamePrefix
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + '-watcher-for-ns-'"
+
 #! Start with global search & replace for text substitutions
 #!   Update ingress-domain, github gitops repo url, name & branch, tlsMode
   chain:
