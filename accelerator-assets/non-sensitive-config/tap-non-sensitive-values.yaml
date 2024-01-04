@@ -35,6 +35,12 @@ tap_install:
           gitops:
             ssh_secret: #@ "workload-git-auth" 
             #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
+            #@ if data.values.tapMultiClusterSupport:
+            repository_name: #@ data.values.tapAppGitOpsDeliveriesRepositoryName
+            repository_owner: #@ data.values.tapAppGitOpsRepositoriesOwner
+            server_address: #@ "https://" + data.values.tapAppGitOpsServer
+            #@ end
+
 
         ootb_supply_chain_testing_scanning:
           #@ if data.values.tapMultiClusterSupport:
@@ -48,6 +54,12 @@ tap_install:
           gitops:
             ssh_secret: #@ "workload-git-auth" 
             #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
+            #@ if data.values.tapMultiClusterSupport:
+            repository_name: #@ data.values.tapAppGitOpsDeliveriesRepositoryName
+            repository_owner: #@ data.values.tapAppGitOpsRepositoriesOwner
+            server_address: #@ "https://" + data.values.tapAppGitOpsServer
+            #@ end
+
 
         #! ootb_supply_chain_testing_scanning:
         #!   registry:
