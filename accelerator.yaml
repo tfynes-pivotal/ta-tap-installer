@@ -700,6 +700,13 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
+    - include: ['clusters/taplab/cluster-config/dependent-resources/ootb-supply-chain-basic.yaml']
+      chain:
+      - type: ReplaceText
+        substitutions:
+          - text: "#! OVERLAY-PLACEHOLDER"
+            with: "'ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: ootb-supply-chain-overlay'"
+      condition: "#tapMultiClusterSupport"
 
     - include: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
       chain:

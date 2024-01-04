@@ -8,6 +8,7 @@ metadata:
   namespace: tap-install
   annotations:
     kapp.k14s.io/change-rule.2: "upsert after upserting tap"
+    #! OVERLAY-PLACEHOLDER
 spec:
   packageRef:
     refName: ootb-supply-chain-basic.tanzu.vmware.com

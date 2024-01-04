@@ -186,6 +186,11 @@ tap_install:
          - name: api-portal
            secrets:
            - name: api-portal-cm-tls-overlay-secret
+         #@ if data.values.tapMultiClusterSupport:
+         - name: ootb-supply-chain-testing-scanning
+           secrets:
+           - name: ootb-supply-chain-overlay
+         #@ end
         #@ if data.values.tinyTapMode:
          - name: accelerator
            secrets:
