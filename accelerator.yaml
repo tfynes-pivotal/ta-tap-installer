@@ -724,9 +724,9 @@ engine:
       - type: ReplaceText
         substitutions:
         - text: "https://github.com"
-          with: "#tapDeliverablesRepositoryServerAddress"
+          with: "#tapAppGitOpsServer"
         - text: "tfynes-pivotal"
-          with: "#tapDeliverablesRepositoryOwner"
+          with: "#tapAppGitOpsRepoitoriesOwner"
         - text: "tapdemo1-deliverables"
           with: "#tapDeliverablesRepositoryName"
       condition: "#tapMultiClusterSupport"
