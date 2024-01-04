@@ -334,7 +334,8 @@ accelerator:
       value: true
 
   - name: tapAppGitOpsWorkloadsRepositoryNamePrefix
-    label: TAP Application GitOps Repository Name Prefix (suffix for each dev namespace)
+    label: Name Prefix for TAP Application GitOps Repositories (suffixed with each dev namespace name)
+    description: Dedicated Repository for each developer namespace to provide instance application gitOps support to development teams
     inputType: text
     defaultValue: "tapdemo1-workloads-"
     dependsOn:
@@ -698,10 +699,14 @@ engine:
       chain:
       - type: ReplaceText
         substitutions:
+        - text: tapWorkloadsRepositoresUrlPrefix
+          with: "#tapWorkloadsRepositoresUrlPrefix"
+        - text: tapDeliverablesRepositoryUrl
+          with: "#tapDeliverablesRepositoryUrl"
         - text: "tapdemo1-workloads-"
           with: "#tapWorkloadsKappNamePrefix"
-        - text: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
-          with: "#tapWorkloadsRepositoryUrl"
+        # - text: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
+        #   with: "#tapWorkloadsRepositoryUrl"
         - text: "tapdemo1-deliverables-"
           with: "#tapDeliverablesKappNamePrefix"
         - text: "https://github.com/tfynes-pivotal/tapdemo1-deliverables"

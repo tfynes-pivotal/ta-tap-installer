@@ -24,8 +24,9 @@ spec:
   fetch:
   - git:
       ref: origin/main
-      url: https://github.com/tfynes-pivotal/tapdemo1-workloads
-      subPath: #@ ns.name
+      #url: https://github.com/tfynes-pivotal/tapdemo1-workloads
+      url: tapWorkloadsRepositoresUrlPrefix + ns.name
+      #subPath: #@ ns.name
       secretRef:
         name: sync-git
   template:
@@ -49,7 +50,8 @@ spec:
   fetch:
   - git:
       ref: origin/main
-      url: https://github.com/tfynes-pivotal/tapdemo1-deliverables
+      #url: https://github.com/tfynes-pivotal/tapdemo1-deliverables
+      url: tapDeliverablesRepositoryUrl
       subPath: #@ "config/" + ns.name
       secretRef:
         name: sync-git
