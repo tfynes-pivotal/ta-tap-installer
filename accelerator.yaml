@@ -307,63 +307,106 @@ accelerator:
     dataType: boolean
     defaultValue: false
 
-  - name: tapWorkloadsRepositoryUrl
-    label: Git Repository URL for TAP Workloads
-    description: a subPath in this repo will be monitored for each provisioned TAP namespace. e.g /dev, /default... and assets found in each with be targetted to the appropriate namespace of the same name.
+  # - name: tapWorkloadsRepositoryUrl
+  #   label: Git Repository URL for TAP Workloads
+  #   description: a subPath in this repo will be monitored for each provisioned TAP namespace. e.g /dev, /default... and assets found in each with be targetted to the appropriate namespace of the same name.
+  #   inputType: text
+  #   defaultValue: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
+  #   dependsOn:
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  - name: tapAppGitOpsServer
+    label: Git Server address for TAP application gitOps
+    description: Git Server used for application teams and supply chains to declare state
     inputType: text
-    defaultValue: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
+    defaultValue: "github.com"
     dependsOn:
       name: tapMultiClusterSupport
       value: true
 
-  - name: tapWorkloadsKappNamePrefix
-    label: name prefix for kApps deployed per namespace to monitor for workloads
-    inputType: text
-    defaultValue: "tap-workloads-watcher-for-ns-"
-    dependsOn: 
-      name: tapMultiClusterSupport
-      value: true
-
-  - name: tapDeliverablesRepositoryUrl
-    label: Git Repository URL for TAP Deliverables
-    description: a subPath in this repo will be monitored for each provisioned TAP namespace. e.g /dev, /default... and assets found in each with be targetted to the appropriate namespace of the same name.
-    inputType: text
-    defaultValue: "https://github.com/tfynes-pivotal/tapdemo1-deliverables"
-    dependsOn:
-      name: tapMultiClusterSupport
-      value: true
-
-  - name: tapDeliverablesKappNamePrefix
-    label: name prefix for kApps deployed per namespace to monitor for workloads
-    inputType: text
-    defaultValue: "tap-deliverables-watcher-for-ns-"
-    dependsOn: 
-      name: tapMultiClusterSupport
-      value: true
-
-  - name: tapDeliverablesRepositoryServerAddress
-    label: TAP deliverables target git server address
-    inputType: text
-    defaultValue: "https://github.com"
-    dependsOn: 
-      name: tapMultiClusterSupport
-      value: true
-
-  - name: tapDeliverablesRepositoryOwner
-    label: TAP deliverables target git repo owner
+  - name: tapAppGitOpsRepositoriesOwner
+    label: Owner for TAP application gitOps repositories
     inputType: text
     defaultValue: "tfynes-pivotal"
-    dependsOn: 
+    dependsOn:
       name: tapMultiClusterSupport
       value: true
 
-  - name: tapDeliverablesRepositoryName
-    label: name prefix for kApps deployed per namespace to monitor for workloads
+  - name: tapAppGitOpsWorkloadsRepositoryNamePrefix
+    label: TAP Application GitOps Repository Name Prefix (suffix for each dev namespace)
+    inputType: text
+    defaultValue: "tapdemo1-workloads-"
+    dependsOn:
+      name: tapMultiClusterSupport
+      value: true
+
+  - name: tapAppGitOpsDeliverablesRepositoryName
+    label: Internal TAP Application GitOps Deliverables Repository name
+    description: Repo monitored by each TAP cluster for supply chain deliverable outputs to auto-deploy
     inputType: text
     defaultValue: "tapdemo1-deliverables"
     dependsOn: 
       name: tapMultiClusterSupport
       value: true
+
+  - name: tapAppGitOpsDeliveriesRepositoryName
+    label: Internal TAP Application GitOps Deliveries Repository name
+    description: Internal Repo Used by TAP to provide additional Deliverable deployment configuration
+    inputType: text
+    defaultValue: "tapdemo1-deliveries"
+    dependsOn: 
+      name: tapMultiClusterSupport
+      value: true
+
+  # - name: tapWorkloadsKappNamePrefix
+  #   label: name prefix for kApps deployed per namespace to monitor for workloads
+  #   inputType: text
+  #   defaultValue: "tap-workloads-watcher-for-ns-"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesRepositoryUrl
+  #   label: Git Repository URL for TAP Deliverables
+  #   description: a subPath in this repo will be monitored for each provisioned TAP namespace. e.g /dev, /default... and assets found in each with be targetted to the appropriate namespace of the same name.
+  #   inputType: text
+  #   defaultValue: "https://github.com/tfynes-pivotal/tapdemo1-deliverables"
+  #   dependsOn:
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesKappNamePrefix
+  #   label: name prefix for kApps deployed per namespace to monitor for workloads
+  #   inputType: text
+  #   defaultValue: "tap-deliverables-watcher-for-ns-"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesRepositoryServerAddress
+  #   label: TAP deliverables target git server address
+  #   inputType: text
+  #   defaultValue: "https://github.com"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesRepositoryOwner
+  #   label: TAP deliverables target git repo owner
+  #   inputType: text
+  #   defaultValue: "tfynes-pivotal"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesRepositoryName
+  #   label: name prefix for kApps deployed per namespace to monitor for workloads
+  #   inputType: text
+  #   defaultValue: "tapdemo1-deliverables"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
 
 
   - name: springApiPortalApiKeySupport
@@ -462,6 +505,13 @@ engine:
 
   - name: tanzunetUrl
     expression: "'registry.tanzu.vmware.com'"
+
+  - name: tapDeliverablesRepositoryUrl
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsDeliverablesRepositoryName"
+  - name: tapDeliveriesRepositoryUrl
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsDeliveriesRepositoryName"
+  - name: tapWorkloadsRepositoresUrlPrefix
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
 
 #! Start with global search & replace for text substitutions
 #!   Update ingress-domain, github gitops repo url, name & branch, tlsMode
