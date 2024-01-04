@@ -50,7 +50,7 @@ spec:
   fetch:
   - git:
       ref: origin/main
-      #url: https://github.com/tfynes-pivotal/tapdemo1-deliverables
+      #! url: https://github.com/tfynes-pivotal/tapdemo1-deliverables
       url: tapDeliverablesRepositoryUrl
       subPath: #@ "config/" + ns.name
       secretRef:
