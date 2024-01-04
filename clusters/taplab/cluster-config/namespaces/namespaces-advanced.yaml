@@ -24,7 +24,7 @@ spec:
   fetch:
   - git:
       ref: origin/main
-      #url: https://github.com/tfynes-pivotal/tapdemo1-workloads
+      #! url: https://github.com/tfynes-pivotal/tapdemo1-workloads
       url: #@ "tapWorkloadsRepositoresUrlPrefix" + ns.name
       #subPath: #@ ns.name
       secretRef:
