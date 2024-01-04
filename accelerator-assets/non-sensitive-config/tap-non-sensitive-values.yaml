@@ -23,7 +23,10 @@ tap_install:
         #! supply_chain: basic 
         supply_chain: testing_scanning
 
-        ootb_supply_chain_basic: 
+        ootb_supply_chain_basic:
+          #@ if data.values.tapMultiClusterSupport:
+          external_delivery: true
+          #@ end
           registry:
             #! server: "index.docker.io"
             #! repository: #@ data.values.dockerhubDefaultRegistry
@@ -33,7 +36,10 @@ tap_install:
             ssh_secret: #@ "workload-git-auth" 
             #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
 
-        ootb_supply_chain_testing_scanning: 
+        ootb_supply_chain_testing_scanning:
+          #@ if data.values.tapMultiClusterSupport:
+          external_delivery: true
+          #@ end
           registry:
             #! server: "index.docker.io"
             #! repository: #@ data.values.dockerhubDefaultRegistry
