@@ -731,7 +731,7 @@ engine:
       - type: ReplaceText
         substitutions:
         - text: "https://github.com"
-          with: "#tapAppGitOpsServer"
+          with: "'https://' + #tapAppGitOpsServer"
         - text: "tfynes-pivotal"
           with: "#tapAppGitOpsRepositoriesOwner"
         - text: "tapdemo1-deliverables"
