@@ -227,7 +227,7 @@ accelerator:
     display: true
     defaultValue: tfynes-pivotal
 
-  # - name: tapAppGitOpsServer
+  - name: tapAppGitOpsServer
     label: Git Server address for TAP application gitOps
     description: Git Server used for application teams and supply chains to declare state
     inputType: text
