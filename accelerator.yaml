@@ -232,26 +232,17 @@ accelerator:
     description: Git Server used for application teams and supply chains to declare state
     inputType: text
     defaultValue: "github.com"
-    dependsOn:
-      name: tapMultiClusterSupport
-      value: true
 
   - name: tapAppGitOpsRepositoriesOwner
     label: Owner for TAP application gitOps repositories
     inputType: text
     defaultValue: "tfynes-pivotal"
-    dependsOn:
-      name: tapMultiClusterSupport
-      value: true
 
   - name: tapAppGitOpsDeliverablesRepositoryName
     label: Internal TAP Application GitOps Deliverables Repository name
     description: Repo monitored by each TAP cluster for supply chain deliverable outputs to auto-deploy
     inputType: text
     defaultValue: "tapdemo1-deliverables"
-    dependsOn: 
-      name: tapMultiClusterSupport
-      value: true
 
 
 
