@@ -465,6 +465,13 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
+    - include: ['clusters/taplab/cluster-config/namespaces/namespaces.yaml']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: "tapdemo1-deliverables-"
+          with: "#tapDeliverablesKappNamePrefix"
+
     - include: ['clusters/taplab/cluster-config/config/kapp-dependent-resources.yaml']
       chain:
       - type: YTT
