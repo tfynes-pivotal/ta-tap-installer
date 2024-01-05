@@ -468,6 +468,8 @@ engine:
         substitutions:
         - text: "tapdemo1-deliverables-"
           with: "#tapDeliverablesKappNamePrefix"
+        - text: tapDeliverablesRepositoryUrl
+          with: "#tapDeliverablesRepositoryUrl"
 
     - include: ['clusters/taplab/cluster-config/config/kapp-dependent-resources.yaml']
       chain:
