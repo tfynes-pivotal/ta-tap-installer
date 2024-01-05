@@ -329,6 +329,9 @@ engine:
   - name: tapDeliverablesKappNamePrefix
     expression: "#tapGithubAuthUsername + '-watcher-for-ns-'"
 
+  - name: tapDeliverablesRepositoryUrl
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapAppGitOpsDeliverablesRepositoryName"
+
 #! Start with global search & replace for text substitutions
 #!   Update ingress-domain, github gitops repo url, name & branch, tlsMode
   chain:
