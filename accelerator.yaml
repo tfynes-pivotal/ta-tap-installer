@@ -735,7 +735,7 @@ engine:
         - text: "tfynes-pivotal"
           with: "#tapAppGitOpsRepositoriesOwner"
         - text: "tapdemo1-deliverables"
-          with: "#tapAppGitOpsDeliveriesRepositoryName"
+          with: "#tapAppGitOpsDeliverablesRepositoryName"
       condition: "#tapMultiClusterSupport"
 
 
