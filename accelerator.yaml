@@ -220,23 +220,23 @@ accelerator:
 
 
   # Question 9a. Workload git authentication Username
-  # - name: tapGithubAuthUsername
-  #   label: TAP Workload GitHub Server auth username 
-  #   description: TAP credential needed for supply-chains to pull workload sources from git repository
+  - name: tapGithubAuthUsername
+    label: TAP GitHub Server auth username 
+    description: TAP credential needed for supply-chains to pull workload sources from git repository
+    inputType: text
+    display: true
+    defaultValue: tfynes-pivotal
+
+  # - name: tapAppGitOpsServer
+  #   label: Git Server address for TAP application gitOps
+  #   description: Git Server used for application teams and supply chains to declare state
   #   inputType: text
-  #   display: true
-  #   defaultValue: tfynes-pivotal
+  #   defaultValue: "github.com"
 
-  - name: tapAppGitOpsServer
-    label: Git Server address for TAP application gitOps
-    description: Git Server used for application teams and supply chains to declare state
-    inputType: text
-    defaultValue: "github.com"
-
-  - name: tapAppGitOpsRepositoriesOwner
-    label: Owner for TAP application gitOps repositories
-    inputType: text
-    defaultValue: "tfynes-pivotal"
+  # - name: tapAppGitOpsRepositoriesOwner
+  #   label: Owner for TAP application gitOps repositories
+  #   inputType: text
+  #   defaultValue: "tfynes-pivotal"
 
   - name: tapAppGitOpsDeliverablesRepositoryName
     label: Internal TAP Application GitOps Deliverables Repository name
@@ -327,7 +327,7 @@ engine:
     expression: "'registry.tanzu.vmware.com'"
 
   - name: tapDeliverablesKappNamePrefix
-    expression: "#tapAppGitOpsDeliverablesRepositoryName + '-watcher-for-ns-'"
+    expression: "#tapGithubAuthUsername + '-watcher-for-ns-'"
 
 #! Start with global search & replace for text substitutions
 #!   Update ingress-domain, github gitops repo url, name & branch, tlsMode
