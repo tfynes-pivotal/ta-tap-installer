@@ -335,6 +335,9 @@ engine:
   - name: tanzunetUrl
     expression: "'registry.tanzu.vmware.com'"
 
+  - name: tapDeliverablesKappNamePrefix
+    expression: "#tapAppGitOpsDeliverablesRepositoryName + '-watcher-for-ns-'"
+
 #! Start with global search & replace for text substitutions
 #!   Update ingress-domain, github gitops repo url, name & branch, tlsMode
   chain:
