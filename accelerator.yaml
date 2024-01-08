@@ -778,7 +778,7 @@ engine:
          substitutions:
          - text: CLUSTER_LIST
            with: "m[0].tapClusterName"
-      condition: tapMultiClusterLinkerEnabled
+      condition: "#tapMultiClusterLinkerEnabled"
 
 
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
