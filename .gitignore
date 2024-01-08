@@ -3,3 +3,5 @@ accelerator-log.md
 /key.txt
 unused/.image-copy.sh.swp
 vault-setup/vault.out
+accelerator-assets/.DS_Store
+.DS_Store

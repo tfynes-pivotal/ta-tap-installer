@@ -487,6 +487,36 @@ accelerator:
     dependsOn:
       name: customCaCertsProvided
 
+  - name: tapMultiClusterLinkerEnabled
+    label: TAP Multi-Cluster Linker Script
+    description: Generate Script (bash and ytt) to register clusters with tap-gui. Note when external-delivery is enabled, single full cluster also needs to be registered.
+    display: true
+    dataType: boolean
+    defaultValue: false
+
+
+
+  - name: tapClusterList
+    label: TAP Cluster List
+    description: List of TAP clusters to link along with associated kubectl context
+    dataType: [TapClusterType]
+    dependsOn:
+      name: tapMultiClusterLinkerEnabled
+
+  types:
+    - name: TapClusterType
+      struct:
+        - name: tapClusterName
+          dataType: string
+          label: TAP Cluster Name
+          description: Cluster Name / Label as seen in TAP-Portal
+        - name: tapClusterContext
+          dataType: string
+          label: TAP Cluster Context
+          description: kubectl context for this cluster - assumes accessible from workstation
+      
+
+
   # - name: customCaCertsForKappControllerEnabled
   #   label: Update kAppController with Custom CA Certs
   #   dataType: boolean
