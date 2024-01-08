@@ -327,7 +327,8 @@ engine:
     expression: "'registry.tanzu.vmware.com'"
 
   - name: tapDeliverablesKappNamePrefix
-    expression: "#tapGithubAuthUsername + '-watcher-for-ns-'"
+    expression: "#tapAppGitOpsDeliverablesRepositoryName + '-watcher-for-ns-'"
+    #!expression: "#tapGithubAuthUsername + '-watcher-for-ns-'"
 
   - name: tapDeliverablesRepositoryUrl
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapAppGitOpsDeliverablesRepositoryName"
