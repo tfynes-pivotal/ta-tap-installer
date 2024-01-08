@@ -777,7 +777,7 @@ engine:
          type: ReplaceText
          substitutions:
          - text: CLUSTER_LIST
-           with: "m[0].tapClusterName"
+           with: "#m[0].tapClusterName"
       condition: "#tapMultiClusterLinkerEnabled"
 
 
