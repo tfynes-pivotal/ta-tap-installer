@@ -768,6 +768,18 @@ engine:
           with: "#tapAppGitOpsDeliverablesRepositoryName"
       condition: "#tapMultiClusterSupport"
 
+    - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
+      chain:
+      - type: Loop
+        on: "#tapClusterList"
+        var: m
+        doAsChain:
+         type: ReplaceText
+         substitutions:
+         - text: CLUSTER_LIST
+           with: "m[0].tapClusterName"
+      condition: tapMultiClusterLinkerEnabled
+
 
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
     include: ['**']
@@ -838,3 +850,4 @@ engine:
   - exclude: ['clusters/taplab/cluster-config/namespaces/namespaces-simple.yaml']
     include: ['**']
     condition: "#tapMultiClusterSupport"
+
