@@ -1,0 +1,64 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: builds.kpack.io
+spec:
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+        caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNRRENDQWVhZ0F3SUJBZ0lRZm9PNmxER3V3WTBkbHoxU1NqU25EekFLQmdncWhrak9QUVFEQWpBNE1SUXcKRWdZRFZRUUtFd3RyYm1GMGFYWmxMbVJsZGpFZ01CNEdBMVVFQXhNWGEzQmhZMnN0ZDJWaWFHOXZheTVyY0dGagpheTV6ZG1Nd0hoY05Nak14TWpFME1qTXhNRE0wV2hjTk1qTXhNakl4TWpNeE1ETTBXakE0TVJRd0VnWURWUVFLCkV3dHJibUYwYVhabExtUmxkakVnTUI0R0ExVUVBeE1YYTNCaFkyc3RkMlZpYUc5dmF5NXJjR0ZqYXk1emRtTXcKV1RBVEJnY3Foa2pPUFFJQkJnZ3Foa2pPUFFNQkJ3TkNBQVJoM3BzQTEwb0tNWnlLOXVxUXNGbUNSZUNlOEhJWApYNHdHWUVqOGZBY0xEUlNUTG1aM2dpS3ZmYmh1aEFTK0hFclg2STVMVk9kNFZMY00vUERUNHQ0am80SFJNSUhPCk1BNEdBMVVkRHdFQi93UUVBd0lDaERBZEJnTlZIU1VFRmpBVUJnZ3JCZ0VGQlFjREFRWUlLd1lCQlFVSEF3SXcKRHdZRFZSMFRBUUgvQkFVd0F3RUIvekFkQmdOVkhRNEVGZ1FVdVBwSzU2aXY4Y0RxZG56MXdUK1RNaW1aYzVrdwpiUVlEVlIwUkJHWXdaSUlOYTNCaFkyc3RkMlZpYUc5dmE0SVRhM0JoWTJzdGQyVmlhRzl2YXk1cmNHRmphNElYCmEzQmhZMnN0ZDJWaWFHOXZheTVyY0dGamF5NXpkbU9DSld0d1lXTnJMWGRsWW1odmIyc3VhM0JoWTJzdWMzWmoKTG1Oc2RYTjBaWEl1Ykc5allXd3dDZ1lJS29aSXpqMEVBd0lEU0FBd1JRSWdPdlhJY1dPaEhBbWVKSSszVWVUKwpSZFdlMEgvMVZzUm9MREYrZHM3Rkppc0NJUURxSjdnaWJKUFd5R1piaGhhby9DNE1DckNRaERrNmM5SnBqU2pNCk5oRjNQUT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+        service:
+          name: kpack-webhook
+          namespace: kpack
+          path: /convert
+          port: 443
+      conversionReviewVersions:
+      - v1
+  group: kpack.io
+  names:
+    categories:
+    - kpack
+    kind: Build
+    listKind: BuildList
+    plural: builds
+    shortNames:
+    - cnbbuild
+    - cnbbuilds
+    - bld
+    - blds
+    singular: build
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.latestImage
+      name: Image
+      type: string
+    - jsonPath: .status.conditions[?(@.type=="Succeeded")].status
+      name: Succeeded
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        type: object
+        x-kubernetes-preserve-unknown-fields: true
+    served: true
+    storage: false
+    subresources:
+      status: {}
+  - additionalPrinterColumns:
+    - jsonPath: .status.latestImage
+      name: Image
+      type: string
+    - jsonPath: .status.conditions[?(@.type=="Succeeded")].status
+      name: Succeeded
+      type: string
+    name: v1alpha2
+    schema:
+      openAPIV3Schema:
+        type: object
+        x-kubernetes-preserve-unknown-fields: true
+    served: true
+    storage: true
+    subresources:
+      status: {}
