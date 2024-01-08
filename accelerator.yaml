@@ -778,13 +778,13 @@ engine:
     #        with: "#m['tapClusterName'] #m['tapClusterContext']"
     #   condition: "#tapMultiClusterLinkerEnabled"
 
-    - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
-      chain:
-      - type: ReplaceText
-        substitutions:
-        - text: CLUSTER_LIST
-          with: "#tapClusterList[0]['tapClusterName'] #tapClusterList[0]['tapClusterContext']"
-    condition: "#tapMultiClusterLinkerEnabled"
+    # - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
+    #   chain:
+    #   - type: ReplaceText
+    #     substitutions:
+    #     - text: CLUSTER_LIST
+    #       with: "#tapClusterList[0]['tapClusterName'] #tapClusterList[0]['tapClusterContext']"
+    # condition: "#tapMultiClusterLinkerEnabled"
 
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
     include: ['**']
