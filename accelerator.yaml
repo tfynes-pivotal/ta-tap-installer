@@ -783,7 +783,8 @@ engine:
       - type: ReplaceText
         substitutions:
         - text: CLUSTER_LIST
-          with: "#tapClusterList[0]['tapClusterName']+ ',' + #tapClusterList[0]['tapClusterContext']"
+          with: "T(String).join('-'', #tapClusterList['tapClusterName'])"
+          #! with: "#tapClusterList[0]['tapClusterName']+ ',' + #tapClusterList[0]['tapClusterContext']"
     condition: "#tapMultiClusterLinkerEnabled"
 
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
