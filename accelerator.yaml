@@ -766,17 +766,17 @@ engine:
           with: "#tapAppGitOpsDeliverablesRepositoryName"
       condition: "#tapMultiClusterSupport"
 
-    - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
-      chain:
-      - type: Loop
-        on: tapClusterList
-        var: m
-        doAsChain:
-         type: ReplaceText
-         substitutions:
-         - text: CLUSTER_LIST
-           with: "#m['tapClusterName']"
-      condition: "#tapMultiClusterLinkerEnabled"
+    # - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
+    #   chain:
+    #   - type: Loop
+    #     on: tapClusterList
+    #     var: m
+    #     doAsChain:
+    #      type: ReplaceText
+    #      substitutions:
+    #      - text: CLUSTER_LIST
+    #        with: "#m['tapClusterName']"
+    #   condition: "#tapMultiClusterLinkerEnabled"
 
     # - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
     #   chain:
