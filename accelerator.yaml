@@ -783,7 +783,7 @@ engine:
       - type: ReplaceText
         substitutions:
         - text: CLUSTER_LIST
-          with: "#tapClusterList.toString()"
+          with: "#tapClusterList.toJson()"
     #       with: "#tapClusterList[0]['tapClusterName']+ ',' + #tapClusterList[0]['tapClusterContext']"
     condition: "#tapMultiClusterLinkerEnabled"
 
