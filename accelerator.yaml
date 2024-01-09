@@ -766,26 +766,27 @@ engine:
           with: "#tapAppGitOpsDeliverablesRepositoryName"
       condition: "#tapMultiClusterSupport"
 
-    # - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
-    #   chain:
-    #   - type: Loop
-    #     on: tapClusterList
-    #     var: m
-    #     doAsChain:
-    #      type: ReplaceText
-    #      substitutions:
-    #      - text: CLUSTER_LIST
-    #        with: "#m['tapClusterName']"
-    #   condition: "#tapMultiClusterLinkerEnabled"
-
     - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
       chain:
-      - type: ReplaceText
-        substitutions:
-        - text: CLUSTER_LIST
-          with: "#tapClusterList[0].toString()"
+      - type: Loop
+        on: tapClusterList
+        var: m
+        doAsChain:
+         type: ReplaceText
+         substitutions:
+         - text: CLUSTER_LIST
+           with: "#m.toString()"
+           #with: "#m['tapClusterName'].toString()"
+      condition: "#tapMultiClusterLinkerEnabled"
+
+    # - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
+    #   chain:
+    #   - type: ReplaceText
+    #     substitutions:
+    #     - text: CLUSTER_LIST
+    #       with: "#tapClusterList[0].toString()"
     #       with: "#tapClusterList[0]['tapClusterName']+ ',' + #tapClusterList[0]['tapClusterContext']"
-    condition: "#tapMultiClusterLinkerEnabled"
+    #condition: "#tapMultiClusterLinkerEnabled"
 
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
     include: ['**']
