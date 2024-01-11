@@ -775,7 +775,7 @@ engine:
          type: ReplaceText
          substitutions:
          - text: "# CLUSTER_LIST"
-           with: "#m['tapClusterName'] + ' ' + #m['tapClusterContext'] + ' # CLUSTER_LIST'"
+           with: "#m['tapClusterName'] + ', ' + #m['tapClusterContext'] + '\n# CLUSTER_LIST'"
       condition: "#tapMultiClusterLinkerEnabled"
 
     # - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
