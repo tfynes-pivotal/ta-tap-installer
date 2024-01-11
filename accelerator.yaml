@@ -769,7 +769,7 @@ engine:
     - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
       chain:
       - type: Loop
-        on: tapClusterList
+        on: "#tapClusterList"
         var: m
         doAsMerge:
          type: ReplaceText
