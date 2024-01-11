@@ -498,7 +498,6 @@ accelerator:
     label: TAP Cluster List
     description: List of TAP clusters to link along with associated kubectl context
     dataType: [TapClusterType]
-    defaultValue: [{tapClusterContext=akslab3, tapClusterName=FULL}, {tapClusterContext=akslab4, tapClusterName=RUN}]
     dependsOn:
       name: tapMultiClusterLinkerEnabled
 
