@@ -1,12 +1,12 @@
 #!/bin/bash
 
 while IFS=, read -r tapClusterName tapClusterContext; do
-  if ["$tapClusterName" != "#"]
-    echo "name = $tapClusterName context = $tapClusterContext";
-  fi 
-  done < ./clusterList.csv
-
-mv clustersData.json clustersData.json.old 
+if [[ "$tapClusterName" != "# CLUSTER_LIST" ]]
+  then
+    #echo "name = $tapClusterName context = $tapClusterContext";
+    echo "Fetching URL and ServiceAccount Token for Cluster Name $tapClusterName on context $tapClusterContext";
+  fi
+done < ./clusterList.csv
 
 
 echo "{\"CLUSTERS\":[" >> clustersData.json
