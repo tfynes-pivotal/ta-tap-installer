@@ -766,7 +766,7 @@ engine:
           with: "#tapAppGitOpsDeliverablesRepositoryName"
       condition: "#tapMultiClusterSupport"
 
-    - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
+    - include: ['accelerator-assets/multi-cluster/clusterList.csv']
       chain:
       - type: Loop
         on: "#tapClusterList"
@@ -775,7 +775,7 @@ engine:
          type: ReplaceText
          substitutions:
          - text: "# CLUSTER_LIST"
-           with: "#m['tapClusterName'] + ', ' + #m['tapClusterContext'] + '\n# CLUSTER_LIST'"
+           with: "#m['tapClusterName'] + ',' + #m['tapClusterContext'] + '\n# CLUSTER_LIST'"
       condition: "#tapMultiClusterLinkerEnabled"
 
     # - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
