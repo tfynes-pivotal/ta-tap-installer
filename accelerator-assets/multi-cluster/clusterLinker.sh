@@ -1,12 +1,21 @@
 #!/bin/bash
 
-while IFS=, read -r tapClusterName tapClusterContext; do
-if [[ "$tapClusterName" != "# CLUSTER_LIST" ]]
-  then
-    #echo "name = $tapClusterName context = $tapClusterContext";
-    echo "Fetching URL and ServiceAccount Token for Cluster Name $tapClusterName on context $tapClusterContext";
-  fi
-done < ./clusterList.csv
+
+#! ACCELERATOR SERVER-SIDE CREATED
+#! CLUSTERLIST.CSV
+#!
+#! SCRIPT WALKS CSV AND CREATES ENCRICHED JSON FILE (with cluster urls and access tokens)
+#! CLUSTERS.JSON
+#!
+#! SCRIPT USES YTT TO GENERATE CONFIGURATION FRAGMENT FOR TAP-GUI BLOCK OF TAP-VALUES (SENSITIVE) EMBEDDING CLUSTERS.JSON CONTENT
+#!
+#! TODO - take output yaml fragment and embed into tap-sensitive-values, reencrypt and update version deployed to git repo
+
+
+
+
+
+mv clustersData.json clustersData.json.old 
 
 
 echo "{\"CLUSTERS\":[" >> clustersData.json
@@ -24,7 +33,12 @@ if [[ "$tapClusterName" != "# CLUSTER_LIST" ]]
     echo "TOKEN = $CLUSTER_TOKEN"
     echo 
     echo "{" >> clustersData.json
-    echo "\"NAME\":\"$tapClusterName\",\"CONTEXT\":\"$tapClusterContext\",\"URL\":\"$CLUSTER_URL\",\"TOKEN\":\"$CLUSTER_TOKEN\"" >> clustersData.json
+        echo "\"url\":\"$CLUSTER_URL\"," >> clustersData.json
+        echo "\"name\":\"$tapClusterName\"," >> clustersData.json
+        echo "\"authProvider\":\"serviceAccount\"," >> clustersData.json
+        echo "\"serviceAccountToken\":\"$CLUSTER_TOKEN\"," >> clustersData.json
+        echo "\"skipTLSVerify\":\"true\"," >> clustersData.json
+        echo "\"skipMetricsLookup\":\"true\"" >> clustersData.json
     echo "}," >> clustersData.json
   fi 
 done < ./clusterList.csv
@@ -34,7 +48,15 @@ echo "}" >> clustersData.json
 echo "]}" >> clustersData.json
 
 
+ytt -f mc.yaml --data-value-file clusters=clusters.json
 
+
+# - url: #@ data.values.CLUSTERS[0].NAME
+#           name: FULL
+#           authProvider: serviceAccount
+#           serviceAccountToken: FULL_CLUSTER_TOKEN
+#           skipTLSVerify: true
+#           skipMetricsLookup: true
 
 
 
