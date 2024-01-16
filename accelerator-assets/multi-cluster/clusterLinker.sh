@@ -51,44 +51,12 @@ export SOPS_AGE_RECIPIENTS=$(cat ../../key.txt | grep "# public key: " | sed 's/
 export SOPS_AGE_KEY=$(cat ../../key.txt)
 sops -d ../../clusters/taplab/cluster-config/values/tap-sensitive-values.sops.yaml > tap-sensitive-values-decrypted.yaml
 
-ytt -f mc.yaml --data-value-file clusters=clusters.json -f ./tap-sensitive-values-decrypted.yaml > ./tap-sensitive-values-decrypted-updated.yaml
+ytt -f mc.yaml --data-value-file clusters=clustersData.json -f ./tap-sensitive-values-decrypted.yaml > ./tap-sensitive-values-decrypted-updated.yaml
 
-sops -e tap-sensitive-values-decrypted-updated.sops.yaml > ../../clusters/taplab/cluster-config/values/tap-sensitive-values.sops.yaml 
+sops -e tap-sensitive-values-decrypted-updated.yaml > ../../clusters/taplab/cluster-config/values/tap-sensitive-values.sops.yaml 
+rm tap-sensitive-values-decrypted.yaml
+rm tap-sensitive-values-decrypted-updated.yaml
+rm clustersData.json
+
+
 echo "UPDATING TAP-SENSITIVE-VALUES with MULTI-CLUSTER CONFIGURATION - VALIDATE BEFORE COMMITTING TO GIT-REPO"
-
-
-#ytt -f mc.yaml --data-value-file clusters=clusters.json
-
-
-# - url: #@ data.values.CLUSTERS[0].NAME
-#           name: FULL
-#           authProvider: serviceAccount
-#           serviceAccountToken: FULL_CLUSTER_TOKEN
-#           skipTLSVerify: true
-#           skipMetricsLookup: true
-
-
-
-
-# CLUSTER_LIST 
-# FULL_CLUSTER_CONTEXT=akslab4
-# RUN_CLUSTER_CONTEXT=akslab5
-
-# kubectl config use-context $FULL_CLUSTER_CONTEXT
-# FULL_CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
-# FULL_CLUSTER_TOKEN=$(kubectl -n tap-gui get secret tap-gui-viewer -o=json | jq -r '.data["token"]' | base64 --decode)
-
-# kubectl config use-context $RUN_CLUSTER_CONTEXT
-# RUN_CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
-# RUN_CLUSTER_TOKEN=$(kubectl -n tap-gui get secret tap-gui-viewer -o=json | jq -r '.data["token"]' | base64 --decode)
-
-
-# echo FULL_CLUSTER_URL = $FULL_CLUSTER_URL
-# echo FULL_CLUSTER_TOKEN = $FULL_CLUSTER_TOKEN
-# echo RUN-CLUSTER-URL = $RUN_CLUSTER_URL
-# echo RUN_CLUSTER_TOKEN = $RUN_CLUSTER_TOKEN
-
-# sed -i bak -e 's|FULL_CLUSTER_URL|'"${FULL_CLUSTER_URL}"'|g' multiClusterLocations.yaml
-# sed -i bak -e 's|FULL_CLUSTER_TOKEN|'"${FULL_CLUSTER_TOKEN}"'|g' multiClusterLocations.yaml
-# sed -i bak -e 's|RUN_CLUSTER_URL|'"${RUN_CLUSTER_URL}"'|g' multiClusterLocations.yaml
-# sed -i bak -e 's|RUN_CLUSTER_TOKEN|'"${RUN_CLUSTER_TOKEN}"'|g' multiClusterLocations.yaml
