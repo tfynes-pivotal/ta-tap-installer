@@ -1,4 +1,4 @@
-export TAP_VERSION=1.7.1
+export TAP_VERSION=1.7.3
 export TDS_VERSION=1.12.0
 
 #! Deploy Tanzu Cluster Essentials
