@@ -47,8 +47,17 @@ mv clustersData-tmp.json clustersData.json
 echo "}" >> clustersData.json	
 echo "]}" >> clustersData.json
 
+export SOPS_AGE_RECIPIENTS=$(cat ../../key.txt | grep "# public key: " | sed 's/# public key: //')
+export SOPS_AGE_KEY=$(cat ../../key.txt)
+sops -d ../../clusters/taplab/cluster-config/values/tap-sensitive-values.sops.yaml > tap-sensitive-values-decrypted.yaml
 
-ytt -f mc.yaml --data-value-file clusters=clusters.json
+ytt -f mc.yaml --data-value-file clusters=clusters.json -f ./tap-sensitive-values-decrypted.yaml > ./tap-sensitive-values-decrypted-updated.yaml
+
+sops -e tap-sensitive-values-decrypted-updated.sops.yaml > ../../clusters/taplab/cluster-config/values/tap-sensitive-values.sops.yaml 
+echo "UPDATING TAP-SENSITIVE-VALUES with MULTI-CLUSTER CONFIGURATION - VALIDATE BEFORE COMMITTING TO GIT-REPO"
+
+
+#ytt -f mc.yaml --data-value-file clusters=clusters.json
 
 
 # - url: #@ data.values.CLUSTERS[0].NAME
