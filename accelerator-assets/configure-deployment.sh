@@ -56,6 +56,22 @@ fi
 echo "DELETE /accelerator-log.md BEFORE PUSHING TO REPO AS IT CONTAINS SENSITIVE VALUES"
 echo
 
+echo "If using multi-cluster - /accelerator-assets/multi-cluster folder containers scripts for "
+echo "setting up TAP for multi-tenant / multi-cluster deployment model"
+echo "Workload repos expected per namespace based of provided prefix"
+echo "Delivery metadata auto-committed to tap-deliveries repo (subPath per namespace)"
+echo "Deliverable metadata auto-committed to tap-deliverables repo (supPath per namespace) - using workaround overlay for now"
+echo
+echo "Set up github repos for demo using /accelerator-assets/multi-cluster/setupRepos.sh script"
+echo "creates workload repo for default namespace and commits a few spring boot demo workloads"
+echo "creates deliverables and deliveries repos which will be populated by TAP"
+echo
+echo "Configure TAP-Portal to access all clusters (including single full cluster) when using external delivery"
+echo "/accelerator-assets/multi-cluster/clusterLinker.sh script will walk list of contexts provied in accelerator form"
+echo " enriches list to container cluster api endpoint URL and service account token for tap-portal to auth against each cluster"
+echo
+echo "run setupRepos.sh and clusterLinker.sh from multi-cluster folder.. ensure key.txt still present at root of repo"
+echo "after clusterLinker.sh script run. explicitly git-push updated tap-sensitive-values.yaml to your git server"
 
 # echo '#@ load("@ytt:data", "data")' | cat - x.yaml > /tmp/x && mv /tmp/x ./x.yaml
 # KEY=$(cat ./key.txt) ytt -f ./prefix.yaml -v newAgeKeyContent="$KEY"
