@@ -778,6 +778,18 @@ engine:
            with: "#m['tapClusterName'] + ',' + #m['tapClusterContext'] + '\n# CLUSTER_LIST'"
       condition: "#tapMultiClusterLinkerEnabled"
 
+    - include: ['accelerator-assets/multi-cluster/setupRepos.sh']
+      chain:
+      - type: ReplaceText
+        substitutions:
+          - text: DEFAULT-WORKLOADS-REPO-NAME 
+            with: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'default'"
+          - text: DELIVERABLES-REPO-NAME 
+            with: "#tapAppGitOpsDeliverablesRepositoryName" 
+          - text: DELIVERIES-REPO-NAME
+            with: "#tapAppGitOpsDeliveriesRepositoryName"
+      condition: "#tapMultiClusterLinkerEnabled"
+
     # - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
     #   chain:
     #   - type: ReplaceText
