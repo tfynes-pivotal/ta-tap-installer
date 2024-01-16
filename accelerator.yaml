@@ -784,6 +784,8 @@ engine:
         substitutions:
           - text: DEFAULT-WORKLOADS-REPO-NAME 
             with: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'default'"
+          - text: DEFAULT-WORKLOADS-REPO-URL
+            with: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix + 'default'"
           - text: DELIVERABLES-REPO-NAME 
             with: "#tapAppGitOpsDeliverablesRepositoryName" 
           - text: DELIVERIES-REPO-NAME
