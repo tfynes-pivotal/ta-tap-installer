@@ -300,6 +300,116 @@ accelerator:
       name: tlsMode
       value: tlsManual
 
+  - name: tapMultiClusterSupport
+    label: TAP Multi-Cluster Support
+    description: Enables multi-cluster TAP mode. Auto-deployment to current cluster now achieved using a kApp per developer namespace that monitors a subPath in a 'TAP deliverables' gitRepo
+    display: true
+    dataType: boolean
+    defaultValue: false
+
+  # - name: tapWorkloadsRepositoryUrl
+  #   label: Git Repository URL for TAP Workloads
+  #   description: a subPath in this repo will be monitored for each provisioned TAP namespace. e.g /dev, /default... and assets found in each with be targetted to the appropriate namespace of the same name.
+  #   inputType: text
+  #   defaultValue: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
+  #   dependsOn:
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  - name: tapAppGitOpsServer
+    label: Git Server address for TAP application gitOps
+    description: Git Server used for application teams and supply chains to declare state
+    inputType: text
+    defaultValue: "github.com"
+    dependsOn:
+      name: tapMultiClusterSupport
+      value: true
+
+  - name: tapAppGitOpsRepositoriesOwner
+    label: Owner for TAP application gitOps repositories
+    inputType: text
+    defaultValue: "tfynes-pivotal"
+    dependsOn:
+      name: tapMultiClusterSupport
+      value: true
+
+  - name: tapAppGitOpsWorkloadsRepositoryNamePrefix
+    label: Name Prefix for TAP Application GitOps Repositories (suffixed with each dev namespace name)
+    description: Dedicated Repository for each developer namespace to provide instance application gitOps support to development teams
+    inputType: text
+    defaultValue: "tapdemo1-workloads-"
+    dependsOn:
+      name: tapMultiClusterSupport
+      value: true
+
+  - name: tapAppGitOpsDeliverablesRepositoryName
+    label: Internal TAP Application GitOps Deliverables Repository name
+    description: Repo monitored by each TAP cluster for supply chain deliverable outputs to auto-deploy
+    inputType: text
+    defaultValue: "tapdemo1-deliverables"
+    dependsOn: 
+      name: tapMultiClusterSupport
+      value: true
+
+  - name: tapAppGitOpsDeliveriesRepositoryName
+    label: Internal TAP Application GitOps Deliveries Repository name
+    description: Internal Repo Used by TAP to provide additional Deliverable deployment configuration
+    inputType: text
+    defaultValue: "tapdemo1-deliveries"
+    dependsOn: 
+      name: tapMultiClusterSupport
+      value: true
+
+  # - name: tapWorkloadsKappNamePrefix
+  #   label: name prefix for kApps deployed per namespace to monitor for workloads
+  #   inputType: text
+  #   defaultValue: "tap-workloads-watcher-for-ns-"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesRepositoryUrl
+  #   label: Git Repository URL for TAP Deliverables
+  #   description: a subPath in this repo will be monitored for each provisioned TAP namespace. e.g /dev, /default... and assets found in each with be targetted to the appropriate namespace of the same name.
+  #   inputType: text
+  #   defaultValue: "https://github.com/tfynes-pivotal/tapdemo1-deliverables"
+  #   dependsOn:
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesKappNamePrefix
+  #   label: name prefix for kApps deployed per namespace to monitor for workloads
+  #   inputType: text
+  #   defaultValue: "tap-deliverables-watcher-for-ns-"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesRepositoryServerAddress
+  #   label: TAP deliverables target git server address
+  #   inputType: text
+  #   defaultValue: "https://github.com"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesRepositoryOwner
+  #   label: TAP deliverables target git repo owner
+  #   inputType: text
+  #   defaultValue: "tfynes-pivotal"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+  # - name: tapDeliverablesRepositoryName
+  #   label: name prefix for kApps deployed per namespace to monitor for workloads
+  #   inputType: text
+  #   defaultValue: "tapdemo1-deliverables"
+  #   dependsOn: 
+  #     name: tapMultiClusterSupport
+  #     value: true
+
+
   - name: springApiPortalApiKeySupport
     label: Enable SpringAPI-Portal API-Key support
     description: Spring API-Portal can be used to self-manage API-KEY based TAP workload microservice protections, enforced natively in TAP Cluster with SpringCloudGateway. In order to use Spring-API-Portal for key management, it must itself be protected with an OIDC auth-provider such as OKTA
@@ -377,6 +487,34 @@ accelerator:
     dependsOn:
       name: customCaCertsProvided
 
+  - name: tapMultiClusterLinkerEnabled
+    label: TAP Multi-Cluster Linker Script
+    description: Generate Script (bash and ytt) to register clusters with tap-gui. Note when external-delivery is enabled, single full cluster also needs to be registered.
+    display: true
+    dataType: boolean
+    defaultValue: false
+
+  - name: tapClusterList
+    label: TAP Cluster List
+    description: List of TAP clusters to link along with associated kubectl context
+    dataType: [TapClusterType]
+    dependsOn:
+      name: tapMultiClusterLinkerEnabled
+
+  types:
+    - name: TapClusterType
+      struct:
+        - name: tapClusterName
+          dataType: string
+          label: TAP Cluster Name
+          description: Cluster Name / Label as seen in TAP-Portal
+        - name: tapClusterContext
+          dataType: string
+          label: TAP Cluster Context
+          description: kubectl context for this cluster - assumes accessible from workstation
+      
+
+
   # - name: customCaCertsForKappControllerEnabled
   #   label: Update kAppController with Custom CA Certs
   #   dataType: boolean
@@ -396,6 +534,19 @@ engine:
 
   - name: tanzunetUrl
     expression: "'registry.tanzu.vmware.com'"
+
+  - name: tapDeliverablesRepositoryUrl
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsDeliverablesRepositoryName"
+  - name: tapDeliveriesRepositoryUrl
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsDeliveriesRepositoryName"
+  - name: tapWorkloadsRepositoresUrlPrefix
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
+
+  - name: tapWorkloadsKappNamePrefix
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'watcher-for-ns-'"
+
+  - name: tapDeliverablesKappNamePrefix
+    expression: "#tapAppGitOpsDeliverablesRepositoryName + '-watcher-for-ns-'"
 
 #! Start with global search & replace for text substitutions
 #!   Update ingress-domain, github gitops repo url, name & branch, tlsMode
@@ -531,6 +682,15 @@ engine:
       chain:
       - type: YTT  
 
+    # - include: ['clusters/taplab/cluster-config/namespaces/namespaces.yaml']
+    #   chain:
+    #   - type: YTT
+    #   - type: ReplaceText
+    #     substitutions:
+    #     - text: "HEADER: PLACEHOLDER"
+    #       with: "'#@ load(\"@ytt:data\", \"data\")'"
+    
+
     # - include: ['setup-utility-scripts/setup-tce.yaml']
     #   chain:
     #   - type: YTT
@@ -568,6 +728,80 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
+    - include: ['clusters/taplab/cluster-config/dependent-resources/ootb-supply-chain-basic.yaml']
+      chain:
+      - type: ReplaceText
+        substitutions:
+          - text: "#! OVERLAY-PLACEHOLDER"
+            with: "'ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: ootb-supply-chain-overlay'"
+      condition: "#tapMultiClusterSupport"
+
+    - include: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: tapWorkloadsRepositoresUrlPrefix
+          with: "#tapWorkloadsRepositoresUrlPrefix"
+        - text: tapDeliverablesRepositoryUrl
+          with: "#tapDeliverablesRepositoryUrl"
+        - text: "tapdemo1-workloads-"
+          with: "#tapWorkloadsKappNamePrefix"
+        # - text: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
+        #   with: "#tapWorkloadsRepositoryUrl"
+        - text: "tapdemo1-deliverables-"
+          with: "#tapDeliverablesKappNamePrefix"
+        - text: "https://github.com/tfynes-pivotal/tapdemo1-deliverables"
+          with: "#tapDeliverablesRepositoryUrl"
+      condition: "#tapMultiClusterSupport"
+
+    - include: ['clusters/taplab/cluster-config/dependent-resources/ootb-supply-chain-overlay_yaml.yaml']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: "https://github.com"
+          with: "'https://' + #tapAppGitOpsServer"
+        - text: "tfynes-pivotal"
+          with: "#tapAppGitOpsRepositoriesOwner"
+        - text: "tapdemo1-deliverables"
+          with: "#tapAppGitOpsDeliverablesRepositoryName"
+      condition: "#tapMultiClusterSupport"
+
+    - include: ['accelerator-assets/multi-cluster/clusterList.csv']
+      chain:
+      - type: Loop
+        on: "#tapClusterList"
+        var: m
+        doAsChain:
+         type: ReplaceText
+         substitutions:
+         - text: "# CLUSTER_LIST"
+           with: "#m['tapClusterName'] + ',' + #m['tapClusterContext'] + '\n# CLUSTER_LIST'"
+      condition: "#tapMultiClusterLinkerEnabled"
+
+    - include: ['accelerator-assets/multi-cluster/setupRepos.sh']
+      chain:
+      - type: ReplaceText
+        substitutions:
+          - text: DEFAULT-WORKLOADS-REPO-NAME 
+            with: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'default'"
+          - text: DEFAULT-WORKLOADS-REPO-URL
+            with: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix + 'default'"
+          - text: DELIVERABLES-REPO-NAME 
+            with: "#tapAppGitOpsDeliverablesRepositoryName" 
+          - text: DELIVERIES-REPO-NAME
+            with: "#tapAppGitOpsDeliveriesRepositoryName"
+      condition: "#tapMultiClusterLinkerEnabled"
+
+    # - include: ['accelerator-assets/multi-cluster/clusterLinker.sh']
+    #   chain:
+    #   - type: ReplaceText
+    #     substitutions:
+    #     - text: CLUSTER_LIST
+    #       with: "#tapClusterList.toString()"
+    # #       with: "#tapClusterList[0].toString()"
+    # #       with: "#tapClusterList[0]['tapClusterName']+ ',' + #tapClusterList[0]['tapClusterContext']"
+    # condition: "#tapMultiClusterLinkerEnabled"
+
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
     include: ['**']
     condition: "#deployDemoApplications == false"
@@ -596,6 +830,20 @@ engine:
     include: ['**']
     condition: "#platformRegistryLocation != 'customPlatformRegistrySelection'"
 
+  
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/ootb-supply-chain-overlay_yaml.yaml']
+    include: ['**']
+    condition: "!#tapMultiClusterSupport"
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/deliverable-config-writer-template.yaml']
+    include: ['**']
+    condition: "!#tapMultiClusterSupport"
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/deliverable-template.yaml']
+    include: ['**']
+    condition: "!#tapMultiClusterSupport"
+
+  - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
+    include: ['**']
+    condition: "#tapMultiClusterSupport"
 
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
@@ -604,3 +852,23 @@ engine:
 
   - exclude: ['**/unused/**']
     include: ['**']
+
+
+
+  # toggle in namespaces-simple vs namespaces-advanced as the namespaces.yaml file for ns-provisioner
+  # depending on multi-cluster enable being set
+  - type: RewritePath
+    regex: clusters/taplab/cluster-config/namespaces/namespaces-simple\.yaml
+    rewriteTo: "'clusters/taplab/cluster-config/namespaces/namespaces.yaml'"
+    condition: "!#tapMultiClusterSupport"
+  - exclude: ['clusters/taplab/cluster-config/namespaces/namespaces-advanced.yaml']
+    include: ['**']
+    condition: "!#tapMultiClusterSupport"
+  - type: RewritePath
+    regex: clusters/taplab/cluster-config/namespaces/namespaces-advanced\.yaml
+    rewriteTo: "'clusters/taplab/cluster-config/namespaces/namespaces.yaml'"
+    condition: "#tapMultiClusterSupport"
+  - exclude: ['clusters/taplab/cluster-config/namespaces/namespaces-simple.yaml']
+    include: ['**']
+    condition: "#tapMultiClusterSupport"
+

@@ -23,7 +23,10 @@ tap_install:
         #! supply_chain: basic 
         supply_chain: testing_scanning
 
-        ootb_supply_chain_basic: 
+        ootb_supply_chain_basic:
+          #@ if data.values.tapMultiClusterSupport:
+          external_delivery: true
+          #@ end
           registry:
             #! server: "index.docker.io"
             #! repository: #@ data.values.dockerhubDefaultRegistry
@@ -32,8 +35,17 @@ tap_install:
           gitops:
             ssh_secret: #@ "workload-git-auth" 
             #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
+            #@ if data.values.tapMultiClusterSupport:
+            repository_name: #@ data.values.tapAppGitOpsDeliveriesRepositoryName
+            repository_owner: #@ data.values.tapAppGitOpsRepositoriesOwner
+            server_address: #@ "https://" + data.values.tapAppGitOpsServer
+            #@ end
 
-        ootb_supply_chain_testing_scanning: 
+
+        ootb_supply_chain_testing_scanning:
+          #@ if data.values.tapMultiClusterSupport:
+          external_delivery: true
+          #@ end
           registry:
             #! server: "index.docker.io"
             #! repository: #@ data.values.dockerhubDefaultRegistry
@@ -42,6 +54,12 @@ tap_install:
           gitops:
             ssh_secret: #@ "workload-git-auth" 
             #! ssh_secret: #@ "workload-git-auth" if data.values.tapWorkloadAuthEnable else ""
+            #@ if data.values.tapMultiClusterSupport:
+            repository_name: #@ data.values.tapAppGitOpsDeliveriesRepositoryName
+            repository_owner: #@ data.values.tapAppGitOpsRepositoriesOwner
+            server_address: #@ "https://" + data.values.tapAppGitOpsServer
+            #@ end
+
 
         #! ootb_supply_chain_testing_scanning:
         #!   registry:
@@ -168,6 +186,11 @@ tap_install:
          - name: api-portal
            secrets:
            - name: api-portal-cm-tls-overlay-secret
+         #@ if data.values.tapMultiClusterSupport:
+         - name: ootb-supply-chain-testing-scanning
+           secrets:
+           - name: ootb-supply-chain-overlay
+         #@ end
         #@ if data.values.tinyTapMode:
          - name: accelerator
            secrets:
