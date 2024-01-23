@@ -483,7 +483,13 @@ engine:
         - text: tapWorkloadsRepositoresUrlPrefix
           with: "#tapWorkloadsRepositoresUrlPrefix"
 
-
+ 
+        - text: "tapdemo1-workloads-"
+          with: "#tapWorkloadsKappNamePrefix"
+        - text: "tapdemo1-services-"
+          with: "#tapServicesKappNamePrefix"
+        - text: "tapdemo1-local-services-"
+          with: "#tapLocalServicesKappNamePrefix"
 
 
 
