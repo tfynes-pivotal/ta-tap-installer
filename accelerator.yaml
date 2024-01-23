@@ -244,7 +244,11 @@ accelerator:
     inputType: text
     defaultValue: "tapdemo1-deliverables"
 
-
+  - name: tapAppGitOpsWorkloadsRepositoryNamePrefix
+    label: Name Prefix for TAP Application GitOps Repositories (suffixed with each dev namespace name)
+    description: Dedicated Repository for each developer namespace to provide instance application gitOps support to development teams
+    inputType: text
+    defaultValue: "tapdemo1-workloads-"
 
 
 
@@ -332,6 +336,10 @@ engine:
 
   - name: tapDeliverablesRepositoryUrl
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapAppGitOpsDeliverablesRepositoryName"
+
+  - name: tapWorkloadsRepositoresUrlPrefix
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
+
 
 #! Start with global search & replace for text substitutions
 #!   Update ingress-domain, github gitops repo url, name & branch, tlsMode
