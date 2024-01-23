@@ -480,6 +480,13 @@ engine:
         - text: tapDeliverablesRepositoryUrl
           with: "#tapDeliverablesRepositoryUrl"
 
+        - text: tapWorkloadsRepositoresUrlPrefix
+          with: "#tapWorkloadsRepositoresUrlPrefix"
+
+
+
+
+
     - include: ['clusters/taplab/cluster-config/config/kapp-dependent-resources.yaml']
       chain:
       - type: YTT
