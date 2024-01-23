@@ -349,8 +349,11 @@ engine:
   - name: tapDeliverablesRepositoryUrl
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapAppGitOpsDeliverablesRepositoryName"
 
-  - name: tapWorkloadsRepositoresUrlPrefix
+  - name: tapWorkloadsRepositoriesUrlPrefix
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
+
+  - name: tapLocalServicesRepositoriesUrlPrefix
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapServicesKappNamePrefix"
 
 
 #! Start with global search & replace for text substitutions
@@ -492,8 +495,8 @@ engine:
         - text: tapDeliverablesRepositoryUrl
           with: "#tapDeliverablesRepositoryUrl"
 
-        - text: tapWorkloadsRepositoresUrlPrefix
-          with: "#tapWorkloadsRepositoresUrlPrefix"
+        - text: tapWorkloadsRepositoriesUrlPrefix
+          with: "#tapWorkloadsRepositoriesUrlPrefix"
 
  
         - text: "tapdemo1-workloads-"
