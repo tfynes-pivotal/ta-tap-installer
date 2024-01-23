@@ -502,6 +502,8 @@ engine:
           with: "#tapServicesKappNamePrefix"
         - text: "tapdemo1-local-services-"
           with: "#tapLocalServicesKappNamePrefix"
+        - text" "tapLocalServicesRepositoryNamePrefix"
+          with: "#tapLocalServicesRepositoryNamePrefix"
 
 
 
