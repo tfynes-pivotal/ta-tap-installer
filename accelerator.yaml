@@ -543,7 +543,11 @@ engine:
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
 
   - name: tapWorkloadsKappNamePrefix
-    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'watcher-for-ns-'"
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'workloads-watcher-for-ns-'"
+  - name: tapServicesKappNamePrefix
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'services-watcher-for-ns-'"
+  - name: tapLocalServicesKappNamePrefix
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'local-services-watcher-for-ns-'"
 
   - name: tapDeliverablesKappNamePrefix
     expression: "#tapAppGitOpsDeliverablesRepositoryName + '-watcher-for-ns-'"
@@ -745,6 +749,10 @@ engine:
         - text: tapDeliverablesRepositoryUrl
           with: "#tapDeliverablesRepositoryUrl"
         - text: "tapdemo1-workloads-"
+          with: "#tapWorkloadsKappNamePrefix"
+        - text: "tapdemo1-services-"
+          with: "#tapWorkloadsKappNamePrefix"
+        - text: "tapdemo1-local-services-"
           with: "#tapWorkloadsKappNamePrefix"
         # - text: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
         #   with: "#tapWorkloadsRepositoryUrl"
