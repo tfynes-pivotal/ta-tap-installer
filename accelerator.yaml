@@ -485,7 +485,7 @@ engine:
 
  
         - text: "tapdemo1-workloads-"
-          with: "#tapWorkloadsKappNamePrefix"
+          with: "#tapAppGitOpsWorkloadsRepositoryNamePrefix"
         - text: "tapdemo1-services-"
           with: "#tapServicesKappNamePrefix"
         - text: "tapdemo1-local-services-"
