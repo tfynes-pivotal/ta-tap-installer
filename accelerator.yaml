@@ -495,7 +495,7 @@ engine:
         - text: tapDeliverablesRepositoryUrl
           with: "#tapDeliverablesRepositoryUrl"
 
-        - text: tapWorkloadsRepositoriesUrlPrefix
+        - text: "tapWorkloadsRepositoriesUrlPrefix"
           with: "#tapWorkloadsRepositoriesUrlPrefix"
 
  
