@@ -245,12 +245,16 @@ accelerator:
     defaultValue: "tapdemo1-deliverables"
 
   - name: tapAppGitOpsWorkloadsRepositoryNamePrefix
-    label: Name Prefix for TAP Application GitOps Repositories (suffixed with each dev namespace name)
-    description: Dedicated Repository for each developer namespace to provide instance application gitOps support to development teams
+    label: Global Services Deployer - Name Prefix for TAP Application GitOps Repositories (suffixed with each dev namespace name)
+    description: services subPath in this repo is autodeployed
     inputType: text
     defaultValue: "tapdemo1-workloads-"
 
-
+  - name: tapLocalServicesRepositoryNamePrefix
+    label: Local Services Deployer - Name Prefix for TAP Application GitOps Repositories (suffixed with each dev namespace name)
+    description: local-services subPath in this repo is autodeployed
+    inputType: text
+    defaultValue: "tapdemo1-run-cluster-local-services-"
 
 
 
@@ -333,6 +337,14 @@ engine:
   - name: tapDeliverablesKappNamePrefix
     expression: "#tapAppGitOpsDeliverablesRepositoryName + '-watcher-for-ns-'"
     #!expression: "#tapGithubAuthUsername + '-watcher-for-ns-'"
+
+  # - name: tapWorkloadsKappNamePrefix
+  #   expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'workloads-watcher-for-ns-'"
+  - name: tapServicesKappNamePrefix
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'services-watcher-for-ns-'"
+  - name: tapLocalServicesKappNamePrefix
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'local-services-watcher-for-ns-'"
+
 
   - name: tapDeliverablesRepositoryUrl
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapAppGitOpsDeliverablesRepositoryName"

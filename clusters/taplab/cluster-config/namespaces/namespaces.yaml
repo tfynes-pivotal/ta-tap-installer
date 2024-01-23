@@ -53,7 +53,7 @@ spec:
   - git:
       ref: origin/main
       #! url: https://github.com/tfynes-pivotal/tapdemo1-workloads
-      url: #@ "tapWorkloadsRepositoresUrlPrefix" + ns.name
+      url: #@ "tapLocalServicesRepositoryNamePrefix" + ns.name
       subPath: local-services
       secretRef:
         name: sync-git
