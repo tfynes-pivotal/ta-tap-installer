@@ -343,7 +343,7 @@ engine:
   - name: tapServicesKappNamePrefix
     expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'services-watcher-for-ns-'"
   - name: tapLocalServicesKappNamePrefix
-    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'local-services-watcher-for-ns-'"
+    expression: "#tapLocalServicesRepositoriesNamePrefix + 'local-services-watcher-for-ns-'"
 
 
   - name: tapDeliverablesRepositoryUrl
