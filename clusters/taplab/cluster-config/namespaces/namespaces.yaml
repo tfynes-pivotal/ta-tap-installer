@@ -10,6 +10,61 @@ metadata:
   name: #@ ns.name
 #! #@ end
 
+
+
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: #@ "tapdemo1-services-" + ns.name
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-rule.0: upsert after upserting pkgi
+spec:
+  defaultNamespace: #@ ns.name
+  serviceAccountName: sync-sa
+  fetch:
+  - git:
+      ref: origin/main
+      #! url: https://github.com/tfynes-pivotal/tapdemo1-workloads
+      url: #@ "tapWorkloadsRepositoresUrlPrefix" + ns.name
+      subPath: services
+      secretRef:
+        name: sync-git
+  template:
+  - ytt: {}
+  deploy:
+  - kapp:
+      rawOptions:
+      - --dangerous-allow-empty-list-of-resources=true
+
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: #@ "tapdemo1-local-services-" + ns.name
+  namespace: tanzu-sync
+  annotations:
+    kapp.k14s.io/change-rule.0: upsert after upserting pkgi
+spec:
+  defaultNamespace: #@ ns.name
+  serviceAccountName: sync-sa
+  fetch:
+  - git:
+      ref: origin/main
+      #! url: https://github.com/tfynes-pivotal/tapdemo1-workloads
+      url: #@ "tapWorkloadsRepositoresUrlPrefix" + ns.name
+      subPath: local-services
+      secretRef:
+        name: sync-git
+  template:
+  - ytt: {}
+  deploy:
+  - kapp:
+      rawOptions:
+      - --dangerous-allow-empty-list-of-resources=true
+
+
 ---
 apiVersion: kappctrl.k14s.io/v1alpha1
 kind: App
