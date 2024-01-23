@@ -353,7 +353,7 @@ engine:
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
 
   - name: tapLocalServicesRepositoriesUrlPrefix
-    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapServicesKappNamePrefix"
+    expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapLocalServicesRepositoriesNamePrefix"
 
 
 #! Start with global search & replace for text substitutions
