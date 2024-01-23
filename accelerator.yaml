@@ -351,7 +351,7 @@ engine:
 
   - name: tapWorkloadsRepositoriesUrlPrefix
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
-
+      
   - name: tapLocalServicesRepositoriesUrlPrefix
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapGithubAuthUsername + '/' + #tapServicesKappNamePrefix"
 
@@ -505,8 +505,8 @@ engine:
           with: "#tapServicesKappNamePrefix"
         - text: "tapdemo1-local-services-"
           with: "#tapLocalServicesKappNamePrefix"
-        - text: "tapLocalServicesRepositoryNamePrefix"
-          with: "#tapLocalServicesRepositoryNamePrefix"
+        - text: "tapLocalServicesRepositoriesNamePrefix"
+          with: "#tapLocalServicesRepositoriesNamePrefix"
 
 
 
