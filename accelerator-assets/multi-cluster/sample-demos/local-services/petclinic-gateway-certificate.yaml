@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-  - petclinic.a3.fynesy.com
+  - petclinic.INGRESS_DOMAIN
   secretName: taptlscert
   issuerRef:
     name: letsencrypt-production

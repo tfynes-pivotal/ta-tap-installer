@@ -774,6 +774,14 @@ engine:
           with: "#tapAppGitOpsDeliverablesRepositoryName"
       condition: "#tapMultiClusterSupport"
 
+    - include: ['accelerator-assets/multi-cluster/sample-demos/**']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: INGRESS_DOMAIN
+          with: "#tapIngressDomain"
+      condition: "#tapMultiClusterSupport"
+
     - include: ['accelerator-assets/multi-cluster/clusterList.csv']
       chain:
       - type: Loop
