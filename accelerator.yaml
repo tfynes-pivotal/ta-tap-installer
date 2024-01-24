@@ -535,7 +535,18 @@ engine:
         - text: FULL_CLUSTER_INGRESS_DOMAIN
           with: "#tapFullViewClusterIngressDomain"
 
+    - include: ['accelerator-assets/multi-cluster/setupRepos**']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: DEFAULT-LOCAL-SERVICES-REPO-NAME
+          with: "#tapLocalServicesRepositoriesNamePrefix + 'default'"
+        - text: DEFAULT-LOCAL-SERVICES-REPO-URL
+          with: "#tapLocalServicesRepositoriesUrlPrefix + 'default'"
+    
 
+#! DEFAULT-LOCAL-SERVICES-REPO-NAME 
+#! DEFAULT-LOCAL-SERVICES-REPO-URL
 
   - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls-cert**',
               '**/clusters/taplab/cluster-config/config/taplab-tls-certs-export']
