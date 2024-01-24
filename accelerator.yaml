@@ -526,6 +526,16 @@ engine:
         - text: origin/akslab
           with: "'origin/' + #tapGitopsInstallationRepositoryBranch"
 
+    - include: ['accelerator-assets/multi-cluster/sample-demos/**']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: INGRESS_DOMAIN
+          with: "#tapIngressDomain"
+        - text: FULL_CLUSTER_INGRESS_DOMAIN
+          with: "#tapFullViewClusterIngressDomain"
+
+
 
   - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls-cert**',
               '**/clusters/taplab/cluster-config/config/taplab-tls-certs-export']
