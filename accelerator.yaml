@@ -1,6 +1,6 @@
 accelerator:
-  displayName: TAP Installer for TAPv173+ 
-  description: TAP v173+ Installer Setup Wizard
+  displayName: TAP Installer for TAPv171+ ** DEV **
+  description: TAP v171+ Installer Setup Wizard
   tags:
   - beta
 
@@ -543,7 +543,11 @@ engine:
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsWorkloadsRepositoryNamePrefix"
 
   - name: tapWorkloadsKappNamePrefix
-    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'watcher-for-ns-'"
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'workloads-watcher-for-ns-'"
+  - name: tapServicesKappNamePrefix
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'services-watcher-for-ns-'"
+  - name: tapLocalServicesKappNamePrefix
+    expression: "#tapAppGitOpsWorkloadsRepositoryNamePrefix + 'local-services-watcher-for-ns-'"
 
   - name: tapDeliverablesKappNamePrefix
     expression: "#tapAppGitOpsDeliverablesRepositoryName + '-watcher-for-ns-'"
@@ -746,6 +750,10 @@ engine:
           with: "#tapDeliverablesRepositoryUrl"
         - text: "tapdemo1-workloads-"
           with: "#tapWorkloadsKappNamePrefix"
+        - text: "tapdemo1-services-"
+          with: "#tapServicesKappNamePrefix"
+        - text: "tapdemo1-local-services-"
+          with: "#tapLocalServicesKappNamePrefix"
         # - text: "https://github.com/tfynes-pivotal/tapdemo1-workloads"
         #   with: "#tapWorkloadsRepositoryUrl"
         - text: "tapdemo1-deliverables-"
@@ -764,6 +772,14 @@ engine:
           with: "#tapAppGitOpsRepositoriesOwner"
         - text: "tapdemo1-deliverables"
           with: "#tapAppGitOpsDeliverablesRepositoryName"
+      condition: "#tapMultiClusterSupport"
+
+    - include: ['accelerator-assets/multi-cluster/sample-demos/**']
+      chain:
+      - type: ReplaceText
+        substitutions:
+        - text: INGRESS_DOMAIN
+          with: "#tapIngressDomain"
       condition: "#tapMultiClusterSupport"
 
     - include: ['accelerator-assets/multi-cluster/clusterList.csv']
