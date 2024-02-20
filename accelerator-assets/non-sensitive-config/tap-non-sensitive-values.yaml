@@ -240,9 +240,9 @@ tap_install:
          - name: fluxcd-source-controller
            secrets:
            - name: reqfix-overlay-secret
-         - name: grype
-           secrets:
-           - name: reqfix-overlay-secret
+        #!  - name: grype
+        #!    secrets:
+        #!    - name: reqfix-overlay-secret
          - name: metadata-store
            secrets:
            - name: reqfix-overlay-secret

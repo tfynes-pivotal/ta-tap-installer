@@ -1,6 +1,6 @@
 accelerator:
-  displayName: TAP Installer for TAPv173
-  description: TAP v173+ Installer Setup Wizard
+  displayName: TAP Installer for TAPv18
+  description: TAP v18 Installer Setup Wizard
   tags:
   - beta
 

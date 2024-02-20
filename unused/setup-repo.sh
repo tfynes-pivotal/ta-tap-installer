@@ -24,7 +24,7 @@ cluster_name="$1"
 secrets_manager="$2"
 catalog_dir=".catalog"
 tanzu_sync_version="${TS_VERSION:-0.2.5}"
-tap_version="${TAP_VERSION:-1.7.3}"
+tap_version="${TAP_VERSION:-1.8.0-rc.18}"
 
 if [[ ! ",aws-secrets-manager,vault,sops," =~ (,${secrets_manager},) ]]; then
   usage
