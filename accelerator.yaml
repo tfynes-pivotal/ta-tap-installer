@@ -856,6 +856,9 @@ engine:
   - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/deliverable-template.yaml']
     include: ['**']
     condition: "!#tapMultiClusterSupport"
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/multi-cluster/**']
+    include: ['**']
+    condition: "!#tapMultiClusterSupport"
 
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
     include: ['**']
