@@ -185,6 +185,7 @@ tap_install:
         package_overlays:
          - name: api-portal
            secrets:
+           - name: api-portal-sso-creds-import-secret
            - name: api-portal-cm-tls-overlay-secret
          #@ if data.values.tapMultiClusterSupport:
          - name: ootb-supply-chain-testing-scanning

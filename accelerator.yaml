@@ -618,7 +618,8 @@ engine:
           - type: ReplaceText
             substitutions:
             - text: MOVE_APIPORTAL_SSO_CREDS
-              with: "'mv ./secrets-to-seal/dependent-resources/sso-credentials-secret.sops.yaml ../clusters/taplab/cluster-config/dependent-resources/'"
+              with: "'mv ./secrets-to-seal/config/sso-credentials-secret* ../clusters/taplab/cluster-config/config/'"
+              #! with: "'mv ./secrets-to-seal/dependent-resources/sso-credentials-secret.sops.yaml ../clusters/taplab/cluster-config/dependent-resources/'"
             condition: "#springApiPortalApiKeySupport"
           - type: ReplaceText
             substitutions:
@@ -629,7 +630,8 @@ engine:
           - type: ReplaceText
             substitutions:
             - text: ENCRYPT_APIPORTAL_SSO_CREDS
-              with: "'sops -e ./dependent-resources/sso-credentials-secret.yaml > ./dependent-resources/sso-credentials-secret.sops.yaml'"
+              with: "'sops -e ./config/sso-credentials-secret.yaml > ./config/sso-credentials-secret.sops.yaml'"
+              #!with: "'sops -e ./dependent-resources/sso-credentials-secret.yaml > ./dependent-resources/sso-credentials-secret.sops.yaml'"
             condition: "#springApiPortalApiKeySupport"
           - type: ReplaceText
             substitutions:
@@ -834,7 +836,8 @@ engine:
     condition: "#tlsMode == 'tlsManual'"
 
   #! - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/sso-credentials-secret**']
-  - exclude: ['**/accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret**']
+  #! - exclude: ['**/accelerator-assets/secrets-to-seal/dependent-resources/sso-credentials-secret**']
+  - exclude: ['**/accelerator-assets/secrets-to-seal/config/sso-credentials-secret**']
     include: ['**']
     condition: "#springApiPortalApiKeySupport == false"
 
