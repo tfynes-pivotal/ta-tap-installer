@@ -889,7 +889,7 @@ engine:
 
   - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tas-adapter**']
     include: ['**']
-    condition: "!tasAdapterEnabled"
+    condition: "!#tasAdapterEnabled"
 
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']
