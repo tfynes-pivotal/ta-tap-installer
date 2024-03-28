@@ -17,7 +17,7 @@ app_registry:
   credentials:
     secret_name: user-registry-dockerconfig
     namespace: tap-install
-  repository_prefix: #@ customPlatformRegistryUrl
+  repository_prefix: #@ customPlatformRegistryUrl + "/tas-adapter/"
 admin:
   users:
     - tas-admin
