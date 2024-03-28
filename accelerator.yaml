@@ -495,19 +495,19 @@ accelerator:
     defaultValue: false
 
   - name: tasAdapterEnabled
-    label: Enabled Tanzu Application Service (Cloud Foundry) API Support
+    label: Enable Tanzu Application Service (Cloud Foundry) API Support
     description: Enable cloud foundry (korifi) controller allowing for apps to be deployed to cluster using 'cf push' syntax
     display: true
     dataType: boolean
     defaultValue: false
 
-  - name: createTasUser
-    label: Create script to set up tas-admin user
-    display: true
-    dataType: boolean
-    defaultValue: true
-    dependsOn:
-      name: tasAdapterEnabled
+  # - name: createTasUser
+  #   label: Create script to set up tas-admin user
+  #   display: true
+  #   dataType: boolean
+  #   defaultValue: true
+  #   dependsOn:
+  #     name: tasAdapterEnabled
 
   - name: tapClusterList
     label: TAP Cluster List
@@ -719,7 +719,12 @@ engine:
       chain:
       - type: YTT
       condition: "#customCaCertsProvided" 
-      
+
+    - include: ['accelerator-assets/non-sensitive-config/tas-adapter/values.yaml']
+      chain:
+      - type: YTT
+      condition: "#tasAdapterEnabled"
+
     # - include: ['accelerator-assets/non-sensitive-config/azure-ca-cert.yaml']
     #   chain:
     #   - type: YTT
@@ -881,6 +886,10 @@ engine:
   - exclude: ['**/clusters/taplab/cluster-config/app-resources/**','**/clusters/taplab/cluster-config/config/kapp-app-resources.yaml']
     include: ['**']
     condition: "#tapMultiClusterSupport"
+
+  - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tas-adapter**']
+    include: ['**']
+    condition: "!tasAdapterEnabled"
 
   # would be better to pull unnecessary files - must revisit
   # - exclude: ['**/clusters/taplab/cluster-config/dependent-resources/tls**']

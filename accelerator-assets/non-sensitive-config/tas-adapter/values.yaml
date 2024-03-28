@@ -1,0 +1,23 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:base64", "base64")
+#@ load("@ytt:json", "json")
+---
+ceip_policy_disclosed: true
+api_ingress:
+  fqdn: #@ "api." + tapIngressDomain
+  tls:
+    namespace: tap-install
+    secret_name: taptlscert
+app_ingress:
+  default_domain: #@ tapIngressDomain
+  tls:
+    namespace: tap-install
+    secret_name: taptlscert
+app_registry:
+  credentials:
+    secret_name: user-registry-dockerconfig
+    namespace: tap-install
+  repository_prefix: #@ customPlatformRegistryUrl
+admin:
+  users:
+    - tas-admin

@@ -1,0 +1,11 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageRepository
+metadata:
+  finalizers:
+  - finalizers.packagerepository.packaging.carvel.dev/delete
+  name: tas-adapter-repository
+  namespace: tap-install
+spec:
+  fetch:
+    imgpkgBundle:
+      image: registry.tanzu.vmware.com/app-service-adapter/tas-adapter-package-repo:1.3.1

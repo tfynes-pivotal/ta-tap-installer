@@ -1,0 +1,27 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  annotations:
+    packaging.carvel.dev/package-ClusterRole: tas-adapter-tap-install-cluster-role
+    packaging.carvel.dev/package-ClusterRoleBinding: tas-adapter-tap-install-cluster-rolebinding
+    packaging.carvel.dev/package-Secret: tas-adapter-tap-install-values
+    packaging.carvel.dev/package-ServiceAccount: tas-adapter-tap-install-sa
+    tkg.tanzu.vmware.com/tanzu-package-ClusterRole: tas-adapter-tap-install-cluster-role
+    tkg.tanzu.vmware.com/tanzu-package-ClusterRoleBinding: tas-adapter-tap-install-cluster-rolebinding
+    tkg.tanzu.vmware.com/tanzu-package-Secret: tas-adapter-tap-install-values
+    tkg.tanzu.vmware.com/tanzu-package-ServiceAccount: tas-adapter-tap-install-sa
+  finalizers:
+  - finalizers.packageinstall.packaging.carvel.dev/delete
+  generation: 5
+  name: tas-adapter
+  namespace: tap-install
+spec:
+  packageRef:
+    refName: application-service-adapter.tanzu.vmware.com
+    versionSelection:
+      constraints: 1.3.1
+      prereleases: {}
+  serviceAccountName: tas-adapter-tap-install-sa
+  values:
+  - secretRef:
+      name: tas-adapter-tap-install-values
