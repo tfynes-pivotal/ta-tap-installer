@@ -1,0 +1,1 @@
+kubectl -n tap-install create secret generic tas-adapter-tap-install-values --from-file ./values.yaml
