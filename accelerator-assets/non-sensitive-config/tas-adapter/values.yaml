@@ -4,12 +4,12 @@
 ---
 ceip_policy_disclosed: true
 api_ingress:
-  fqdn: #@ "api." + tapIngressDomain
+  fqdn: #@ "api." + data.values.tapIngressDomain
   tls:
     namespace: tap-install
     secret_name: taptlscert
 app_ingress:
-  default_domain: #@ tapIngressDomain
+  default_domain: #@ data.values.tapIngressDomain
   tls:
     namespace: tap-install
     secret_name: taptlscert
@@ -17,7 +17,7 @@ app_registry:
   credentials:
     secret_name: user-registry-dockerconfig
     namespace: tap-install
-  repository_prefix: #@ customPlatformRegistryUrl + "/tas-adapter/"
+  repository_prefix: #@ data.values.customPlatformRegistryUrl + "/tas-adapter/"
 admin:
   users:
     - tas-admin
