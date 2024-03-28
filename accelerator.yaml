@@ -494,6 +494,21 @@ accelerator:
     dataType: boolean
     defaultValue: false
 
+  - name: tasAdapterEnabled
+    label: Enabled Tanzu Application Service (Cloud Foundry) API Support
+    description: Enable cloud foundry (korifi) controller allowing for apps to be deployed to cluster using 'cf push' syntax
+    display: true
+    dataType: boolean
+    defaultValue: false
+
+  - name: createTasUser
+    label: Create script to set up tas-admin user
+    display: true
+    dataType: boolean
+    defaultValue: true
+    dependsOn:
+      name: tasAdapterEnabled
+
   - name: tapClusterList
     label: TAP Cluster List
     description: List of TAP clusters to link along with associated kubectl context
