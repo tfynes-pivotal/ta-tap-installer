@@ -588,7 +588,7 @@ engine:
         - text: TLS_MODE
           with: "#tlsMode"
         - text: TAS_ADAPTER_ENABLED
-          with: "#tasAdapterEnabled"
+          with: "#tasAdapterEnabled ? 'true' : 'false'"
         - text: CUSTOM_CA_CERTS_PROVIDED
           with: "#customCaCertsProvided ? 'true' : 'false'"
       - merge:
