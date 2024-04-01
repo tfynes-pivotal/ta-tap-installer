@@ -587,6 +587,8 @@ engine:
           with: "#tapGitopsInstallationRepositoryUrl"
         - text: TLS_MODE
           with: "#tlsMode"
+        - text: TAS_ADAPTER_ENABLED
+          with: "#tasAdapterEnabled"
         - text: CUSTOM_CA_CERTS_PROVIDED
           with: "#customCaCertsProvided ? 'true' : 'false'"
       - merge:
@@ -720,7 +722,7 @@ engine:
       - type: YTT
       condition: "#customCaCertsProvided" 
 
-    - include: ['accelerator-assets/non-sensitive-config/tas-adapter/values.yaml']
+    - include: ['accelerator-assets/non-sensitive-config/tas-adapter/tas-adapter-tap-install-values.yaml']
       chain:
       - type: YTT
       condition: "#tasAdapterEnabled"

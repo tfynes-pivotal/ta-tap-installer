@@ -52,6 +52,11 @@ mv ./non-sensitive-config/kapp-controller-ca-cert.yaml             ../clusters/t
 #mv ./non-sensitive-config/azure-ca-cert.yaml  ../clusters/taplab/cluster-config/config/
 fi
 
+if [ TAS_ADAPTER_ENABLED = 'true' ]
+then
+mv ./non-sensitive-config/tas-adapter/tas-adapter-tap-install-values.yaml ../clusters/taplab/cluster-config/dependent-resources/
+#mv ./non-sensitive-config/tas-adapter/tas-adapter-tap-install-values.yaml ../clusters/taplab/cluster-config/config/
+fi
 
 echo "DELETE /accelerator-log.md BEFORE PUSHING TO REPO AS IT CONTAINS SENSITIVE VALUES"
 echo
