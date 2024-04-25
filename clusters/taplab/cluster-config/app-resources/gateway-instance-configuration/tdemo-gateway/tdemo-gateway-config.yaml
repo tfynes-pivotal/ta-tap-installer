@@ -28,6 +28,9 @@ spec:
       - "https://api-portal.akslab.tap.fynesy.com"
       allowedMethods:
       - "GET"
+      - "POST"
+      - "PATCH"
+      - "DELETE"
       allowedHeaders:
       - '*'
 
