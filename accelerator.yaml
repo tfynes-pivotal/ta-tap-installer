@@ -495,7 +495,7 @@ accelerator:
     defaultValue: false
 
   - name: tasAdapterEnabled
-    label: Enable Tanzu Application Service (Cloud Foundry) API Support
+    label: Enable Tanzu Application Service (Cloud Foundry) API Support - expects tas-adapter registry to be created
     description: Enable cloud foundry (korifi) controller allowing for apps to be deployed to cluster using 'cf push' syntax
     display: true
     dataType: boolean
