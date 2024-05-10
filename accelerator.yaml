@@ -701,6 +701,10 @@ engine:
       chain:
       - type: YTT  
 
+    - include: ['clusters/taplab/cluster-config/dependent-resources/tas-adapter-pkgr.yaml']
+      chain:
+      - type: YTT  
+
     - include: ['clusters/taplab/cluster-config/values/tap-install-values.yaml']
       chain:
       - type: YTT  
