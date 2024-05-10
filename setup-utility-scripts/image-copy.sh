@@ -1,6 +1,6 @@
-export IMGPKG_REGISTRY_HOSTNAME=harbor.harborlab.fynesy.net
+export IMGPKG_REGISTRY_HOSTNAME=harbor.harborlab.fynesy.com
 export IMGPKG_REGISTRY_USERNAME=admin
-export IMGPKG_REGISTRY_PASSWORD='Harbor12345!'
+export IMGPKG_REGISTRY_PASSWORD='Harbor1234!'
 export TAP_VERSION=1.9.1
 export TDS_VERSION=1.12.0
 
