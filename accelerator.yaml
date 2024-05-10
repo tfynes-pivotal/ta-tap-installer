@@ -196,7 +196,7 @@ accelerator:
   - name: harborPassword
     label: Harbor Registry Password or env-variable name
     inputType: text
-    defaultValue: 'Harbor12345!'
+    defaultValue: 'Harbor1234!'
     dependsOn:
       name: targetImageRegistryLocation
       value: harbor
