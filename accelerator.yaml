@@ -635,7 +635,7 @@ engine:
           - type: ReplaceText
             substitutions:
             - text: MOVE_APIPORTAL_SSO_CREDS
-              with: "'mv ./secrets-to-seal/config/sso-credentials-secret-export* ../clusters/taplab/cluster-config/config/ && mv ./secrets-to-seal/config/sso-credentials.sops* ../clusters/taplab/cluster-config/config/'"
+              with: "'mv ./secrets-to-seal/config/sso-credentials-secret-export* ../clusters/taplab/cluster-config/config/ && mv ./secrets-to-seal/config/sso-credentials-secret.sops* ../clusters/taplab/cluster-config/config/'"
               #! with: "'mv ./secrets-to-seal/dependent-resources/sso-credentials-secret.sops.yaml ../clusters/taplab/cluster-config/dependent-resources/'"
             condition: "#springApiPortalApiKeySupport"
           - type: ReplaceText
