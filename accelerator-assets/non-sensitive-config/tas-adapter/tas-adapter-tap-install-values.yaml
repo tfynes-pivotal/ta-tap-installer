@@ -5,7 +5,11 @@
 ---
 apiVersion: v1
 data:
+  #@ if data.values.targetImageRegistryLocation == "harbor":
   values.yaml :  #@ base64.encode(yaml.encode({"ceip_policy_disclosed":True,  "api_ingress":{"fqdn":"api." + data.values.tapIngressDomain,"tls": { "namespace":"tap-install", "secret_name": "taptlscert" }},"app_ingress":{"default_domain":data.values.tapIngressDomain,"tls":{"namespace":"tap-install","secret_name":"taptlscert"}},"app_registry":{"credentials":{"secret_name":"user-registry-dockerconfig", "namespace":"tap-install"},"repository_prefix":data.values.harborUrl + "/tas-adapter/"},"admin":{"users":["tas-admin"]}}))
+  #@ else:
+  values.yaml :  #@ base64.encode(yaml.encode({"ceip_policy_disclosed":True,  "api_ingress":{"fqdn":"api." + data.values.tapIngressDomain,"tls": { "namespace":"tap-install", "secret_name": "taptlscert" }},"app_ingress":{"default_domain":data.values.tapIngressDomain,"tls":{"namespace":"tap-install","secret_name":"taptlscert"}},"app_registry":{"credentials":{"secret_name":"user-registry-dockerconfig", "namespace":"tap-install"},"repository_prefix":data.values.dockerhubDefaultRegistry + "/tas-adapter/"},"admin":{"users":["tas-admin"]}}))
+  #@ end
 kind: Secret
 metadata:
   name: tas-adapter-tap-install-values
