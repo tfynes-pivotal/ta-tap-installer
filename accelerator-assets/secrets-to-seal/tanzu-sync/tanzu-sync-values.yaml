@@ -5,7 +5,7 @@ secrets:
     age_key: #@ data.values.existingAgeKeyContent  
     
     registry:
-      hostname: #@ "registry.tanzu.vmware.com"  if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryUrl
+      hostname: #@ "tanzu.packages.broadcom.com"  if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryUrl
       username: #@ data.values.tanzunetUsername if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryUsername
       password: #@ data.values.tanzunetPassword if data.values.platformRegistryLocation == "tanzunetRegistrySelection" else data.values.customPlatformRegistryPassword
 

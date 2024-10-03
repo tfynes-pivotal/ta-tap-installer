@@ -548,7 +548,7 @@ engine:
     expression: "'https://index.docker.io/v1/'"
 
   - name: tanzunetUrl
-    expression: "'registry.tanzu.vmware.com'"
+    expression: "'tanzu.packages.broadcom.com'"
 
   - name: tapDeliverablesRepositoryUrl
     expression: "'https://' + #tapAppGitOpsServer + '/' + #tapAppGitOpsRepositoriesOwner + '/' + #tapAppGitOpsDeliverablesRepositoryName"

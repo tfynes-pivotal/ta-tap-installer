@@ -13,7 +13,7 @@ spec:
       #@ if data.values.platformRegistryLocation == 'customPlatformRegistrySelection':
       image: #@ data.values.customPlatformRmqRegistry + '/rmq-packages:1.5.1'
       #@ else:
-      image: "registry.tanzu.vmware.com/p-rabbitmq-for-kubernetes/tanzu-rabbitmq-package-repo:1.5.1"
+      image: "tanzu.packages.broadcom.com/p-rabbitmq-for-kubernetes/tanzu-rabbitmq-package-repo:1.5.1"
       #@ end
       #!secretRef:
         #!name: install-registry-dockerconfig

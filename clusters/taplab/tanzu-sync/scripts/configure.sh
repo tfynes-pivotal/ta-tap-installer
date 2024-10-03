@@ -8,7 +8,7 @@ $0 :: configure Tanzu Sync for TAP Install
 
 Environment Variables:
 - TAP_PKGR_REPO -- URL of OCI registry and repository path to the imgpkg bundle containing the TAP PackageRepository
-                   (default: "registry.tanzu.vmware.com/tanzu-application-platform/tap-packages")
+                   (default: "tanzu.packages.broadcom.com/tanzu-application-platform/tap-packages")
 
 EOF
 }
@@ -18,7 +18,7 @@ if [[ $# -ne 0 ]]; then
   exit 1
 fi
 
-TAP_PKGR_REPO=${TAP_PKGR_REPO:-registry.tanzu.vmware.com/tanzu-application-platform/tap-packages}
+TAP_PKGR_REPO=${TAP_PKGR_REPO:-tanzu.packages.broadcom.com/tanzu-application-platform/tap-packages}
 
 # detect remote git repo and upstream branch
 remote_branch=$( git status --porcelain=2 --branch | grep "^# branch.upstream" | awk '{ print $3 }' )

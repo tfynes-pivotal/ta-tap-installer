@@ -5,8 +5,8 @@ tap_install:
     #@ if data.values.platformRegistryLocation == 'customPlatformRegistrySelection':
     oci_repository: #@ data.values.customPlatformRegistryUrl + '/tap-packages'
     #@ else: 
-    oci_repository: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
+    oci_repository: tanzu.packages.broadcom.com/tanzu-application-platform/tap-packages
     #@ end
   version:
-    package_repo_bundle_tag: "1.10.0"
-    package_version: "1.10.0"
+    package_repo_bundle_tag: "1.12.1"
+    package_version: "1.12.1"

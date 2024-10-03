@@ -72,6 +72,8 @@ tap_install:
           envoy:
             service:
               type: LoadBalancer 
+            workload:
+              replicas: 1
 
         buildservice:
           kp_default_repository: #@ data.values.harborUrl + '/' + data.values.harborDefaultRegistry + "/buildservice" if data.values.targetImageRegistryLocation == 'harbor' else data.values.dockerhubDefaultRegistry + "/buildservice"
