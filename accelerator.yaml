@@ -1,6 +1,6 @@
 accelerator:
   displayName: TAP Installer for TAPv110
-  description: TAP v1.10 Installer Setup Wizard
+  description: TAP v1.12.1 Installer Setup Wizard
   tags:
   - beta
 
